@@ -1,5 +1,14 @@
 package com.assignment.purelifewaterbottles.dto;
 
-public class UserDto {
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class UserDto {
+    private String userId;
+    private String username;
+    private String password;
 }

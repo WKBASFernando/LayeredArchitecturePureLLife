@@ -1002,7 +1002,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="290" parent="1" name="lalankawaterbottles">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-11-07.09:22:44</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-11-10.18:12:32</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="mysql">
@@ -1011,590 +1011,582 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <schema id="292" parent="1" name="performance_schema">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="293" parent="1" name="student">
+    <schema id="293" parent="1" name="purelifewaterbottles">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="294" parent="1" name="supermarket">
+    <schema id="294" parent="1" name="student">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="295" parent="1" name="supermarketfx">
+    <schema id="295" parent="1" name="supermarket">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="296" parent="1" name="sys">
+    <schema id="296" parent="1" name="supermarketfx">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="297" parent="1" name="thogakade">
+    <schema id="297" parent="1" name="sys">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <user id="298" parent="1" name="mysql.infoschema">
+    <schema id="298" parent="1" name="thogakade">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <user id="299" parent="1" name="mysql.infoschema">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="299" parent="1" name="mysql.session">
+    <user id="300" parent="1" name="mysql.session">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="300" parent="1" name="mysql.sys">
+    <user id="301" parent="1" name="mysql.sys">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="301" parent="1" name="root">
+    <user id="302" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="302" parent="290" name="customer">
+    <table id="303" parent="290" name="customer">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="303" parent="290" name="delivery">
+    <table id="304" parent="290" name="delivery">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="304" parent="290" name="driver">
+    <table id="305" parent="290" name="driver">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="305" parent="290" name="employee">
+    <table id="306" parent="290" name="employee">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="306" parent="290" name="item">
+    <table id="307" parent="290" name="item">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="307" parent="290" name="item_detail">
+    <table id="308" parent="290" name="item_detail">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="308" parent="290" name="order_detail">
+    <table id="309" parent="290" name="order_detail">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="309" parent="290" name="orders">
+    <table id="310" parent="290" name="orders">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="310" parent="290" name="payment">
+    <table id="311" parent="290" name="payment">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="311" parent="290" name="salary">
+    <table id="312" parent="290" name="salary">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="312" parent="290" name="supplier">
+    <table id="313" parent="290" name="supplier">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="313" parent="290" name="supplier_detail">
+    <table id="314" parent="290" name="supplier_detail">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="314" parent="290" name="user">
+    <table id="315" parent="290" name="user">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="315" parent="290" name="vehicle">
+    <table id="316" parent="290" name="vehicle">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="316" parent="290" name="warehouse">
+    <table id="317" parent="290" name="warehouse">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="317" parent="302" name="customerId">
+    <column id="318" parent="303" name="customerId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="318" parent="302" name="name">
+    <column id="319" parent="303" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="319" parent="302" name="address">
+    <column id="320" parent="303" name="address">
       <DefaultExpression>&apos;Sri Lanka&apos;</DefaultExpression>
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="320" parent="302" name="phone_no">
+    <column id="321" parent="303" name="phone_no">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(12)|0s</StoredType>
     </column>
-    <index id="321" parent="302" name="PRIMARY">
+    <index id="322" parent="303" name="PRIMARY">
       <ColNames>customerId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="322" parent="302" name="PRIMARY">
+    <key id="323" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="323" parent="303" name="deliveryId">
+    <column id="324" parent="304" name="deliveryId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="324" parent="303" name="driverId">
+    <column id="325" parent="304" name="driverId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="325" parent="303" name="location">
+    <column id="326" parent="304" name="location">
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="326" parent="303" name="delivery_fee">
+    <column id="327" parent="304" name="delivery_fee">
       <Position>4</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <foreign-key id="327" parent="303" name="delivery_ibfk_1">
+    <foreign-key id="328" parent="304" name="delivery_ibfk_1">
       <ColNames>driverId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>driverId</RefColNames>
       <RefTableName>driver</RefTableName>
     </foreign-key>
-    <index id="328" parent="303" name="PRIMARY">
+    <index id="329" parent="304" name="PRIMARY">
       <ColNames>deliveryId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="329" parent="303" name="driverId">
+    <index id="330" parent="304" name="driverId">
       <ColNames>driverId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="330" parent="303" name="PRIMARY">
+    <key id="331" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="331" parent="304" name="driverId">
+    <column id="332" parent="305" name="driverId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="332" parent="304" name="vehicleId">
+    <column id="333" parent="305" name="vehicleId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="333" parent="304" name="driver_fee">
+    <column id="334" parent="305" name="driver_fee">
       <Position>3</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <foreign-key id="334" parent="304" name="driver_ibfk_1">
+    <foreign-key id="335" parent="305" name="driver_ibfk_1">
       <ColNames>vehicleId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>vehicleId</RefColNames>
       <RefTableName>vehicle</RefTableName>
     </foreign-key>
-    <index id="335" parent="304" name="PRIMARY">
+    <index id="336" parent="305" name="PRIMARY">
       <ColNames>driverId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="336" parent="304" name="vehicleId">
+    <index id="337" parent="305" name="vehicleId">
       <ColNames>vehicleId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="337" parent="304" name="PRIMARY">
+    <key id="338" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="338" parent="305" name="employeeId">
+    <column id="339" parent="306" name="employeeId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="339" parent="305" name="name">
+    <column id="340" parent="306" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="340" parent="305" name="position">
+    <column id="341" parent="306" name="position">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="341" parent="305" name="address">
+    <column id="342" parent="306" name="address">
       <Position>4</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="342" parent="305" name="phoneNumber">
+    <column id="343" parent="306" name="phoneNumber">
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <index id="343" parent="305" name="PRIMARY">
+    <index id="344" parent="306" name="PRIMARY">
       <ColNames>employeeId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="344" parent="305" name="PRIMARY">
+    <key id="345" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="345" parent="306" name="itemId">
+    <column id="346" parent="307" name="itemId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="346" parent="306" name="name">
+    <column id="347" parent="307" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="347" parent="306" name="capacity">
+    <column id="348" parent="307" name="capacity">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="348" parent="306" name="price">
+    <column id="349" parent="307" name="price">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <index id="349" parent="306" name="PRIMARY">
+    <index id="350" parent="307" name="PRIMARY">
       <ColNames>itemId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="350" parent="306" name="PRIMARY">
+    <key id="351" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="351" parent="307" name="itemId">
+    <column id="352" parent="308" name="itemId">
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="352" parent="307" name="warehouseId">
+    <column id="353" parent="308" name="warehouseId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="353" parent="307" name="itemQty">
+    <column id="354" parent="308" name="itemQty">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="354" parent="307" name="item_detail_ibfk_1">
+    <foreign-key id="355" parent="308" name="item_detail_ibfk_1">
       <ColNames>itemId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>itemId</RefColNames>
       <RefTableName>item</RefTableName>
     </foreign-key>
-    <foreign-key id="355" parent="307" name="item_detail_ibfk_2">
+    <foreign-key id="356" parent="308" name="item_detail_ibfk_2">
       <ColNames>warehouseId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>warehouseId</RefColNames>
       <RefTableName>warehouse</RefTableName>
     </foreign-key>
-    <index id="356" parent="307" name="itemId">
+    <index id="357" parent="308" name="itemId">
       <ColNames>itemId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="357" parent="307" name="warehouseId">
+    <index id="358" parent="308" name="warehouseId">
       <ColNames>warehouseId</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="358" parent="308" name="orderId">
+    <column id="359" parent="309" name="orderId">
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="359" parent="308" name="itemId">
+    <column id="360" parent="309" name="itemId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="360" parent="308" name="item_qty">
+    <column id="361" parent="309" name="item_qty">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="361" parent="308" name="order_detail_ibfk_1">
+    <foreign-key id="362" parent="309" name="order_detail_ibfk_1">
       <ColNames>orderId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>orderId</RefColNames>
       <RefTableName>orders</RefTableName>
     </foreign-key>
-    <foreign-key id="362" parent="308" name="order_detail_ibfk_2">
+    <foreign-key id="363" parent="309" name="order_detail_ibfk_2">
       <ColNames>itemId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>itemId</RefColNames>
       <RefTableName>item</RefTableName>
     </foreign-key>
-    <index id="363" parent="308" name="orderId">
+    <index id="364" parent="309" name="orderId">
       <ColNames>orderId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="364" parent="308" name="itemId">
+    <index id="365" parent="309" name="itemId">
       <ColNames>itemId</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="365" parent="309" name="orderId">
+    <column id="366" parent="310" name="orderId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="366" parent="309" name="customerId">
+    <column id="367" parent="310" name="customerId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="367" parent="309" name="userId">
+    <column id="368" parent="310" name="deliveryId">
       <Position>3</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="368" parent="309" name="deliveryId">
+    <column id="369" parent="310" name="description">
       <Position>4</Position>
-      <StoredType>varchar(10)|0s</StoredType>
-    </column>
-    <column id="369" parent="309" name="description">
-      <Position>5</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <foreign-key id="370" parent="309" name="orders_ibfk_1">
+    <column id="370" parent="310" name="order_date">
+      <Position>5</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <foreign-key id="371" parent="310" name="orders_ibfk_1">
       <ColNames>customerId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>customerId</RefColNames>
       <RefTableName>customer</RefTableName>
     </foreign-key>
-    <foreign-key id="371" parent="309" name="orders_ibfk_2">
-      <ColNames>userId</ColNames>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>cascade</OnUpdate>
-      <RefColNames>userId</RefColNames>
-      <RefTableName>user</RefTableName>
-    </foreign-key>
-    <foreign-key id="372" parent="309" name="orders_ibfk_3">
+    <foreign-key id="372" parent="310" name="orders_ibfk_3">
       <ColNames>deliveryId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>deliveryId</RefColNames>
       <RefTableName>delivery</RefTableName>
     </foreign-key>
-    <index id="373" parent="309" name="PRIMARY">
+    <index id="373" parent="310" name="PRIMARY">
       <ColNames>orderId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="374" parent="309" name="customerId">
+    <index id="374" parent="310" name="customerId">
       <ColNames>customerId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="375" parent="309" name="userId">
-      <ColNames>userId</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="376" parent="309" name="deliveryId">
+    <index id="375" parent="310" name="deliveryId">
       <ColNames>deliveryId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="377" parent="309" name="PRIMARY">
+    <key id="376" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="378" parent="310" name="paymentId">
+    <column id="377" parent="311" name="paymentId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="379" parent="310" name="orderId">
+    <column id="378" parent="311" name="orderId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="380" parent="310" name="pay_method">
+    <column id="379" parent="311" name="pay_method">
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <foreign-key id="381" parent="310" name="payment_ibfk_1">
+    <foreign-key id="380" parent="311" name="payment_ibfk_1">
       <ColNames>orderId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>orderId</RefColNames>
       <RefTableName>orders</RefTableName>
     </foreign-key>
-    <index id="382" parent="310" name="PRIMARY">
+    <index id="381" parent="311" name="PRIMARY">
       <ColNames>paymentId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="383" parent="310" name="orderId">
+    <index id="382" parent="311" name="orderId">
       <ColNames>orderId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="384" parent="310" name="PRIMARY">
+    <key id="383" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="385" parent="311" name="salaryId">
+    <column id="384" parent="312" name="salaryId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="386" parent="311" name="employeeId">
+    <column id="385" parent="312" name="employeeId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="387" parent="311" name="salary">
+    <column id="386" parent="312" name="salary">
       <Position>3</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <foreign-key id="388" parent="311" name="salary_ibfk_1">
+    <foreign-key id="387" parent="312" name="salary_ibfk_1">
       <ColNames>employeeId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>employeeId</RefColNames>
       <RefTableName>employee</RefTableName>
     </foreign-key>
-    <index id="389" parent="311" name="PRIMARY">
+    <index id="388" parent="312" name="PRIMARY">
       <ColNames>salaryId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="390" parent="311" name="employeeId">
+    <index id="389" parent="312" name="employeeId">
       <ColNames>employeeId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="391" parent="311" name="PRIMARY">
+    <key id="390" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="392" parent="312" name="supplierId">
+    <column id="391" parent="313" name="supplierId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="393" parent="312" name="supplingItem">
+    <column id="392" parent="313" name="supplingItem">
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="394" parent="312" name="pricePerOneItem">
+    <column id="393" parent="313" name="pricePerOneItem">
       <Position>3</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <index id="395" parent="312" name="PRIMARY">
+    <index id="394" parent="313" name="PRIMARY">
       <ColNames>supplierId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="396" parent="312" name="PRIMARY">
+    <key id="395" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="397" parent="313" name="supplierId">
+    <column id="396" parent="314" name="supplierId">
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="398" parent="313" name="warehouseId">
+    <column id="397" parent="314" name="warehouseId">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="399" parent="313" name="s_qty">
+    <column id="398" parent="314" name="s_qty">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="400" parent="313" name="supplier_detail_ibfk_1">
+    <foreign-key id="399" parent="314" name="supplier_detail_ibfk_1">
       <ColNames>supplierId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>supplierId</RefColNames>
       <RefTableName>supplier</RefTableName>
     </foreign-key>
-    <foreign-key id="401" parent="313" name="supplier_detail_ibfk_2">
+    <foreign-key id="400" parent="314" name="supplier_detail_ibfk_2">
       <ColNames>warehouseId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>warehouseId</RefColNames>
       <RefTableName>warehouse</RefTableName>
     </foreign-key>
-    <index id="402" parent="313" name="supplierId">
+    <index id="401" parent="314" name="supplierId">
       <ColNames>supplierId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="403" parent="313" name="warehouseId">
+    <index id="402" parent="314" name="warehouseId">
       <ColNames>warehouseId</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="404" parent="314" name="userId">
+    <column id="403" parent="315" name="userId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="405" parent="314" name="username">
-      <NotNull>1</NotNull>
+    <column id="404" parent="315" name="username">
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb4_bin</CollationName>
     </column>
-    <column id="406" parent="314" name="password">
-      <NotNull>1</NotNull>
+    <column id="405" parent="315" name="password">
       <Position>3</Position>
-      <StoredType>varchar(20)|0s</StoredType>
+      <StoredType>varchar(50)|0s</StoredType>
+      <CollationName>utf8mb4_bin</CollationName>
     </column>
-    <index id="407" parent="314" name="PRIMARY">
+    <index id="406" parent="315" name="PRIMARY">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="408" parent="314" name="PRIMARY">
+    <key id="407" parent="315" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="409" parent="315" name="vehicleId">
+    <column id="408" parent="316" name="vehicleId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="410" parent="315" name="type">
+    <column id="409" parent="316" name="type">
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="411" parent="315" name="number">
+    <column id="410" parent="316" name="number">
       <Position>3</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="412" parent="315" name="description">
+    <column id="411" parent="316" name="description">
       <Position>4</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <index id="413" parent="315" name="PRIMARY">
+    <index id="412" parent="316" name="PRIMARY">
       <ColNames>vehicleId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="414" parent="315" name="PRIMARY">
+    <key id="413" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="415" parent="316" name="warehouseId">
+    <column id="414" parent="317" name="warehouseId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="416" parent="316" name="location">
+    <column id="415" parent="317" name="location">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <index id="417" parent="316" name="PRIMARY">
+    <index id="416" parent="317" name="PRIMARY">
       <ColNames>warehouseId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="418" parent="316" name="PRIMARY">
+    <key id="417" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

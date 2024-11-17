@@ -10,10 +10,9 @@ public class UserModel {
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM user WHERE username = ? AND password = ?", username, password);
             if (resultSet.next()) {
-                String userId = resultSet.getString("userId");
                 String dbUsername = resultSet.getString("username");
                 String dbPassword = resultSet.getString("password");
-                return new UserDto(userId, dbUsername, dbPassword);
+                return new UserDto(dbUsername, dbPassword);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());

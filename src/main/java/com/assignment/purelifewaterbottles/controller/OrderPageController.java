@@ -1,25 +1,29 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
-import com.assignment.purelifewaterbottles.dto.OrderDto;
+import com.assignment.purelifewaterbottles.dto.*;
 import com.assignment.purelifewaterbottles.dto.tm.OrderTm;
-import com.assignment.purelifewaterbottles.model.CustomerModel;
-import com.assignment.purelifewaterbottles.model.OrderModel;
+import com.assignment.purelifewaterbottles.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class OrderPageController implements Initializable {
@@ -34,13 +38,10 @@ public class OrderPageController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private ComboBox<String> cmbCusId;
+    private Button btnAddDelivery;
 
     @FXML
-    private ComboBox<String> cmbDelId;
-
-    @FXML
-    private ComboBox<String> cmbItemId1;
+    private Button btnAddItem;
 
     @FXML
     private TableColumn<?, ?> colCusId;
@@ -80,6 +81,9 @@ public class OrderPageController implements Initializable {
     private Label lblOrdId;
 
     @FXML
+    private Label orderDate;
+
+    @FXML
     private TableView<OrderTm> tblOrders;
 
     @FXML
@@ -92,7 +96,22 @@ public class OrderPageController implements Initializable {
 
     @FXML
     void GoToDeliveryPageAction(ActionEvent event) {
-        navigateTo("/view/DeliveryPage.fxml");
+        //navigateTo("/view/DeliveryPage.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddDeliveryPage.fxml"));
+            Parent root = loader.load();
+            AddDeliveryController deliveryPageController = loader.getController();
+            deliveryPageController.setOrderPageController(this);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -106,56 +125,205 @@ public class OrderPageController implements Initializable {
     }
 
     @FXML
-    void deleteButtonAction(ActionEvent event) {
+    void deleteButtonAction(ActionEvent event) throws SQLException {
+        String orderId = lblOrdId.getText();
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> optionalButtonType = alert.showAndWait();
+
+        if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
+
+            boolean isDeleted = orderModel.deleteOrder(orderId);
+            if (isDeleted) {
+                refreshPage();
+                new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to delete customer...!").show();
+            }
+        }
     }
 
-    @FXML
-    void saveButtonAction(ActionEvent event) {
-
-    }
+    OrderDetailModel orderDetailModel = new OrderDetailModel();
 
     @FXML
-    void tblOnClickedAction(MouseEvent event) {
+    void saveButtonAction(ActionEvent event) throws SQLException {
+        String orderId = lblOrdId.getText();
+        String customerId = lblCustomerId.getText();
+        String deliveryId = lblDeliveryId.getText();
+        String itemId = lblItemId.getText();
+        String localDate = orderDate.getText();
+        String qty = txtItemQty.getText();
+        int itemQty = Integer.parseInt(qty);
+        String description = txtDescription.getText();
 
-    }
+        txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: #7367F0;");
+        txtDescription.setStyle(txtDescription.getStyle() + ";-fx-border-color: #7367F0;");
 
-    @FXML
-    void updateButtonAction(ActionEvent event) {
+        String itemQtyPattern = "^\\d+$";
 
-    }
+        boolean isValidItemQty = qty.matches(itemQtyPattern);
 
-    CustomerDto customerDto = new CustomerDto();
+        if (!isValidItemQty) {
+            System.out.println(txtItemQty.getStyle());
+            txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: red;");
+            System.out.println("Invalid Quantity.............");
+        }
 
-    @FXML
-    void cmbCusIdOnAction(ActionEvent event) throws SQLException {
-        String selectedCustomerId = cmbCusId.getSelectionModel().getSelectedItem();
-        OrderDto orderDto = orderModel.findByCustomerId(selectedCustomerId);
+        if (isValidItemQty) {
+            OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
+            OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
 
-        // If customer found (orderDto not null)
-        if (orderDto != null) {
-
-            // FIll customer related labels
-            lblCustomerId.setText(customerDto.getName());
+            boolean isSavedO = orderModel.saveOrder(orderDto);
+            boolean isSavedOD = orderDetailModel.saveOrder(orderDetailDto);
+            if (isSavedO && isSavedOD ) {
+                refreshPage();
+                new Alert(Alert.AlertType.INFORMATION, "Order saved...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to save the order...!").show();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Order ID is invalid!").show();
         }
     }
 
     @FXML
-    void cmbDelIdOnAction(ActionEvent event) {
+    void tblOnClickedAction(MouseEvent event) {
+        OrderTm orderTm = tblOrders.getSelectionModel().getSelectedItem();
+        if (orderTm != null) {
 
+            lblOrdId.setText(orderTm.getOrderId());
+            lblCustomerId.setText(orderTm.getCustomerId());
+            lblDeliveryId.setText(orderTm.getDeliveryId());
+            lblItemId.setText(orderTm.getItemId());
+            lblItemId.setText(orderTm.getItemId());
+            txtItemQty.setText(String.valueOf(orderTm.getItem_qty()));
+            orderDate.setText(orderTm.getOrderDate());
+            txtDescription.setText(orderTm.getDescription());
+
+            btnSave.setDisable(true);
+
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+        }
     }
 
     @FXML
-    void cmbItemIdOnAction(ActionEvent event) {
+    void updateButtonAction(ActionEvent event) throws SQLException {
+        String orderId = lblOrdId.getText();
+        String customerId = lblCustomerId.getText();
+        String deliveryId = lblDeliveryId.getText();
+        String itemId = lblItemId.getText();
+        String localDate = orderDate.getText();
+        String qty = txtItemQty.getText();
+        int itemQty = Integer.parseInt(qty);
+        String description = txtDescription.getText();
 
+        txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: #7367F0;");
+        txtDescription.setStyle(txtDescription.getStyle() + ";-fx-border-color: #7367F0;");
+
+        String itemQtyPattern = "^\\d+$";
+
+        boolean isValidItemQty = qty.matches(itemQtyPattern);
+
+        if (!isValidItemQty) {
+            System.out.println(txtItemQty.getStyle());
+            txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: red;");
+            System.out.println("Invalid Quantity.............");
+        }
+
+        if (isValidItemQty) {
+            OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
+            OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
+
+            boolean isUpdateO = orderModel.updateOrder(orderDto);
+            boolean isUpdateOD = orderDetailModel.updateOrder(orderDetailDto);
+
+            if (isUpdateO && isUpdateOD) {
+                refreshPage();
+                new Alert(Alert.AlertType.INFORMATION, "Customer updated...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to update customer...!").show();
+            }
+
+        }
+    }
+
+    public void setCustomerId(String customerId) {
+        lblCustomerId.setText(customerId);
+    }
+
+    public void setDeliveryId(String deliveryId) {
+        lblDeliveryId.setText(deliveryId);
+    }
+
+    public void setItemId(String itemId) {
+        lblItemId.setText(itemId);
+    }
+
+
+    @FXML
+    void addCustomerAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddCustomer.fxml"));
+            Parent root = loader.load();
+            AddCustomerController addCustomerController = loader.getController();
+            addCustomerController.setOrderPageController(this);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void addDeliveryAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DeliveryPage.fxml"));
+            Parent root = loader.load();
+            AddDeliveryController deliveryPageController = loader.getController();
+            deliveryPageController.setOrderPageController(this);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void addItemAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddItem.fxml"));
+            Parent root = loader.load();
+            AddItemController addItemController = loader.getController();
+            addItemController.setOrderPageController(this);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadTableData() throws SQLException {
-        ArrayList<OrderDto> orderDtos = orderModel.getAllOrders();
+        ArrayList<OrderAndDetailDto> orderAndDetailDtos = orderModel.getAllOrders();
 
         ObservableList<OrderTm> orderTms = FXCollections.observableArrayList();
 
-        for (OrderDto orderDto : orderDtos) {
+        for (OrderAndDetailDto orderDto : orderAndDetailDtos) {
             OrderTm orderTm = new OrderTm(orderDto.getOrderId(), orderDto.getCustomerId(), orderDto.getDeliveryId(), orderDto.getItemId(), orderDto.getItem_qty(), orderDto.getOrderDate(), orderDto.getDescription());
             orderTms.add(orderTm);
         }
@@ -167,10 +335,16 @@ public class OrderPageController implements Initializable {
         loadNextOrderId();
         loadTableData();
 
+        orderDate.setText(LocalDate.now().toString());
+
         btnSave.setDisable(false);
 
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
+
+        lblCustomerId.setText("");
+        lblDeliveryId.setText("");
+        lblItemId.setText("");
 
         txtItemQty.setText("");
         txtDescription.setText("");

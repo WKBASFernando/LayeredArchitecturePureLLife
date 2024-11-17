@@ -23,7 +23,7 @@ public class CustomerModel {
     }
 
     public boolean saveCustomer(CustomerDto customerDto) throws SQLException {
-        return CrudUtil.execute("insert into customer values (?,?,?,?)", customerDto.getCustomerId(), customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no());
+        return CrudUtil.execute("insert into customer values (?,?,?,?,?)", customerDto.getCustomerId(), customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail());
     }
 
     public ArrayList<CustomerDto> getAllCustomers() throws SQLException {
@@ -32,18 +32,39 @@ public class CustomerModel {
         ArrayList<CustomerDto> customerDTOS = new ArrayList<>();
 
         while (rst.next()) {
-            CustomerDto customerDTO = new CustomerDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4));
+            CustomerDto customerDTO = new CustomerDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
             customerDTOS.add(customerDTO);
         }
         return customerDTOS;
     }
 
     public boolean updateCustomer(CustomerDto customerDto) throws SQLException {
-        return CrudUtil.execute("update customer set name=?, address=?, phone_no=? where customerId=?", customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getCustomerId());
+        return CrudUtil.execute("update customer set name=?, address=?, phone_no=?, email=? where customerId=?", customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail(), customerDto.getCustomerId());
     }
 
     public boolean deleteCustomer(String customerId) throws SQLException {
         return CrudUtil.execute("delete from customer where customerId=?", customerId);
+    }
+
+    public ArrayList<String> getAllCustomerIds() throws SQLException {
+        ResultSet rst = CrudUtil.execute("select customerId from customer");
+
+        ArrayList<String> customerIds = new ArrayList<>();
+
+        while (rst.next()) {
+            customerIds.add(rst.getString(1));
+        }
+
+        return customerIds;
+    }
+
+    public CustomerDto findByCustomerId(String selectedCustomerId) throws SQLException {
+        ResultSet rst = CrudUtil.execute("select * from customer where customerId=?", selectedCustomerId);
+
+        if (rst.next()) {
+            return new CustomerDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
+        }
+        return null;
     }
 }
 

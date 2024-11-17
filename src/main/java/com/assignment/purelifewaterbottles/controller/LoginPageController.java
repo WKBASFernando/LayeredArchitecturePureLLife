@@ -32,12 +32,6 @@ public class LoginPageController {
         UserDto user = UserModel.authenticateUser(username, password);
 
         if (user != null) {
-            /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Login Successful");
-            alert.setHeaderText(null);
-            Image image = new Image(getClass().getResourceAsStream("/images/PureLife.png"));
-            alert.setContentText("Welcome, " + user.getUsername() + "!");
-            alert.showAndWait();*/
             navigateTo("/view/HomePage.fxml");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

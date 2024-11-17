@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemModel {
-
     public String getNextItemId() throws SQLException {
         ResultSet rst = CrudUtil.execute("select itemId from item order by itemId desc limit 1");
 
@@ -44,5 +43,26 @@ public class ItemModel {
 
     public boolean deleteItem(String itemId) throws SQLException {
         return CrudUtil.execute("delete from item where itemId=?", itemId);
+    }
+
+    public ArrayList<String> getAllItemIds() throws SQLException {
+        ResultSet rst = CrudUtil.execute("select itemId from item");
+
+        ArrayList<String> itemIds = new ArrayList<>();
+
+        while (rst.next()) {
+            itemIds.add(rst.getString(1));
+        }
+
+        return itemIds;
+    }
+
+    public ItemDto findByItemId(String selectedItemId) throws SQLException {
+        ResultSet rst = CrudUtil.execute("select * from item where itemId=?", selectedItemId);
+
+        if (rst.next()) {
+            return new ItemDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
+        }
+        return null;
     }
 }

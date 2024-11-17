@@ -9,10 +9,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,12 +28,16 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerPageController implements Initializable {
+    public TextField txtEmail;
+    public TableColumn colEmail;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colCusId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colPhoneNo.setCellValueFactory(new PropertyValueFactory<>("phone_no"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         try {
             refreshPage();
@@ -45,10 +55,12 @@ public class CustomerPageController implements Initializable {
 
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
+        btnEmail.setDisable(true);
 
         txtName.setText("");
         txtAddress.setText("");
         txtPhoneNo.setText("");
+        txtEmail.setText("");
     }
 
     CustomerModel customerModel = new CustomerModel();
@@ -59,7 +71,7 @@ public class CustomerPageController implements Initializable {
         ObservableList<CustomerTm> customerTms = FXCollections.observableArrayList();
 
         for (CustomerDto customerDto : customerDTOS) {
-            CustomerTm customerTM = new CustomerTm(customerDto.getCustomerId(), customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no());
+            CustomerTm customerTM = new CustomerTm(customerDto.getCustomerId(), customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail());
             customerTms.add(customerTM);
         }
 
@@ -79,6 +91,12 @@ public class CustomerPageController implements Initializable {
 
     @FXML
     private Button btnUpdate;
+
+    @FXML
+    private Button btnEmail;
+
+    @FXML
+    private Button btnAddCustomer;
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -108,6 +126,9 @@ public class CustomerPageController implements Initializable {
     private TextField txtPhoneNo;
 
     @FXML
+    private AnchorPane content;
+
+    @FXML
     void deleteButtonAction(ActionEvent event) throws SQLException {
         String customerId = lblCusId.getText();
 
@@ -132,6 +153,7 @@ public class CustomerPageController implements Initializable {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String phone = txtPhoneNo.getText();
+        String email = txtEmail.getText();
 
         txtName.setStyle(txtName.getStyle() + ";-fx-border-color: #7367F0;");
         txtAddress.setStyle(txtAddress.getStyle() + ";-fx-border-color: #7367F0;");
@@ -155,7 +177,7 @@ public class CustomerPageController implements Initializable {
 
 
         if (isValidName && isValidPhone) {
-            CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone);
+            CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone, email);
 
             boolean isSaved = customerModel.saveCustomer(customerDTO);
             if (isSaved) {
@@ -175,12 +197,19 @@ public class CustomerPageController implements Initializable {
             txtName.setText(customerTm.getName());
             txtAddress.setText(customerTm.getAddress());
             txtPhoneNo.setText(customerTm.getPhone_no());
+            txtEmail.setText(customerTm.getEmail());
 
             btnSave.setDisable(true);
 
             btnDelete.setDisable(false);
             btnUpdate.setDisable(false);
+            btnEmail.setDisable(false);
         }
+    }
+
+    @FXML
+    void resetAction(ActionEvent event) throws SQLException {
+        refreshPage();
     }
 
     @FXML
@@ -189,6 +218,7 @@ public class CustomerPageController implements Initializable {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String phone = txtPhoneNo.getText();
+        String email = txtEmail.getText();
 
         txtName.setStyle(txtName.getStyle() + ";-fx-border-color: #7367F0;");
         txtAddress.setStyle(txtAddress.getStyle() + ";-fx-border-color: #7367F0;");
@@ -211,7 +241,7 @@ public class CustomerPageController implements Initializable {
         }
 
         if (isValidName && isValidPhone) {
-            CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone);
+            CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone, email);
 
             boolean isUpdate = customerModel.updateCustomer(customerDTO);
             if (isUpdate) {
@@ -224,7 +254,45 @@ public class CustomerPageController implements Initializable {
     }
 
     @FXML
-    private AnchorPane content;
+    void SendMailAction(ActionEvent event) {
+        CustomerTm selectedItem = tblCustomer.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            new Alert(Alert.AlertType.WARNING, "Please select customer..!");
+            return;
+        }
+
+        try {
+            // Load the mail dialog from FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SendMailView.fxml"));
+            Parent load = loader.load();
+
+            SendMailController sendMailController = loader.getController();
+
+            String email = selectedItem.getEmail();
+            sendMailController.setCustomerEmail(email);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(load));
+            stage.setTitle("Send email");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/mail_icon.png")));
+
+            // Set window as modal
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            Window underWindow = btnUpdate.getScene().getWindow();
+            stage.initOwner(underWindow);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to load ui..!");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void generateReportAction(ActionEvent event) {
+
+    }
 
     public void navigateTo(String fxmlPath) {
         try {

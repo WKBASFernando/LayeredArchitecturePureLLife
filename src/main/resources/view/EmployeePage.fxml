@@ -1,14 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.assignment.purelifewaterbottles.controller.EmployeePageController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.EmployeePageController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1024.0" layoutY="-1.0" opacity="0.5" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/WaterBackground.jpeg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="39.2" layoutY="46.2" prefHeight="400.0" prefWidth="936.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="46.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="292.0" layoutY="-16.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/PureLife.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="281.0" layoutY="8.0" text="Employee Manage">
+               <font>
+                  <Font name="Segoe UI Black" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="80.0" prefHeight="30.0" prefWidth="130.0" text="Employee ID : ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEmployeeId" layoutX="153.0" layoutY="80.0" prefHeight="30.0" prefWidth="130.0" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="113.0" prefHeight="30.0" prefWidth="130.0" text="Salary ID : ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblSalaryId" layoutX="153.0" layoutY="114.0" prefHeight="30.0" prefWidth="130.0" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="148.0" prefHeight="30.0" prefWidth="130.0" text="Name : ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="184.0" prefHeight="30.0" prefWidth="130.0" text="Address :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="219.0" prefHeight="30.0" prefWidth="130.0" text="Phone No :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="255.0" prefHeight="30.0" prefWidth="130.0" text="Position :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="289.0" prefHeight="30.0" prefWidth="130.0" text="Salary :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtName" layoutX="153.0" layoutY="147.0" prefHeight="30.0" prefWidth="324.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtAddress" layoutX="153.0" layoutY="184.0" prefHeight="30.0" prefWidth="324.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPhoneNo" layoutX="153.0" layoutY="220.0" prefHeight="30.0" prefWidth="324.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="cmbPosition" layoutX="153.0" layoutY="255.0" prefHeight="32.0" prefWidth="324.0" />
+            <TextField fx:id="txtSalary" layoutX="153.0" layoutY="292.0" prefHeight="30.0" prefWidth="324.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnSave" layoutX="744.0" layoutY="113.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Add Employee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnUpdate" layoutX="744.0" layoutY="165.0" mnemonicParsing="false" onAction="#updateButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2ecc71; -fx-border-color: black;" text="Update Employee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnDelete" layoutX="744.0" layoutY="217.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #ff7675; -fx-border-color: black;" text="Delete Employee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="206.0" layoutY="342.0" mnemonicParsing="false" onAction="#homeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="387.0" layoutY="342.0" mnemonicParsing="false" onAction="#driverOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Drivers" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="569.0" layoutY="342.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Reset" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <TableView fx:id="tblEmployee" layoutX="46.2" layoutY="471.20000000000005" onMouseClicked="#tblEmployeeAction" prefHeight="266.0" prefWidth="944.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+        <columns>
+          <TableColumn fx:id="colEmployeeID" prefWidth="102.93334579467773" text="Employee ID" />
+          <TableColumn fx:id="colSalaryId" prefWidth="118.93327331542969" text="Salary ID" />
+            <TableColumn fx:id="colName" prefWidth="234.66659545898438" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="145.33340454101562" text="Address" />
+            <TableColumn fx:id="colPhoneNo" prefWidth="116.00006103515625" text="Phone No" />
+            <TableColumn fx:id="colPosition" prefWidth="117.86666870117188" text="Position" />
+            <TableColumn fx:id="colSalary" prefWidth="112.0001220703125" text="Salary" />
+        </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+   </children>
 </AnchorPane>

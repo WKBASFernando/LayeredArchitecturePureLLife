@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.DriverPageController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1024.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@../images/WaterBackground.jpeg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="66.0" layoutY="68.0" prefHeight="400.0" prefWidth="944.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="270.0" layoutY="-18.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/PureLife.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="307.0" layoutY="9.0" text="Driver Manage">
+               <font>
+                  <Font name="Segoe UI Black" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="82.0" prefHeight="30.0" prefWidth="130.0" text="Driver ID :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="119.0" prefHeight="30.0" prefWidth="130.0" text="Vehicle ID :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="155.0" prefHeight="30.0" prefWidth="130.0" text="Name :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="191.0" prefHeight="30.0" prefWidth="130.0" text="Phone Number :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="227.0" prefHeight="30.0" prefWidth="130.0" text="Vehicle Type :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="263.0" prefHeight="30.0" prefWidth="145.0" text="Vehicle Number :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="299.0" prefHeight="30.0" prefWidth="130.0" text="Driver Fee :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDriverId" layoutX="182.0" layoutY="83.0" prefHeight="30.0" prefWidth="130.0" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblVehicleId" layoutX="182.0" layoutY="120.0" prefHeight="30.0" prefWidth="130.0" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="210.0" layoutY="349.0" mnemonicParsing="false" onAction="#homeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="391.0" layoutY="349.0" mnemonicParsing="false" onAction="#EmployeeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Employees" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="573.0" layoutY="349.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Reset" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnSave" layoutX="738.0" layoutY="131.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Add Driver">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnUpdate" layoutX="738.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2ecc71; -fx-border-color: black;" text="Update Driver">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnDelete" layoutX="738.0" layoutY="235.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #ff7675; -fx-border-color: black;" text="Delete Driver">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="txtName" layoutX="178.0" layoutY="154.0" prefHeight="30.0" prefWidth="378.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPhoneNumber" layoutX="178.0" layoutY="192.0" prefHeight="30.0" prefWidth="378.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtVehicleNumber" layoutX="178.0" layoutY="265.0" prefHeight="30.0" prefWidth="378.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtDriverFee" layoutX="178.0" layoutY="301.0" prefHeight="30.0" prefWidth="378.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="cmbVehicleType" layoutX="177.0" layoutY="230.0" prefHeight="25.0" prefWidth="379.0" />
+         </children>
+      </Pane>
+      <TableView fx:id="tblDriver" layoutX="73.0" layoutY="494.0" onMouseClicked="#tblDriverOnAction" prefHeight="273.0" prefWidth="944.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+        <columns>
+          <TableColumn fx:id="colDriverId" prefWidth="111.46667861938477" text="Driver ID" />
+          <TableColumn fx:id="colVehicleId" prefWidth="119.7332992553711" text="Vehicle Id" />
+            <TableColumn fx:id="colName" prefWidth="211.73333740234375" text="Name" />
+            <TableColumn fx:id="colPhoneNumber" prefWidth="124.79995727539062" text="Phone Number" />
+            <TableColumn fx:id="colVehicleType" prefWidth="182.4000244140625" text="Vehicle Type" />
+            <TableColumn fx:id="colVehicleNumber" prefWidth="108.00009155273438" text="Vehicle Number" />
+            <TableColumn fx:id="colDriverFee" prefWidth="88.800048828125" text="Driver Fee" />
+        </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+   </children>
+</AnchorPane>

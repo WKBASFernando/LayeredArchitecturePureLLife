@@ -23,6 +23,7 @@ import lombok.Setter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddDeliveryController implements Initializable {
@@ -32,6 +33,9 @@ public class AddDeliveryController implements Initializable {
 
     @FXML
     private Button btnSave;
+
+    @FXML
+    private Button btnDelete;
 
     @FXML
     private TableColumn<?, ?> colDelFee;
@@ -92,7 +96,26 @@ public class AddDeliveryController implements Initializable {
             refreshPage();
             new Alert(Alert.AlertType.INFORMATION, "Delivery saved...!").show();
         } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to save delivery...!").show();
+            new Alert(Alert.AlertType.ERROR, "Fail to save the delivery...!").show();
+        }
+    }
+
+    @FXML
+    void deleteOnAction(ActionEvent event) throws Exception {
+        String deliveryId = lblDelId.getText();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> optionalButtonType = alert.showAndWait();
+
+        if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
+
+            boolean isDeleted = deliveryModel.deleteDelivery(deliveryId);
+            if (isDeleted) {
+                refreshPage();
+                new Alert(Alert.AlertType.INFORMATION, "Delivery deleted...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to delete the delivery...!").show();
+            }
         }
     }
 
@@ -105,7 +128,9 @@ public class AddDeliveryController implements Initializable {
             txtLocation.setText(deliveryTm.getLocation());
             txtDelFee.setText(String.valueOf(deliveryTm.getDelivery_fee()));
 
+            btnDelete.setDisable(false);
             btnFinish.setDisable(false);
+            btnSave.setDisable(true);
         }
     }
 
@@ -157,6 +182,7 @@ public class AddDeliveryController implements Initializable {
         txtDelFee.setText("");
 
         btnFinish.setDisable(true);
+        btnDelete.setDisable(true);
     }
 
     private void loadNextDeliveryId() throws Exception {

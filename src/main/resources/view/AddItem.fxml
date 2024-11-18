@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.AddItemController">
+<AnchorPane prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.AddItemController">
    <children>
       <TableView fx:id="tblItem" layoutX="14.0" layoutY="200.0" onMouseClicked="#itemTableOnAction" prefHeight="200.0" prefWidth="572.0">
         <columns>
@@ -54,7 +53,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnFinish" layoutX="495.0" layoutY="159.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff;" text="Finish">
+      <Button fx:id="btnFinish" layoutX="495.0" layoutY="159.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Finish">
          <font>
             <Font size="14.0" />
          </font>

@@ -17,13 +17,13 @@
             <Image url="@../images/PureLife.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblCustomer" layoutX="17.0" layoutY="186.0" onMouseClicked="#tblOnAction" prefHeight="200.0" prefWidth="570.0">
+      <TableView fx:id="tblCustomer" layoutX="17.0" layoutY="186.0" onMouseClicked="#tblOnAction" prefHeight="200.0" prefWidth="568.0">
         <columns>
           <TableColumn fx:id="colCusId" prefWidth="80.00006103515625" text="Customer ID" />
           <TableColumn fx:id="colName" prefWidth="112.0" text="Name" />
-            <TableColumn fx:id="colAddress" prefWidth="107.20001220703125" text="Address" />
-            <TableColumn fx:id="colPhoneNo" prefWidth="108.79998779296875" text="Phone No" />
-            <TableColumn fx:id="colEmail" prefWidth="163.20001220703125" text="Email" />
+            <TableColumn fx:id="colAddress" prefWidth="95.20001220703125" text="Address" />
+            <TableColumn fx:id="colPhoneNo" prefWidth="104.79998779296875" text="Phone No" />
+            <TableColumn fx:id="colEmail" prefWidth="182.40008544921875" text="Email" />
         </columns>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -54,7 +54,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnFinish" layoutX="495.0" layoutY="141.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff;" text="Finish">
+      <Button fx:id="btnFinish" layoutX="495.0" layoutY="141.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Finish">
          <font>
             <Font size="14.0" />
          </font>

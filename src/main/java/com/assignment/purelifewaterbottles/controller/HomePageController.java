@@ -1,10 +1,15 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -34,6 +39,25 @@ public class HomePageController {
     @FXML
     void ManageOrdersAction(MouseEvent event) {
         navigateTo("/view/OrderPage.fxml");
+    }
+
+    @FXML
+    void addUserOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddUser.fxml"));
+            Parent root = loader.load();
+            AddUserController addUserController = loader.getController();
+            addUserController.setHomePageController(this);
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void navigateTo(String fxmlPath) {

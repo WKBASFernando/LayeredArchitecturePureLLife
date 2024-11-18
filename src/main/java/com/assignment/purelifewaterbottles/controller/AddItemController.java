@@ -83,7 +83,7 @@ public class AddItemController implements Initializable {
             refreshPage();
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to load Data");
+            new Alert(Alert.AlertType.ERROR, "Failed to load Data").show();
         }
     }
 

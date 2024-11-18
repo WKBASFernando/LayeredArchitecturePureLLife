@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="407.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.AddDriverController">
    <children>
       <TableView fx:id="tblDriiver" layoutX="14.0" layoutY="204.0" onMouseClicked="#tblClickedAction" prefHeight="200.0" prefWidth="571.0">
@@ -33,7 +32,7 @@
             <Image url="@../images/PureLife.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnFinish" layoutX="494.0" layoutY="163.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff;" text="Finish">
+      <Button fx:id="btnFinish" layoutX="494.0" layoutY="163.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Finish">
          <font>
             <Font size="14.0" />
          </font>

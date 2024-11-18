@@ -21,7 +21,7 @@
                 </Label>
                 <TextField fx:id="txtSubject" prefHeight="25.0" prefWidth="485.0" promptText="subject" style="-fx-background-color: #fff; -fx-border-color: #0984e3; -fx-border-width: 0 0 1px 0;" VBox.vgrow="ALWAYS" />
                 <TextArea fx:id="txtBody" prefHeight="200.0" prefWidth="485.0" promptText="body" style="-fx-border-color: #0984e3;" VBox.vgrow="ALWAYS" />
-                <Button mnemonicParsing="false" onAction="#sendUsingGmailOnAction" prefWidth="150.0" style="-fx-background-color: #0984e3;" text="Send Using Gmail" textFill="WHITE" VBox.vgrow="ALWAYS">
+                <Button mnemonicParsing="false" onAction="#sendUsingGmailOnAction" prefWidth="150.0" style="-fx-background-color: #0984e3; -fx-border-color: black;" text="Send Using Gmail" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="Calibri Bold" size="14.0" />
                     </font>

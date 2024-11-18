@@ -95,33 +95,35 @@ public class OrderPageController implements Initializable {
     OrderModel orderModel = new OrderModel();
 
     @FXML
-    void GoToDeliveryPageAction(ActionEvent event) {
-        //navigateTo("/view/DeliveryPage.fxml");
+    void GoToHomePageAction(ActionEvent event) {
+        navigateTo("/view/HomePage.fxml");
+    }
+
+    @FXML
+    void resetOnAction(ActionEvent event) throws SQLException {
+        refreshPage();
+    }
+
+    private boolean isFromSave = false;
+
+    @FXML
+    void GoToPaymentPageAction(ActionEvent event) {
+        isFromSave = false;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddDeliveryPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaymentPage.fxml"));
             Parent root = loader.load();
-            AddDeliveryController deliveryPageController = loader.getController();
-            deliveryPageController.setOrderPageController(this);
+            PaymentPageController paymentPageController = loader.getController();
+            paymentPageController.setOrderId(lblOrdId.getText());
+            paymentPageController.setOrderPageController(this);
 
             Stage stage = new Stage();
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    void GoToHomePageAction(ActionEvent event) {
-        navigateTo("/view/HomePage.fxml");
-    }
-
-    @FXML
-    void GoToPaymentPageAction(ActionEvent event) {
-        navigateTo("/view/PaymentPage.fxml");
     }
 
     @FXML
@@ -136,9 +138,9 @@ public class OrderPageController implements Initializable {
             boolean isDeleted = orderModel.deleteOrder(orderId);
             if (isDeleted) {
                 refreshPage();
-                new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();
+                new Alert(Alert.AlertType.INFORMATION, "Order deleted...!").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to delete customer...!").show();
+                new Alert(Alert.AlertType.ERROR, "Fail to delete Order...!").show();
             }
         }
     }
@@ -147,42 +149,84 @@ public class OrderPageController implements Initializable {
 
     @FXML
     void saveButtonAction(ActionEvent event) throws SQLException {
-        String orderId = lblOrdId.getText();
-        String customerId = lblCustomerId.getText();
-        String deliveryId = lblDeliveryId.getText();
-        String itemId = lblItemId.getText();
-        String localDate = orderDate.getText();
-        String qty = txtItemQty.getText();
-        int itemQty = Integer.parseInt(qty);
-        String description = txtDescription.getText();
+        try {
+            String currentOrderId = lblOrdId.getText().trim();
+            boolean isSavedSuccessfully = saveData();
 
-        txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: #7367F0;");
-        txtDescription.setStyle(txtDescription.getStyle() + ";-fx-border-color: #7367F0;");
+            if (isSavedSuccessfully) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Order saved successfully!", ButtonType.OK);
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    isFromSave = true;
+                    openPaymentPage(currentOrderId);
+                }
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "An unexpected error occurred while saving the order").show();
+            e.printStackTrace();
+        }
+    }
+
+    private void openPaymentPage(String orderId) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaymentPage.fxml"));
+            Parent root = loader.load();
+            PaymentPageController paymentPageController = loader.getController();
+            paymentPageController.setOrderId(orderId);
+            paymentPageController.setOrderPageController(this);
+
+            if (isFromSave) {
+                paymentPageController.enableFinishButton();
+                lblCustomerId.setText("");
+                lblDeliveryId.setText("");
+            } else {
+                paymentPageController.disableFinishButton();
+                lblCustomerId.setText("");
+                lblDeliveryId.setText("");
+            }
+
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean saveData() throws SQLException {
+        String orderId = lblOrdId.getText().trim();
+        String customerId = lblCustomerId.getText().trim();
+        String deliveryId = lblDeliveryId.getText().trim();
+        String itemId = lblItemId.getText().trim();
+        String localDate = orderDate.getText().trim();
+        String qty = txtItemQty.getText().trim();
+        String description = txtDescription.getText().trim();
 
         String itemQtyPattern = "^\\d+$";
 
-        boolean isValidItemQty = qty.matches(itemQtyPattern);
-
-        if (!isValidItemQty) {
-            System.out.println(txtItemQty.getStyle());
-            txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: red;");
-            System.out.println("Invalid Quantity.............");
+        if (!qty.matches(itemQtyPattern)) {
+            txtItemQty.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid Quantity: Please enter a valid number").show();
+            return false;
         }
 
-        if (isValidItemQty) {
-            OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
-            OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
+        int itemQty = Integer.parseInt(qty);
 
-            boolean isSavedO = orderModel.saveOrder(orderDto);
-            boolean isSavedOD = orderDetailModel.saveOrder(orderDetailDto);
-            if (isSavedO && isSavedOD ) {
-                refreshPage();
-                new Alert(Alert.AlertType.INFORMATION, "Order saved...!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to save the order...!").show();
-            }
-        }else {
-            new Alert(Alert.AlertType.ERROR, "Order ID is invalid!").show();
+        OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
+        OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
+
+        boolean isSavedOrder = orderModel.saveOrder(orderDto);
+        boolean isSavedOrderDetail = orderDetailModel.saveOrder(orderDetailDto);
+
+        if (isSavedOrder && isSavedOrderDetail) {
+            refreshPage();
+            return true;
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Failed to save the order. Please try again.").show();
+            return false;
         }
     }
 
@@ -240,9 +284,9 @@ public class OrderPageController implements Initializable {
 
             if (isUpdateO && isUpdateOD) {
                 refreshPage();
-                new Alert(Alert.AlertType.INFORMATION, "Customer updated...!").show();
+                new Alert(Alert.AlertType.INFORMATION, "Order updated...!").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to update customer...!").show();
+                new Alert(Alert.AlertType.ERROR, "Fail to update Order...!").show();
             }
 
         }
@@ -385,7 +429,7 @@ public class OrderPageController implements Initializable {
             refreshPage();
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Fail to load customer id").show();
+            new Alert(Alert.AlertType.ERROR, "Fail to load Data!").show();
         }
     }
 }

@@ -12,22 +12,22 @@ public class DeliveryModel {
         ResultSet rst = CrudUtil.execute("SELECT deliveryId FROM delivery ORDER BY deliveryId DESC LIMIT 1");
 
         if (rst.next()) {
-            String lastId = rst.getString(1); // Fetch the last delivery ID
-            if (lastId != null && lastId.startsWith("DE")) {  // Ensure the ID has the "DE" prefix
-                String substring = lastId.substring(2);  // Extract the numeric part (after "DE")
+            String lastId = rst.getString(1);
+            if (lastId != null && lastId.startsWith("DE")) {
+                String substring = lastId.substring(2);
 
                 try {
-                    int i = Integer.parseInt(substring);  // Convert numeric part to integer
-                    int newIdIndex = i + 1;  // Increment the index
-                    return String.format("DE%03d", newIdIndex);  // Format with 3 digits, e.g., DE002
+                    int i = Integer.parseInt(substring);
+                    int newIdIndex = i + 1;
+                    return String.format("DE%03d", newIdIndex);
                 } catch (NumberFormatException e) {
-                    throw new SQLException("Invalid ID format: " + lastId, e); // Handle parsing error
+                    throw new SQLException("Invalid ID format: " + lastId, e);
                 }
             } else {
                 throw new SQLException("Invalid ID format or missing prefix 'DE': " + lastId);
             }
         }
-        return "DE001";  // Default ID if no records found
+        return "DE001";
     }
 
     public boolean saveDelivery(DeliveryDto deliveryDto) throws SQLException {

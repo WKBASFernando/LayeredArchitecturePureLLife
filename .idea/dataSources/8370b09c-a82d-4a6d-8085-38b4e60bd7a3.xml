@@ -1005,7 +1005,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="291" parent="1" name="lalankawaterbottles">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-11-18.15:50:32</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-11-18.21:35:41</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="mysql">
@@ -1512,86 +1512,92 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="403" parent="315" name="supplier_detail_ibfk_1">
+    <column id="403" parent="315" name="totalPrice">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>decimal(10,2 digit)|0s</StoredType>
+    </column>
+    <foreign-key id="404" parent="315" name="supplier_detail_ibfk_1">
       <ColNames>supplierId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>supplierId</RefColNames>
       <RefTableName>supplier</RefTableName>
     </foreign-key>
-    <foreign-key id="404" parent="315" name="supplier_detail_ibfk_2">
+    <foreign-key id="405" parent="315" name="supplier_detail_ibfk_2">
       <ColNames>warehouseId</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>warehouseId</RefColNames>
       <RefTableName>warehouse</RefTableName>
     </foreign-key>
-    <index id="405" parent="315" name="supplierId">
+    <index id="406" parent="315" name="supplierId">
       <ColNames>supplierId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="406" parent="315" name="warehouseId">
+    <index id="407" parent="315" name="warehouseId">
       <ColNames>warehouseId</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="407" parent="316" name="username">
+    <column id="408" parent="316" name="username">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="408" parent="316" name="password">
+    <column id="409" parent="316" name="password">
+      <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>varchar(50)|0s</StoredType>
+      <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <index id="409" parent="316" name="PRIMARY">
+    <index id="410" parent="316" name="PRIMARY">
       <ColNames>username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="410" parent="316" name="PRIMARY">
+    <key id="411" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="411" parent="317" name="vehicleId">
+    <column id="412" parent="317" name="vehicleId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="412" parent="317" name="type">
+    <column id="413" parent="317" name="type">
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="413" parent="317" name="vehicleNumber">
+    <column id="414" parent="317" name="vehicleNumber">
       <Position>3</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <index id="414" parent="317" name="PRIMARY">
+    <index id="415" parent="317" name="PRIMARY">
       <ColNames>vehicleId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="415" parent="317" name="PRIMARY">
+    <key id="416" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="416" parent="318" name="warehouseId">
+    <column id="417" parent="318" name="warehouseId">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="417" parent="318" name="location">
+    <column id="418" parent="318" name="location">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <index id="418" parent="318" name="PRIMARY">
+    <index id="419" parent="318" name="PRIMARY">
       <ColNames>warehouseId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="419" parent="318" name="PRIMARY">
+    <key id="420" parent="318" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

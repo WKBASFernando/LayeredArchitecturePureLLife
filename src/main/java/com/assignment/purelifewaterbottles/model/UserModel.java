@@ -1,7 +1,6 @@
 package com.assignment.purelifewaterbottles.model;
 
 import com.assignment.purelifewaterbottles.db.DBConnection;
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.UserDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 

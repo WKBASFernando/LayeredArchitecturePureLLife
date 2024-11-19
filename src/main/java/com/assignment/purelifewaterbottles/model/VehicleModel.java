@@ -1,6 +1,5 @@
 package com.assignment.purelifewaterbottles.model;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;

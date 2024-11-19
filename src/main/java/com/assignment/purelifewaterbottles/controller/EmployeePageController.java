@@ -1,11 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
-import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
-import com.assignment.purelifewaterbottles.dto.tm.DriverTm;
 import com.assignment.purelifewaterbottles.dto.tm.EmployeeTm;
 import com.assignment.purelifewaterbottles.model.EmployeeModel;
 import com.assignment.purelifewaterbottles.model.SalaryModel;
@@ -22,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -148,30 +144,32 @@ public class EmployeePageController implements Initializable {
         String salaryText = txtSalary.getText().trim();
         String position = cmbPosition.getValue();
 
-        // Validate name
+        txtName.setStyle("-fx-border-color: #2e86de;");
+        txtPhoneNo.setStyle("-fx-border-color: #2e86de;");
+        txtSalary.setStyle("-fx-border-color: #2e86de;");
+
         if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+            txtName.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid name. Please enter a valid name with alphabetic characters only.").show();
             return;
         }
 
-        // Validate phone number
         if (phoneNoText.isEmpty() || !phoneNoText.matches("\\d+")) {
+            txtPhoneNo.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid phone number. Please enter a valid numeric phone number.").show();
             return;
         }
 
-        // Validate salary
         if (salaryText.isEmpty() || !salaryText.matches("\\d+(\\.\\d+)?")) {
+            txtSalary.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid salary. Please enter a valid positive number.").show();
             return;
         }
         double salary = Double.parseDouble(salaryText);
 
-        // Create DTOs
         EmployeeDto employeeDto = new EmployeeDto(employeeId, name, position, address, phoneNoText);
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
-        // Save and handle response
         boolean isSavedE = employeeModel.saveEmployee(employeeDto);
         boolean isSavedS = salaryModel.saveSalary(salaryDto);
 
@@ -193,30 +191,32 @@ public class EmployeePageController implements Initializable {
         String salaryText = txtSalary.getText().trim();
         String position = cmbPosition.getValue();
 
-        // Validate name
+        txtName.setStyle("-fx-border-color: #2e86de;");
+        txtPhoneNo.setStyle("-fx-border-color: #2e86de;");
+        txtSalary.setStyle("-fx-border-color: #2e86de;");
+
         if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+            txtName.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid name. Please enter a valid name with alphabetic characters only.").show();
             return;
         }
 
-        // Validate phone number
         if (phoneNoText.isEmpty() || !phoneNoText.matches("\\d+")) {
+            txtPhoneNo.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid phone number. Please enter a valid numeric phone number.").show();
             return;
         }
 
-        // Validate salary
         if (salaryText.isEmpty() || !salaryText.matches("\\d+(\\.\\d+)?")) {
+            txtSalary.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid salary. Please enter a valid positive number.").show();
             return;
         }
         double salary = Double.parseDouble(salaryText);
 
-        // Create DTOs
         EmployeeDto employeeDto = new EmployeeDto(employeeId, name, position, address, phoneNoText);
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
-        // Update and handle response
         boolean isUpdatedE = employeeModel.updateEmployee(employeeDto);
         boolean isUpdatedS = salaryModel.updateSalary(salaryDto);
 
@@ -227,6 +227,7 @@ public class EmployeePageController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Failed to update the Employee...!").show();
         }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

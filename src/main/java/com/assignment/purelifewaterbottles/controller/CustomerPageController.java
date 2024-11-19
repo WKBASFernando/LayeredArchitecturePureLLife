@@ -149,34 +149,47 @@ public class CustomerPageController implements Initializable {
 
     @FXML
     void saveButtonAction(ActionEvent event) throws SQLException {
-        String customerId = lblCusId.getText();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String phone = txtPhoneNo.getText();
-        String email = txtEmail.getText();
+        String customerId = lblCusId.getText().trim();
+        String name = txtName.getText().trim();
+        String address = txtAddress.getText().trim();
+        String phone = txtPhoneNo.getText().trim();
+        String email = txtEmail.getText().trim();
 
-        txtName.setStyle(txtName.getStyle() + ";-fx-border-color: #7367F0;");
-        txtAddress.setStyle(txtAddress.getStyle() + ";-fx-border-color: #7367F0;");
-        txtPhoneNo.setStyle(txtPhoneNo.getStyle() + ";-fx-border-color: #7367F0;");
+        txtName.setStyle("-fx-border-color: #2e86de;");
+        txtAddress.setStyle("-fx-border-color: #2e86de;");
+        txtPhoneNo.setStyle("-fx-border-color: #2e86de;");
+        txtEmail.setStyle("-fx-border-color: #2e86de;");
 
         String namePattern = "^[A-Za-z ]+$";
-        String phonePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
+        String phonePattern = "^\\d+$";
+        String emailPattern = "^[\\w.%+-]+@[\\w.-]+\\.[A-Za-z]{2,}$";
 
-        boolean isValidName = name.matches(namePattern);
-        boolean isValidPhone = phone.matches(phonePattern);
+        boolean isValid = true;
 
-        if (!isValidName) {
-            System.out.println(txtName.getStyle());
-            txtName.setStyle(txtName.getStyle() + ";-fx-border-color: red;");
-            System.out.println("Invalid name.............");
+        if (!name.matches(namePattern)) {
+            txtName.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid name: Only alphabetic characters and spaces are allowed.").show();
+            isValid = false;
         }
 
-        if (!isValidPhone) {
-            txtPhoneNo.setStyle(txtPhoneNo.getStyle() + ";-fx-border-color: red;");
+        if (!phone.matches(phonePattern)) {
+            txtPhoneNo.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid phone number: Please enter a valid numeric phone number.").show();
+            isValid = false;
         }
 
+        if (!email.matches(emailPattern) && !email.isEmpty()) {
+            txtEmail.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid email: Please enter a valid email address.").show();
+            isValid = false;
+        }
 
-        if (isValidName && isValidPhone) {
+        if (name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "All fields except email are required. Please fill them in.").show();
+            isValid = false;
+        }
+
+        if (isValid) {
             CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone, email);
 
             boolean isSaved = customerModel.saveCustomer(customerDTO);
@@ -184,7 +197,7 @@ public class CustomerPageController implements Initializable {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to save customer...!").show();
+                new Alert(Alert.AlertType.ERROR, "Failed to save customer...!").show();
             }
         }
     }
@@ -214,33 +227,47 @@ public class CustomerPageController implements Initializable {
 
     @FXML
     void updateButtonAction(ActionEvent event) throws SQLException {
-        String customerId = lblCusId.getText();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String phone = txtPhoneNo.getText();
-        String email = txtEmail.getText();
+        String customerId = lblCusId.getText().trim();
+        String name = txtName.getText().trim();
+        String address = txtAddress.getText().trim();
+        String phone = txtPhoneNo.getText().trim();
+        String email = txtEmail.getText().trim();
 
-        txtName.setStyle(txtName.getStyle() + ";-fx-border-color: #7367F0;");
-        txtAddress.setStyle(txtAddress.getStyle() + ";-fx-border-color: #7367F0;");
-        txtPhoneNo.setStyle(txtPhoneNo.getStyle() + ";-fx-border-color: #7367F0;");
+        txtName.setStyle("-fx-border-color: #2e86de;");
+        txtAddress.setStyle("-fx-border-color: #2e86de;");
+        txtPhoneNo.setStyle("-fx-border-color: #2e86de;");
+        txtEmail.setStyle("-fx-border-color: #2e86de;");
 
         String namePattern = "^[A-Za-z ]+$";
-        String phonePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
+        String phonePattern = "^\\d+$";
+        String emailPattern = "^[\\w.%+-]+@[\\w.-]+\\.[A-Za-z]{2,}$";
 
-        boolean isValidName = name.matches(namePattern);
-        boolean isValidPhone = phone.matches(phonePattern);
+        boolean isValid = true;
 
-        if (!isValidName) {
-            System.out.println(txtName.getStyle());
-            txtName.setStyle(txtName.getStyle() + ";-fx-border-color: red;");
-            System.out.println("Invalid name.............");
+        if (!name.matches(namePattern)) {
+            txtName.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid name: Only alphabetic characters and spaces are allowed.").show();
+            isValid = false;
         }
 
-        if (!isValidPhone) {
-            txtPhoneNo.setStyle(txtPhoneNo.getStyle() + ";-fx-border-color: red;");
+        if (!phone.matches(phonePattern)) {
+            txtPhoneNo.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid phone number: Please enter a valid numeric phone number.").show();
+            isValid = false;
         }
 
-        if (isValidName && isValidPhone) {
+        if (!email.matches(emailPattern) && !email.isEmpty()) {
+            txtEmail.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid email: Please enter a valid email address.").show();
+            isValid = false;
+        }
+
+        if (name.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "All fields except email are required. Please fill them in.").show();
+            isValid = false;
+        }
+
+        if (isValid) {
             CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone, email);
 
             boolean isUpdate = customerModel.updateCustomer(customerDTO);
@@ -248,7 +275,7 @@ public class CustomerPageController implements Initializable {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer updated...!").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to update customer...!").show();
+                new Alert(Alert.AlertType.ERROR, "Failed to update customer...!").show();
             }
         }
     }

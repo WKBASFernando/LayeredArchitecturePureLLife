@@ -127,38 +127,40 @@ public class DriverPageController implements Initializable {
         String vehicleNumber = txtVehicleNumber.getText().trim();
         String vehicleFeeText = txtDriverFee.getText().trim();
 
-        // Validate name
+        txtName.setStyle("-fx-border-color: #2e86de;");
+        txtPhoneNumber.setStyle("-fx-border-color: #2e86de;");
+        txtDriverFee.setStyle("-fx-border-color: #2e86de;");
+
         if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+            txtName.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid name. Please enter alphabetic characters only.").show();
             return;
         }
 
-        // Validate phone number
         if (phoneNumberText.isEmpty() || !phoneNumberText.matches("\\d+")) {
+            txtPhoneNumber.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid phone number. Please enter a valid numeric phone number.").show();
             return;
         }
 
-        // Validate vehicle fee
         if (vehicleFeeText.isEmpty() || !vehicleFeeText.matches("\\d+(\\.\\d+)?")) {
+            txtDriverFee.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid vehicle fee. Please enter a valid positive number.").show();
             return;
         }
         double vehicleFee = Double.parseDouble(vehicleFeeText);
 
-        // Create DTOs
         DriverDto driverDto = new DriverDto(driverId, vehicleId, name, phoneNumberText, vehicleFee);
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
-        // Save and handle response
         boolean isSavedV = vehicleModel.saveVehicle(vehicleDto);
         boolean isSavedD = driverModel.saveDriver(driverDto);
 
         if (isSavedD && isSavedV) {
             refreshPage();
-            new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();
+            new Alert(Alert.AlertType.INFORMATION, "Driver saved...!").show();
         } else {
-            new Alert(Alert.AlertType.ERROR, "Failed to save customer...!").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to save driver...!").show();
         }
     }
 
@@ -192,23 +194,28 @@ public class DriverPageController implements Initializable {
         String vehicleNumber = txtVehicleNumber.getText().trim();
         String vehicleFeeText = txtDriverFee.getText().trim();
 
-        // Validate inputs (similar to the save method)
+        txtName.setStyle("-fx-border-color: #2e86de;");
+        txtPhoneNumber.setStyle("-fx-border-color: #2e86de;");
+        txtDriverFee.setStyle("-fx-border-color: #2e86de;");
+
         if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+            txtName.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid name. Please enter alphabetic characters only.").show();
             return;
         }
         if (phoneNumberText.isEmpty() || !phoneNumberText.matches("\\d+")) {
+            txtPhoneNumber.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid phone number. Please enter a valid numeric phone number.").show();
             return;
         }
 
         if (vehicleFeeText.isEmpty() || !vehicleFeeText.matches("\\d+(\\.\\d+)?")) {
+            txtDriverFee.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid vehicle fee. Please enter a valid positive number.").show();
             return;
         }
         double vehicleFee = Double.parseDouble(vehicleFeeText);
 
-        // Create DTOs for update
         DriverDto driverDto = new DriverDto(driverId, vehicleId, name, phoneNumberText, vehicleFee);
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
@@ -219,9 +226,8 @@ public class DriverPageController implements Initializable {
             refreshPage();
             new Alert(Alert.AlertType.INFORMATION, "Driver updated...!").show();
         } else {
-            new Alert(Alert.AlertType.ERROR, "Failed to update Driver").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to update driver...!").show();
         }
-
     }
 
     @Override

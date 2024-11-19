@@ -1,7 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.ItemDto;
-import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
 import com.assignment.purelifewaterbottles.dto.tm.ItemTm;
 import com.assignment.purelifewaterbottles.model.ItemModel;
 import javafx.collections.FXCollections;
@@ -36,6 +35,9 @@ public class AddItemController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colPrice;
+
+    @FXML
+    private TableColumn<?, ?> colQty;
 
     @FXML
     private Label lblItemId;
@@ -78,6 +80,7 @@ public class AddItemController implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colCapacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("itemQty"));
 
         try {
             refreshPage();
@@ -104,7 +107,7 @@ public class AddItemController implements Initializable {
         ObservableList<ItemTm> itemTms = FXCollections.observableArrayList();
 
         for (ItemDto itemDto : itemDtos) {
-            ItemTm itemTm = new ItemTm(itemDto.getItemId(), itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice());
+            ItemTm itemTm = new ItemTm(itemDto.getItemId(), itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice(), itemDto.getItemQty());
             itemTms.add(itemTm);
         }
 

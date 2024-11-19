@@ -78,7 +78,7 @@
             </Label>
          </children>
       </Pane>
-      <Button layoutX="863.0" layoutY="702.0" mnemonicParsing="false" onAction="#addUserOnAction" prefHeight="48.0" prefWidth="142.0" style="-fx-background-color: #0abde3; -fx-border-color: black;" text="Add User">
+      <Button layoutX="863.0" layoutY="702.0" mnemonicParsing="false" onAction="#addUserOnAction" prefHeight="48.0" prefWidth="142.0" style="-fx-background-color: #0abde3; -fx-border-color: black;" text="Users">
          <font>
             <Font size="18.0" />
          </font>

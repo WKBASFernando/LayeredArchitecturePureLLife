@@ -1,8 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
-import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
 import com.assignment.purelifewaterbottles.dto.tm.PaymentTm;
 import com.assignment.purelifewaterbottles.model.PaymentModel;
 import javafx.collections.FXCollections;
@@ -12,12 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import lombok.Setter;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -52,20 +48,33 @@ public class PaymentPageController implements Initializable {
 
     @FXML
     void FinishOnAction(ActionEvent event) throws Exception {
-        String paymentId = lblPaymentId.getText();
-        String orderId = lblOrderId.getText();
+        String paymentId = lblPaymentId.getText().trim();
+        String orderId = lblOrderId.getText().trim();
         String paymentMethod = cmbPayMethod.getValue();
 
-        PaymentDto paymentDto = new PaymentDto(paymentId, orderId, paymentMethod);
+        cmbPayMethod.setStyle("-fx-border-color: #2e86de;");
 
-        boolean isSaved = paymentModel.savePayment(paymentDto);
-        if (isSaved) {
-            refreshPage();
-            new Alert(Alert.AlertType.INFORMATION, "Payment saved...!").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to save Payment...!").show();
+        boolean isValid = true;
+
+        if (paymentMethod == null || paymentMethod.isEmpty()) {
+            cmbPayMethod.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Please select a payment method.").show();
+            isValid = false;
+        }
+
+        if (isValid) {
+            PaymentDto paymentDto = new PaymentDto(paymentId, orderId, paymentMethod);
+
+            boolean isSaved = paymentModel.savePayment(paymentDto);
+            if (isSaved) {
+                refreshPage();
+                new Alert(Alert.AlertType.INFORMATION, "Payment saved...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to save Payment...!").show();
+            }
         }
     }
+
 
     @FXML
     void tblPaymentOnAction(MouseEvent event) {
@@ -120,10 +129,10 @@ public class PaymentPageController implements Initializable {
     }
 
     public void enableFinishButton() {
-        btnFinish.setDisable(false);  // Enable the Finish button
+        btnFinish.setDisable(false);
     }
 
     public void disableFinishButton() {
-        btnFinish.setDisable(true);  // Disable the Finish button
+        btnFinish.setDisable(true);
     }
 }

@@ -1,6 +1,5 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.UserDto;
 import com.assignment.purelifewaterbottles.model.UserModel;
 import javafx.collections.FXCollections;
@@ -43,25 +42,26 @@ public class AddUserController implements Initializable {
         String password = txtPassword.getText().trim();
         String confirmPassword = txtConfirmPassword.getText().trim();
 
-        // Validate that the username doesn't contain spaces
         if (username.isEmpty() || username.contains(" ")) {
             new Alert(Alert.AlertType.ERROR, "Invalid username. Ensure there are no spaces and it is not empty.").show();
             return;
         }
 
-        // Check if the username already exists in the database
         if (userModel.isUsernameExists(username)) {
             new Alert(Alert.AlertType.ERROR, "Username already exists. Please choose a different username.").show();
             return;
         }
 
-        // Validate password matching
+        if (password.isEmpty() || confirmPassword.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Password fields cannot be empty.").show();
+            return;
+        }
+
         if (!password.equals(confirmPassword)) {
             new Alert(Alert.AlertType.ERROR, "Passwords do not match!").show();
             return;
         }
 
-        // Create and save the user
         UserDto userDto = new UserDto(username, password);
         boolean isSaved = userModel.saveUser(userDto);
         if (isSaved) {

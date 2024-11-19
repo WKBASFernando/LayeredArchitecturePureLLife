@@ -206,10 +206,31 @@ public class OrderPageController implements Initializable {
         String description = txtDescription.getText().trim();
 
         String itemQtyPattern = "^\\d+$";
+        boolean isValid = true;
 
-        if (!qty.matches(itemQtyPattern)) {
+        if (orderId.isEmpty() || customerId.isEmpty() || deliveryId.isEmpty() || itemId.isEmpty() || localDate.isEmpty() || qty.isEmpty() || description.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "All fields are required. Please fill in all fields.").show();
+            isValid = false;
+        }
+
+        boolean isValidItemQty = qty.matches(itemQtyPattern);
+        if (!isValidItemQty) {
             txtItemQty.setStyle("-fx-border-color: red;");
             new Alert(Alert.AlertType.ERROR, "Invalid Quantity: Please enter a valid number").show();
+            isValid = false;
+        } else {
+            txtItemQty.setStyle("-fx-border-color: #2e86de;");
+        }
+
+        if (description.length() > 255) {
+            txtDescription.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Description too long: Please enter a description with fewer than 255 characters.").show();
+            isValid = false;
+        } else {
+            txtDescription.setStyle("-fx-border-color: #2e86de;");
+        }
+
+        if (!isValid) {
             return false;
         }
 
@@ -222,13 +243,26 @@ public class OrderPageController implements Initializable {
         boolean isSavedOrderDetail = orderDetailModel.saveOrder(orderDetailDto);
 
         if (isSavedOrder && isSavedOrderDetail) {
-            refreshPage();
-            return true;
+            try {
+                boolean isStockDeducted = itemModel.deductStock(itemId, itemQty);
+                if (isStockDeducted) {
+                    refreshPage();
+                    return true;
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to deduct stock. Please try again.").show();
+                    return false;
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Error while deducting stock: " + e.getMessage()).show();
+                e.printStackTrace();
+                return false;
+            }
         } else {
             new Alert(Alert.AlertType.ERROR, "Failed to save the order. Please try again.").show();
             return false;
         }
     }
+
 
     @FXML
     void tblOnClickedAction(MouseEvent event) {
@@ -251,46 +285,85 @@ public class OrderPageController implements Initializable {
         }
     }
 
+    ItemModel itemModel = new ItemModel();
+
     @FXML
     void updateButtonAction(ActionEvent event) throws SQLException {
-        String orderId = lblOrdId.getText();
-        String customerId = lblCustomerId.getText();
-        String deliveryId = lblDeliveryId.getText();
-        String itemId = lblItemId.getText();
-        String localDate = orderDate.getText();
-        String qty = txtItemQty.getText();
-        int itemQty = Integer.parseInt(qty);
-        String description = txtDescription.getText();
-
-        txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: #7367F0;");
-        txtDescription.setStyle(txtDescription.getStyle() + ";-fx-border-color: #7367F0;");
+        String orderId = lblOrdId.getText().trim();
+        String customerId = lblCustomerId.getText().trim();
+        String deliveryId = lblDeliveryId.getText().trim();
+        String itemId = lblItemId.getText().trim();
+        String localDate = orderDate.getText().trim();
+        String qty = txtItemQty.getText().trim();
+        String description = txtDescription.getText().trim();
 
         String itemQtyPattern = "^\\d+$";
 
-        boolean isValidItemQty = qty.matches(itemQtyPattern);
+        boolean isValid = true;
 
-        if (!isValidItemQty) {
-            System.out.println(txtItemQty.getStyle());
-            txtItemQty.setStyle(txtItemQty.getStyle() + ";-fx-border-color: red;");
-            System.out.println("Invalid Quantity.............");
+        // Check if all fields are filled
+        if (orderId.isEmpty() || customerId.isEmpty() || deliveryId.isEmpty() || itemId.isEmpty() || localDate.isEmpty() || qty.isEmpty() || description.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "All fields are required. Please fill in all fields.").show();
+            isValid = false;
         }
 
-        if (isValidItemQty) {
-            OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
-            OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
+        String orderQty = qty;
+        if (!orderQty.equals(qty)){
+            new Alert(Alert.AlertType.ERROR, "Cannot update Qty").show();
+            isValid = false;
+        }
 
+        // Validate item quantity input
+        boolean isValidItemQty = qty.matches(itemQtyPattern);
+        if (!isValidItemQty) {
+            txtItemQty.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid Quantity: Please enter a valid number").show();
+            isValid = false;
+        } else {
+            txtItemQty.setStyle("-fx-border-color: #2e86de;"); // Reset to valid style if correct
+        }
+
+        if (isValid) {
+            // Check if the user is attempting to update the item quantity
+            String originalQty = txtItemQty.getText().trim();  // Original value before any changes
+            if (!originalQty.equals(qty)) {
+                new Alert(Alert.AlertType.ERROR, "Cannot update item quantity. This field is locked.").show();
+                return; // Prevent further processing if the item quantity is modified
+            }
+
+            // Proceed with the update if item quantity is not changed
+            OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
+            OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, Integer.parseInt(qty)); // No item quantity update
+
+            // Update order and order details
             boolean isUpdateO = orderModel.updateOrder(orderDto);
             boolean isUpdateOD = orderDetailModel.updateOrder(orderDetailDto);
 
             if (isUpdateO && isUpdateOD) {
-                refreshPage();
-                new Alert(Alert.AlertType.INFORMATION, "Order updated...!").show();
+                try {
+                    // Deduct stock based on the original item quantity
+                    boolean isStockDeducted = itemModel.deductStock(itemId, Integer.parseInt(qty));
+                    if (isStockDeducted) {
+                        refreshPage();
+                        new Alert(Alert.AlertType.INFORMATION, "Order updated successfully and stock deducted!").show();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Failed to deduct stock. Please try again.").show();
+                    }
+                } catch (SQLException e) {
+                    // Handle the exception and display a meaningful error message
+                    new Alert(Alert.AlertType.ERROR, "Error while deducting stock: " + e.getMessage()).show();
+                    e.printStackTrace();
+                }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to update Order...!").show();
+                new Alert(Alert.AlertType.ERROR, "Failed to update the order. Please try again.").show();
             }
-
         }
     }
+
+
+
+
+
 
     public void setCustomerId(String customerId) {
         lblCustomerId.setText(customerId);

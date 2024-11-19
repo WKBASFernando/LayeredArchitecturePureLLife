@@ -1,6 +1,5 @@
 package com.assignment.purelifewaterbottles.model;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.DriverDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 
@@ -49,9 +48,5 @@ public class DriverModel {
 
     public boolean updateDriver(DriverDto driverDto) throws SQLException {
         return CrudUtil.execute("update driver set vehicleId=?, driver_fee=?, name=?, phoneNo=? where driverId=?", driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo(), driverDto.getDriverId());
-    }
-
-    public boolean deleteDriver(String driverId) throws SQLException {
-        return CrudUtil.execute("delete from driver where driverId=?", driverId);
     }
 }

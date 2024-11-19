@@ -1,13 +1,10 @@
 package com.assignment.purelifewaterbottles.model;
 
-import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
-import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class SalaryModel {
 
@@ -39,9 +36,5 @@ public class SalaryModel {
 
     public boolean updateSalary(SalaryDto salaryDto) throws SQLException {
         return CrudUtil.execute("update salary set employeeId=?, salary=? where salaryId=?", salaryDto.getEmployeeId(), salaryDto.getSalary(), salaryDto.getSalaryId());
-    }
-
-    public boolean deleteSalary(String salaryId) throws SQLException {
-        return CrudUtil.execute("delete from salary where salaryId=?", salaryId);
     }
 }

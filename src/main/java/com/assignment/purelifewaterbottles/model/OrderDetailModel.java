@@ -13,8 +13,4 @@ public class OrderDetailModel {
     public boolean updateOrder(OrderDetailDto orderDetailDto) throws SQLException {
         return CrudUtil.execute("update order_detail set itemId=?, item_qty=? where orderId=?", orderDetailDto.getItemId(), orderDetailDto.getItem_qty(), orderDetailDto.getOrderId());
     }
-
-    public boolean deleteOrder(String orderId) throws SQLException {
-        return CrudUtil.execute("delete from order_detail where orderId=?", orderId);
-    }
 }

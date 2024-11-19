@@ -15,13 +15,11 @@
       <TableView fx:id="tblItem" layoutX="14.0" layoutY="200.0" onMouseClicked="#itemTableOnAction" prefHeight="200.0" prefWidth="572.0">
         <columns>
           <TableColumn fx:id="colItemId" prefWidth="75.0" text="Item ID" />
-          <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="colCapacity" prefWidth="75.0" text="Capacity" />
-            <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
+          <TableColumn fx:id="colName" prefWidth="212.79998779296875" text="Name" />
+            <TableColumn fx:id="colCapacity" prefWidth="102.4000244140625" text="Capacity" />
+            <TableColumn fx:id="colPrice" prefWidth="91.20001220703125" text="Price" />
+            <TableColumn fx:id="colQty" prefWidth="96.800048828125" text="Qty" />
         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
       </TableView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="200.0" layoutY="14.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
          <image>

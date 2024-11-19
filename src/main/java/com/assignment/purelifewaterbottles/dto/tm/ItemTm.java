@@ -12,4 +12,5 @@ public class ItemTm {
     private String name;
     private String capacity;
     private double price;
+    private int itemQty;
 }

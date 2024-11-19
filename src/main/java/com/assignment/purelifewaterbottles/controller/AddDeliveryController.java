@@ -83,22 +83,41 @@ public class AddDeliveryController implements Initializable {
 
     @FXML
     void saveOnAction(ActionEvent event) throws Exception {
-        String deliveryId = lblDelId.getText();
-        String driverId = lblDriId.getText();
-        String location = txtLocation.getText();
-        double deliveryFee = Double.parseDouble(txtDelFee.getText());
+        String deliveryId = lblDelId.getText().trim();
+        String driverId = lblDriId.getText().trim();
+        String location = txtLocation.getText().trim();
+        String deliveryFeeText = txtDelFee.getText().trim();
 
+        boolean isValid = true;
 
-        DeliveryDto deliveryDto = new DeliveryDto(deliveryId, driverId, location, deliveryFee);
+        if (deliveryId.isEmpty() || driverId.isEmpty() || location.isEmpty() || deliveryFeeText.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "All fields are required. Please fill in all fields.").show();
+            isValid = false;
+        }
 
-        boolean isSaved = deliveryModel.saveDelivery(deliveryDto);
-        if (isSaved) {
-            refreshPage();
-            new Alert(Alert.AlertType.INFORMATION, "Delivery saved...!").show();
+        if (!deliveryFeeText.matches("\\d+(\\.\\d+)?")) {
+            txtDelFee.setStyle("-fx-border-color: red;");
+            new Alert(Alert.AlertType.ERROR, "Invalid Delivery Fee: Please enter a valid positive number.").show();
+            isValid = false;
         } else {
-            new Alert(Alert.AlertType.ERROR, "Fail to save the delivery...!").show();
+            txtDelFee.setStyle("-fx-border-color: #2e86de;");
+        }
+
+        if (isValid) {
+            double deliveryFee = Double.parseDouble(deliveryFeeText);
+
+            DeliveryDto deliveryDto = new DeliveryDto(deliveryId, driverId, location, deliveryFee);
+            boolean isSaved = deliveryModel.saveDelivery(deliveryDto);
+
+            if (isSaved) {
+                refreshPage();
+                new Alert(Alert.AlertType.INFORMATION, "Delivery saved...!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to save the delivery...!").show();
+            }
         }
     }
+
 
     @FXML
     void deleteOnAction(ActionEvent event) throws Exception {

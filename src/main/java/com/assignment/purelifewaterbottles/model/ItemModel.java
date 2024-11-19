@@ -1,6 +1,7 @@
 package com.assignment.purelifewaterbottles.model;
 
 import com.assignment.purelifewaterbottles.dto.ItemDto;
+import com.assignment.purelifewaterbottles.dto.ItemDtoOriginal;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -21,23 +22,23 @@ public class ItemModel {
         return "I001";
     }
 
-    public boolean saveItem(ItemDto itemDto) throws SQLException {
+    public boolean saveItem(ItemDtoOriginal itemDto) throws SQLException {
         return CrudUtil.execute("insert into item values (?,?,?,?)", itemDto.getItemId(), itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice());
     }
 
     public ArrayList<ItemDto> getAllItems() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select * from item");
+        ResultSet rst = CrudUtil.execute("select i.itemId, i.name, i.capacity, i.price, id.itemQty from item i join item_detail id on i.itemId = id.itemId");
 
         ArrayList<ItemDto> itemDtos = new ArrayList<>();
 
         while (rst.next()) {
-            ItemDto itemDto = new ItemDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
+            ItemDto itemDto = new ItemDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getInt(5));
             itemDtos.add(itemDto);
         }
         return itemDtos;
     }
 
-    public boolean updateItem(ItemDto itemDto) throws SQLException {
+    public boolean updateItem(ItemDtoOriginal itemDto) throws SQLException {
         return CrudUtil.execute("update item set name=?, capacity=?, price=? where itemId=?", itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice(), itemDto.getItemId());
     }
 
@@ -45,24 +46,7 @@ public class ItemModel {
         return CrudUtil.execute("delete from item where itemId=?", itemId);
     }
 
-    public ArrayList<String> getAllItemIds() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select itemId from item");
-
-        ArrayList<String> itemIds = new ArrayList<>();
-
-        while (rst.next()) {
-            itemIds.add(rst.getString(1));
-        }
-
-        return itemIds;
-    }
-
-    public ItemDto findByItemId(String selectedItemId) throws SQLException {
-        ResultSet rst = CrudUtil.execute("select * from item where itemId=?", selectedItemId);
-
-        if (rst.next()) {
-            return new ItemDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
-        }
-        return null;
+    public boolean deductStock(String itemId, int quantity) throws SQLException {
+        return CrudUtil.execute("UPDATE item_detail SET itemQty = CASE WHEN itemQty >= ? THEN itemQty - ? END WHERE itemId = ?", quantity, quantity, itemId);
     }
 }

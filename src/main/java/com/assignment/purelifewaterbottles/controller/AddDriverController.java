@@ -1,7 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.DriverDto;
-import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
 import com.assignment.purelifewaterbottles.dto.tm.DriverTm;
 import com.assignment.purelifewaterbottles.model.DriverModel;
 import javafx.collections.FXCollections;

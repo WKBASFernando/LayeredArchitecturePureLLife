@@ -38,7 +38,7 @@ public class SupplierModel {
     }
 
     public boolean updateSupplier(SupplierDto supplier) throws SQLException {
-        return CrudUtil.execute("update supplier supplingItem=?, pricePerOneItem=? where supplierId=?", supplier.getSupplingItem(), supplier.getPricePerOneItem(), supplier.getSupplierId());
+        return CrudUtil.execute("update supplier set supplingItem=?, pricePerOneItem=? where supplierId=?", supplier.getSupplingItem(), supplier.getPricePerOneItem(), supplier.getSupplierId());
     }
 
     public boolean deleteSupplier(String supplierId) throws SQLException {
@@ -46,7 +46,7 @@ public class SupplierModel {
     }
 
     public ArrayList<SupplierAndDetailDto> getAllSuppliers() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select s.supplierId, s.supplingItem, s.pricePerOneItem, sd.s_qty, sd.totalPrice from supplier s join supplier_detail sd on s.supplierId = sd.supplier_detail");
+        ResultSet rst = CrudUtil.execute("select s.supplierId, s.supplingItem, s.pricePerOneItem, sd.s_qty, sd.totalPrice from supplier s join supplier_detail sd on s.supplierId = sd.supplierId");
 
         ArrayList<SupplierAndDetailDto> supplierAndDetailDtos = new ArrayList<>();
 

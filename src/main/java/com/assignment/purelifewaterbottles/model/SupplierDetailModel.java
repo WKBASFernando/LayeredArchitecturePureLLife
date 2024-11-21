@@ -11,6 +11,6 @@ public class SupplierDetailModel {
     }
 
     public boolean updateSupplier(SupplierDetailDto supplier) throws SQLException {
-        return CrudUtil.execute("update supplier_detail warehouseId=?, s_qty=?, totalPrice=? where supplierId=?", supplier.getWarehouseId(), supplier.getS_qty(), supplier.getTotalPrice(), supplier.getSupplierId());
+        return CrudUtil.execute("update supplier_detail set warehouseId=?, s_qty=?, totalPrice=? where supplierId=?", supplier.getWarehouseId(), supplier.getS_qty(), supplier.getTotalPrice(), supplier.getSupplierId());
     }
 }

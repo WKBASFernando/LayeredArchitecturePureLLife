@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.DriverPageController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1024.0" opacity="0.5" pickOnBounds="true">
@@ -78,7 +77,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="210.0" layoutY="349.0" mnemonicParsing="false" onAction="#homeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Home" textFill="WHITE">
+            <Button layoutX="210.0" layoutY="349.0" mnemonicParsing="false" onAction="#homeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Home" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -86,7 +85,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="391.0" layoutY="349.0" mnemonicParsing="false" onAction="#EmployeeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Employees" textFill="WHITE">
+            <Button layoutX="391.0" layoutY="349.0" mnemonicParsing="false" onAction="#EmployeeOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Employees" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -94,7 +93,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="573.0" layoutY="349.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black;" text="Reset" textFill="WHITE">
+            <Button layoutX="573.0" layoutY="349.0" mnemonicParsing="false" onAction="#resetOnAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2c3e50; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Reset" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -102,7 +101,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnSave" layoutX="738.0" layoutY="131.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Add Driver">
+            <Button fx:id="btnSave" layoutX="738.0" layoutY="131.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #74b9ff; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add Driver">
                <font>
                   <Font size="18.0" />
                </font>
@@ -110,7 +109,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnUpdate" layoutX="738.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2ecc71; -fx-border-color: black;" text="Update Driver">
+            <Button fx:id="btnUpdate" layoutX="738.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #2ecc71; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Update Driver">
                <font>
                   <Font size="18.0" />
                </font>
@@ -118,7 +117,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnDelete" layoutX="738.0" layoutY="235.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #ff7675; -fx-border-color: black;" text="Delete Driver">
+            <Button fx:id="btnDelete" layoutX="738.0" layoutY="235.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="40.0" prefWidth="169.0" style="-fx-background-color: #ff7675; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Delete Driver">
                <font>
                   <Font size="18.0" />
                </font>

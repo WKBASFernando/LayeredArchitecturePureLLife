@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.purelifewaterbottles.controller.AddUserController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="400.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
@@ -54,13 +53,13 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button layoutX="266.0" layoutY="200.0" mnemonicParsing="false" onAction="#addUserOnAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #0abde3; -fx-border-color: black;" text="Add">
+      <Button layoutX="266.0" layoutY="200.0" mnemonicParsing="false" onAction="#addUserOnAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Add">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <ComboBox fx:id="cmbRemoveUser" layoutX="14.0" layoutY="259.0" onAction="#selectOnAction" prefHeight="26.0" prefWidth="330.0" promptText="Select the user you want to remove" />
-      <Button fx:id="btnRemove" layoutX="266.0" layoutY="293.0" mnemonicParsing="false" onAction="#removeUserOnAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #0abde3; -fx-border-color: black;" text="Remove">
+      <Button fx:id="btnRemove" layoutX="266.0" layoutY="293.0" mnemonicParsing="false" onAction="#removeUserOnAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Remove">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

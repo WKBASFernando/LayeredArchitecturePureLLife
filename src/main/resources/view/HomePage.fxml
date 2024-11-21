@@ -78,7 +78,15 @@
             </Label>
          </children>
       </Pane>
-      <Button layoutX="863.0" layoutY="702.0" mnemonicParsing="false" onAction="#addUserOnAction" prefHeight="48.0" prefWidth="142.0" style="-fx-background-color: #0abde3; -fx-border-color: black;" text="Users">
+      <Button layoutX="863.0" layoutY="656.0" mnemonicParsing="false" onAction="#addUserOnAction" prefHeight="48.0" prefWidth="142.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Users">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="863.0" layoutY="712.0" mnemonicParsing="false" onAction="#logOutAction" prefHeight="48.0" prefWidth="142.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Log Out">
          <font>
             <Font size="18.0" />
          </font>

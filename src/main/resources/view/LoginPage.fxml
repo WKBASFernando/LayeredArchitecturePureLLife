@@ -37,10 +37,13 @@
                </font>
             </Label>
             <TextField fx:id="txtUsername" layoutX="137.0" layoutY="122.0" prefHeight="26.0" prefWidth="337.0" promptText="Username" style="-fx-border-color: #00a8ff;" />
-            <Button layoutX="222.0" layoutY="207.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #00a8ff; -fx-border-color: black;" text="Log In">
+            <Button layoutX="222.0" layoutY="207.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #00a8ff; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Log In">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
             <PasswordField fx:id="txtPassword" layoutX="137.0" layoutY="157.0" prefHeight="26.0" prefWidth="338.0" promptText="Password" style="-fx-border-color: #00a8ff;" />
          </children>
       </AnchorPane>

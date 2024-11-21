@@ -54,7 +54,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnFinish" layoutX="495.0" layoutY="141.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff; -fx-border-color: black;" text="Finish">
+      <Button fx:id="btnFinish" layoutX="495.0" layoutY="141.0" mnemonicParsing="false" onAction="#FinishOnAction" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #74b9ff; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;" text="Finish">
          <font>
             <Font size="14.0" />
          </font>

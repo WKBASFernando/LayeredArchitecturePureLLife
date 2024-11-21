@@ -5,45 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d50eb960-d0e1-4729-ae4b-e6a67d875e61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/SupplierPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/ItemDetailDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/ItemDtoOriginal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/SupplierAndDetailDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/SupplierDetailDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/SupplierDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/tm/SupplierTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/ItemDetailModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SupplierDetailModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SupplierModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/SupplierPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8370b09c-a82d-4a6d-8085-38b4e60bd7a3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8370b09c-a82d-4a6d-8085-38b4e60bd7a3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/AppInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/AppInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddDeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddDeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddDriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddDriverController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/AddUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/CustomerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/CustomerPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/DriverPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/DriverPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/EmployeePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/EmployeePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/ItemPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/ItemPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/OrderPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/OrderPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/PaymentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/PaymentPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/ItemDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/tm/ItemTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/dto/tm/ItemTm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/CustomerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/CustomerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/DriverModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/DriverModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/EmployeeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/EmployeeModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/ItemModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/ItemModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/OrderDetailModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/OrderDetailModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/PaymentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/PaymentModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SalaryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SalaryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/VehicleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/VehicleModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/SupplierPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/controller/SupplierPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SupplierDetailModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SupplierDetailModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SupplierModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/assignment/purelifewaterbottles/model/SupplierModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/AddCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/AddCustomer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/AddDriver.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/AddDriver.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/AddItem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/AddItem.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/AddUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/AddUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/CustomerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/CustomerPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/DeliveryPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/DeliveryPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/DriverPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/DriverPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/EmployeePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/EmployeePage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/HomePage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/ItemPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/ItemPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/LoginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/LoginPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/OrderPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/OrderPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/PaymentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/PaymentPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/SendMailView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/SendMailView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/SupplierPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/SupplierPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +80,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/NITRO V15/Documents/IJSE/PureLifeWaterBottles/src/main/resources/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/NITRO V15/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -187,6 +169,13 @@
       <workItem from="1731860524632" duration="12514000" />
       <workItem from="1731920917090" duration="38838000" />
       <workItem from="1731987518155" duration="3664000" />
+      <workItem from="1731993078658" duration="313000" />
+      <workItem from="1731995013607" duration="143000" />
+      <workItem from="1732002198367" duration="995000" />
+      <workItem from="1732009044205" duration="5499000" />
+      <workItem from="1732031237435" duration="4454000" />
+      <workItem from="1732083157050" duration="68000" />
+      <workItem from="1732166582715" duration="172000" />
     </task>
     <servers />
   </component>

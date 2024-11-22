@@ -5,6 +5,7 @@ module com.assignment.purelifewaterbottles {
     requires static lombok;
     requires javafx.base;
     requires java.mail;
+    requires net.sf.jasperreports.core;
 
     opens com.assignment.purelifewaterbottles.controller to javafx.fxml;
     exports com.assignment.purelifewaterbottles;

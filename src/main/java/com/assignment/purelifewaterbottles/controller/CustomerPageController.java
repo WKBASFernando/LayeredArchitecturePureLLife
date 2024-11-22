@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
 import com.assignment.purelifewaterbottles.model.CustomerModel;
@@ -19,13 +20,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 public class CustomerPageController implements Initializable {
     public TextField txtEmail;
@@ -56,6 +59,7 @@ public class CustomerPageController implements Initializable {
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
         btnEmail.setDisable(true);
+        btnReport.setDisable(true);
 
         txtName.setText("");
         txtAddress.setText("");
@@ -88,6 +92,9 @@ public class CustomerPageController implements Initializable {
 
     @FXML
     private Button btnSave;
+
+    @FXML
+    private Button btnReport;
 
     @FXML
     private Button btnUpdate;
@@ -217,6 +224,7 @@ public class CustomerPageController implements Initializable {
             btnDelete.setDisable(false);
             btnUpdate.setDisable(false);
             btnEmail.setDisable(false);
+            btnReport.setDisable(false);
         }
     }
 
@@ -318,7 +326,38 @@ public class CustomerPageController implements Initializable {
 
     @FXML
     void generateReportAction(ActionEvent event) {
+        CustomerTm customerTM = tblCustomer.getSelectionModel().getSelectedItem();
 
+        if (customerTM == null) {
+            return;
+        }
+
+        try {
+            JasperReport jasperReport = JasperCompileManager.compileReport(
+                    getClass()
+                            .getResourceAsStream("/reports/CustomerReportPureLife.jrxml"
+                            ));
+
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("P_Date", LocalDate.now().toString());
+            parameters.put("P_Customer_Id", customerTM.getCustomerId());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException e) {
+            new Alert(Alert.AlertType.ERROR, "Fail to generate report...!").show();
+//           e.printStackTrace();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "DB error...!").show();
+        }
     }
 
     public void navigateTo(String fxmlPath) {

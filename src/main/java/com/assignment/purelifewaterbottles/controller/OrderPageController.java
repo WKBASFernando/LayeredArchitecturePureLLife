@@ -245,7 +245,8 @@ public class OrderPageController implements Initializable {
         if (isSavedOrder && isSavedOrderDetail) {
             try {
                 boolean isStockDeducted = itemModel.deductStock(itemId, itemQty);
-                if (isStockDeducted) {
+                if(isStockDeducted) {
+                    new Alert(Alert.AlertType.INFORMATION, "Saved successfully").show();
                     refreshPage();
                     return true;
                 } else {

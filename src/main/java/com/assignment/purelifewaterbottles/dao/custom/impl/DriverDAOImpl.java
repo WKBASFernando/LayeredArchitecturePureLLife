@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.DriverDAO;
 import com.assignment.purelifewaterbottles.dto.DriverDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 
@@ -7,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DriverModel {
-    public String getNextDriverId() throws SQLException {
+public class DriverDAOImpl implements DriverDAO {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT driverId FROM driver ORDER BY driverId DESC LIMIT 1");
 
         if (rst.next()) {
@@ -30,7 +31,7 @@ public class DriverModel {
         return "DR001";
     }
 
-    public ArrayList<DriverDto> getAllDrivers() throws SQLException {
+    public ArrayList<DriverDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select driverId, vehicleId, name, phoneNo, driver_fee from driver");
 
         ArrayList<DriverDto> driverDtos = new ArrayList<>();
@@ -42,11 +43,11 @@ public class DriverModel {
         return driverDtos;
     }
 
-    public boolean saveDriver(DriverDto driverDto) throws SQLException {
+    public boolean save(DriverDto driverDto) throws SQLException {
         return CrudUtil.execute("insert into driver values (?,?,?,?,?)", driverDto.getDriverId(), driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo());
     }
 
-    public boolean updateDriver(DriverDto driverDto) throws SQLException {
+    public boolean update(DriverDto driverDto) throws SQLException {
         return CrudUtil.execute("update driver set vehicleId=?, driver_fee=?, name=?, phoneNo=? where driverId=?", driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo(), driverDto.getDriverId());
     }
 }

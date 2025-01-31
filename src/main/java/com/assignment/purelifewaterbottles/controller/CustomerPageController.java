@@ -3,7 +3,7 @@ package com.assignment.purelifewaterbottles.controller;
 import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
-import com.assignment.purelifewaterbottles.model.CustomerModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.CustomerDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,10 +67,10 @@ public class CustomerPageController implements Initializable {
         txtEmail.setText("");
     }
 
-    CustomerModel customerModel = new CustomerModel();
+    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
     private void loadTableData() throws SQLException {
-        ArrayList<CustomerDto> customerDTOS = customerModel.getAllCustomers();
+        ArrayList<CustomerDto> customerDTOS = customerDAO.getAll();
 
         ObservableList<CustomerTm> customerTms = FXCollections.observableArrayList();
 
@@ -83,7 +83,7 @@ public class CustomerPageController implements Initializable {
     }
 
     public void loadNextCustomerId() throws SQLException {
-        String nextCustomerId = customerModel.getNextCustomerId();
+        String nextCustomerId = customerDAO.getNextID();
         lblCusId.setText(nextCustomerId);
     }
 
@@ -144,7 +144,7 @@ public class CustomerPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = customerModel.deleteCustomer(customerId);
+            boolean isDeleted = customerDAO.delete(customerId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();
@@ -199,7 +199,7 @@ public class CustomerPageController implements Initializable {
         if (isValid) {
             CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone, email);
 
-            boolean isSaved = customerModel.saveCustomer(customerDTO);
+            boolean isSaved = customerDAO.save(customerDTO);
             if (isSaved) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();
@@ -278,7 +278,7 @@ public class CustomerPageController implements Initializable {
         if (isValid) {
             CustomerDto customerDTO = new CustomerDto(customerId, name, address, phone, email);
 
-            boolean isUpdate = customerModel.updateCustomer(customerDTO);
+            boolean isUpdate = customerDAO.update(customerDTO);
             if (isUpdate) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer updated...!").show();

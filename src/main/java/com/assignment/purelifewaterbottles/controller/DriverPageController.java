@@ -4,7 +4,7 @@ import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.dto.DriverDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
 import com.assignment.purelifewaterbottles.dto.tm.DriverAndVehicleTm;
-import com.assignment.purelifewaterbottles.model.DriverModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.DriverDAOImpl;
 import com.assignment.purelifewaterbottles.model.VehicleModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -154,7 +154,7 @@ public class DriverPageController implements Initializable {
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
         boolean isSavedV = vehicleModel.saveVehicle(vehicleDto);
-        boolean isSavedD = driverModel.saveDriver(driverDto);
+        boolean isSavedD = driverModel.save(driverDto);
 
         if (isSavedD && isSavedV) {
             refreshPage();
@@ -219,7 +219,7 @@ public class DriverPageController implements Initializable {
         DriverDto driverDto = new DriverDto(driverId, vehicleId, name, phoneNumberText, vehicleFee);
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
-        boolean isUpdatedD = driverModel.updateDriver(driverDto);
+        boolean isUpdatedD = driverModel.update(driverDto);
         boolean isUpdatedV = vehicleModel.updateVehicle(vehicleDto);
 
         if (isUpdatedD && isUpdatedV) {
@@ -267,11 +267,11 @@ public class DriverPageController implements Initializable {
         btnSave.setDisable(false);
     }
 
-    DriverModel driverModel = new DriverModel();
+    DriverDAOImpl driverModel = new DriverDAOImpl();
     VehicleModel vehicleModel = new VehicleModel();
 
     private void loadNextDriverId() throws Exception {
-        String nextEmployeeId = driverModel.getNextDriverId();
+        String nextEmployeeId = driverModel.getNextID();
         lblDriverId.setText(nextEmployeeId);
     }
 

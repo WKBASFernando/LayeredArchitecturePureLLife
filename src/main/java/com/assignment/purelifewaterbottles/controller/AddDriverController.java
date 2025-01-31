@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.DriverDto;
 import com.assignment.purelifewaterbottles.dto.tm.DriverTm;
-import com.assignment.purelifewaterbottles.model.DriverModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.DriverDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -99,10 +99,10 @@ public class AddDriverController implements Initializable {
         btnFinish.setDisable(true);
     }
 
-    DriverModel driverModel = new DriverModel();
+    DriverDAOImpl driverModel = new DriverDAOImpl();
 
     private void loadTableData() throws Exception {
-        ArrayList<DriverDto> driverDtos = driverModel.getAllDrivers();
+        ArrayList<DriverDto> driverDtos = driverModel.getAll();
 
         ObservableList<DriverTm> driverTms = FXCollections.observableArrayList();
 

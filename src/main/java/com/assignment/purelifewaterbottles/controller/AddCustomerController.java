@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.tm.CustomerTm;
-import com.assignment.purelifewaterbottles.model.CustomerModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.CustomerDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -99,10 +99,10 @@ public class AddCustomerController implements Initializable {
         lblCusId.setText("");
     }
 
-    CustomerModel customerModel = new CustomerModel();
+    CustomerDAOImpl customerModel = new CustomerDAOImpl();
 
     private void loadTableData() throws SQLException {
-        ArrayList<CustomerDto> customerDTOS = customerModel.getAllCustomers();
+        ArrayList<CustomerDto> customerDTOS = customerModel.getAll();
 
         ObservableList<CustomerTm> customerTms = FXCollections.observableArrayList();
 

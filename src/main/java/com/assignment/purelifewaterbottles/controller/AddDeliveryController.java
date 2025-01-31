@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.DeliveryDto;
 import com.assignment.purelifewaterbottles.dto.tm.DeliveryTm;
-import com.assignment.purelifewaterbottles.model.DeliveryModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,7 +79,7 @@ public class AddDeliveryController implements Initializable {
         }
     }
 
-    DeliveryModel deliveryModel = new DeliveryModel();
+    DeliveryDAOImpl deliveryModel = new DeliveryDAOImpl();
 
     @FXML
     void saveOnAction(ActionEvent event) throws Exception {
@@ -107,7 +107,7 @@ public class AddDeliveryController implements Initializable {
             double deliveryFee = Double.parseDouble(deliveryFeeText);
 
             DeliveryDto deliveryDto = new DeliveryDto(deliveryId, driverId, location, deliveryFee);
-            boolean isSaved = deliveryModel.saveDelivery(deliveryDto);
+            boolean isSaved = deliveryModel.save(deliveryDto);
 
             if (isSaved) {
                 refreshPage();
@@ -128,7 +128,7 @@ public class AddDeliveryController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = deliveryModel.deleteDelivery(deliveryId);
+            boolean isDeleted = deliveryModel.delete(deliveryId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Delivery deleted...!").show();
@@ -205,16 +205,16 @@ public class AddDeliveryController implements Initializable {
     }
 
     private void loadNextDeliveryId() throws Exception {
-        String nextDeliveryId = dm.getNextDeliveryId();
+        String nextDeliveryId = dm.getNextID();
         Platform.runLater(() -> {
             lblDelId.setText(nextDeliveryId);
         });
     }
 
-    DeliveryModel dm = new DeliveryModel();
+    DeliveryDAOImpl dm = new DeliveryDAOImpl();
 
     private void loadTableData() throws Exception {
-        ArrayList<DeliveryDto> deliveryDtos = dm.getAllDeliveries();
+        ArrayList<DeliveryDto> deliveryDtos = dm.getAll();
 
         ObservableList<DeliveryTm> deliveryTms = FXCollections.observableArrayList();
 

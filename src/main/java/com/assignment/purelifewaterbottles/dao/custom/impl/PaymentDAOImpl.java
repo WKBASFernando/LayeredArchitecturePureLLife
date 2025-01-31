@@ -1,4 +1,4 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PaymentModel {
+public class PaymentDAOImpl {
     public String getNextPaymentId() throws SQLException {
         ResultSet rst = CrudUtil.execute("select paymentId from payment order by paymentId desc limit 1");
 

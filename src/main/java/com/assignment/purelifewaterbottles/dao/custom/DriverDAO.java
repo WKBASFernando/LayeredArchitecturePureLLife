@@ -1,8 +1,13 @@
 package com.assignment.purelifewaterbottles.dao.custom;
 
-import com.assignment.purelifewaterbottles.dao.CrudDAO;
-import com.assignment.purelifewaterbottles.dao.DriverCrudDAO;
 import com.assignment.purelifewaterbottles.dto.DriverDto;
 
-public interface DriverDAO extends DriverCrudDAO<DriverDto> {
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public interface DriverDAO {
+    String getNextID() throws SQLException;
+    ArrayList<DriverDto> getAll() throws SQLException;
+    boolean save(DriverDto driverDto) throws SQLException;
+    boolean update(DriverDto driverDto) throws SQLException;
 }

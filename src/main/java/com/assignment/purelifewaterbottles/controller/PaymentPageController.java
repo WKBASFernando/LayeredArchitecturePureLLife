@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
 import com.assignment.purelifewaterbottles.dto.tm.PaymentTm;
-import com.assignment.purelifewaterbottles.model.PaymentModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.PaymentDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -108,7 +108,7 @@ public class PaymentPageController implements Initializable {
         loadNextPaymentId();
     }
 
-    PaymentModel paymentModel = new PaymentModel();
+    PaymentDAOImpl paymentModel = new PaymentDAOImpl();
 
     private void loadTableData() throws Exception {
         ArrayList<PaymentDto> paymentDtos = paymentModel.getAllPayments();

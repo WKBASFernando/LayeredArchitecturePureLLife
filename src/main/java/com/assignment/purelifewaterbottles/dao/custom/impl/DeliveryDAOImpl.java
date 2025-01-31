@@ -9,32 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DeliveryDAOImpl implements DeliveryDAO {
-//    public String getNextId() throws SQLException {
-//        ResultSet rst = CrudUtil.execute("SELECT deliveryId FROM delivery ORDER BY deliveryId DESC LIMIT 1");
-//
-//        if (rst.next()) {
-//            String lastId = rst.getString(1);
-//            if (lastId != null && lastId.startsWith("DE")) {
-//                String substring = lastId.substring(2);
-//
-//                try {
-//                    int i = Integer.parseInt(substring);
-//                    int newIdIndex = i + 1;
-//                    return String.format("DE%03d", newIdIndex);
-//                } catch (NumberFormatException e) {
-//                    throw new SQLException("Invalid ID format: " + lastId, e);
-//                }
-//            } else {
-//                throw new SQLException("Invalid ID format or missing prefix 'DE': " + lastId);
-//            }
-//        }
-//        return "DE001";
-//    }
-
+    @Override
     public boolean save(DeliveryDto deliveryDto) throws SQLException {
         return CrudUtil.execute("insert into delivery values (?,?,?,?)", deliveryDto.getDeliveryId(), deliveryDto.getDriverId(), deliveryDto.getLocation(), deliveryDto.getDelivery_fee());
     }
 
+    @Override
     public ArrayList<DeliveryDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from delivery");
 
@@ -47,10 +27,12 @@ public class DeliveryDAOImpl implements DeliveryDAO {
         return deliveryDtos;
     }
 
+    @Override
     public boolean update(DeliveryDto deliveryDto) throws SQLException {
         return CrudUtil.execute("update delivery set driverId=?, location=?, delivery_fee=? where deliveryId=?", deliveryDto.getDriverId(), deliveryDto.getLocation(), deliveryDto.getDelivery_fee(), deliveryDto.getDeliveryId());
     }
 
+    @Override
     public boolean delete(String deliveryId) throws SQLException {
         return CrudUtil.execute("delete from delivery where deliveryId=?", deliveryId);
     }
@@ -79,6 +61,7 @@ public class DeliveryDAOImpl implements DeliveryDAO {
         return "DE001";
     }
 
+    @Override
     public ArrayList<String> getAllIds() throws SQLException {
         ResultSet rst = CrudUtil.execute("select deliveryId from delivery");
 
@@ -91,6 +74,7 @@ public class DeliveryDAOImpl implements DeliveryDAO {
         return deliveryIds;
     }
 
+    @Override
     public DeliveryDto find(String selectedDeliveryId) throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from delivery where deliveryId=?", selectedDeliveryId);
 

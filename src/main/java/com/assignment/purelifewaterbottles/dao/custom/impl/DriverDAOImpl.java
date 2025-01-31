@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DriverDAOImpl implements DriverDAO {
+    @Override
     public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT driverId FROM driver ORDER BY driverId DESC LIMIT 1");
 
@@ -31,6 +32,7 @@ public class DriverDAOImpl implements DriverDAO {
         return "DR001";
     }
 
+    @Override
     public ArrayList<DriverDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select driverId, vehicleId, name, phoneNo, driver_fee from driver");
 
@@ -43,10 +45,12 @@ public class DriverDAOImpl implements DriverDAO {
         return driverDtos;
     }
 
+    @Override
     public boolean save(DriverDto driverDto) throws SQLException {
         return CrudUtil.execute("insert into driver values (?,?,?,?,?)", driverDto.getDriverId(), driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo());
     }
 
+    @Override
     public boolean update(DriverDto driverDto) throws SQLException {
         return CrudUtil.execute("update driver set vehicleId=?, driver_fee=?, name=?, phoneNo=? where driverId=?", driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo(), driverDto.getDriverId());
     }

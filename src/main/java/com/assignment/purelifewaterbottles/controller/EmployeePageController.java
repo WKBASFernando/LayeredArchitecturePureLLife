@@ -4,7 +4,7 @@ import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.dto.tm.EmployeeTm;
-import com.assignment.purelifewaterbottles.model.EmployeeModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.EmployeeDAOImpl;
 import com.assignment.purelifewaterbottles.model.SalaryModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,7 +91,7 @@ public class EmployeePageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = employeeModel.deleteEmployee(employeeId);
+            boolean isDeleted = employeeModel.delete(employeeId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Employee deleted...!").show();
@@ -170,7 +170,7 @@ public class EmployeePageController implements Initializable {
         EmployeeDto employeeDto = new EmployeeDto(employeeId, name, position, address, phoneNoText);
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
-        boolean isSavedE = employeeModel.saveEmployee(employeeDto);
+        boolean isSavedE = employeeModel.save(employeeDto);
         boolean isSavedS = salaryModel.saveSalary(salaryDto);
 
         if (isSavedE && isSavedS) {
@@ -217,7 +217,7 @@ public class EmployeePageController implements Initializable {
         EmployeeDto employeeDto = new EmployeeDto(employeeId, name, position, address, phoneNoText);
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
-        boolean isUpdatedE = employeeModel.updateEmployee(employeeDto);
+        boolean isUpdatedE = employeeModel.update(employeeDto);
         boolean isUpdatedS = salaryModel.updateSalary(salaryDto);
 
         if (isUpdatedE && isUpdatedS) {
@@ -267,11 +267,11 @@ public class EmployeePageController implements Initializable {
         btnSave.setDisable(false);
     }
 
-    EmployeeModel employeeModel = new EmployeeModel();
+    EmployeeDAOImpl employeeModel = new EmployeeDAOImpl();
     SalaryModel salaryModel = new SalaryModel();
 
     private void loadNextEmployeeId() throws Exception {
-        String nextEmployeeId = employeeModel.getNextEmployeeId();
+        String nextEmployeeId = employeeModel.getNextID();
         lblEmployeeId.setText(nextEmployeeId);
     }
 
@@ -281,7 +281,7 @@ public class EmployeePageController implements Initializable {
     }
 
     private void loadTableData() throws Exception {
-        ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = employeeModel.getAllEmployees();
+        ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = employeeModel.getAll();
 
         ObservableList<EmployeeTm> employeeTms = FXCollections.observableArrayList();
 

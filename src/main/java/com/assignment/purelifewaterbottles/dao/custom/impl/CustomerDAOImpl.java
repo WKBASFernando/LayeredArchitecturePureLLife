@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerPageDAO {
 
+    @Override
     public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select customerId from customer order by customerId desc limit 1");
 
@@ -23,10 +24,12 @@ public class CustomerDAOImpl implements CustomerPageDAO {
         return "C001";
     }
 
+    @Override
     public boolean save(CustomerDto customerDto) throws SQLException {
         return CrudUtil.execute("insert into customer values (?,?,?,?,?)", customerDto.getCustomerId(), customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail());
     }
 
+    @Override
     public ArrayList<CustomerDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from customer");
 
@@ -39,14 +42,17 @@ public class CustomerDAOImpl implements CustomerPageDAO {
         return customerDTOS;
     }
 
+    @Override
     public boolean update(CustomerDto customerDto) throws SQLException {
         return CrudUtil.execute("update customer set name=?, address=?, phone_no=?, email=? where customerId=?", customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail(), customerDto.getCustomerId());
     }
 
+    @Override
     public boolean delete(String customerId) throws SQLException {
         return CrudUtil.execute("delete from customer where customerId=?", customerId);
     }
 
+    @Override
     public ArrayList<String> getAllIds() throws SQLException {
         ResultSet rst = CrudUtil.execute("select customerId from customer");
 
@@ -59,6 +65,7 @@ public class CustomerDAOImpl implements CustomerPageDAO {
         return customerIds;
     }
 
+    @Override
     public CustomerDto find(String selectedCustomerId) throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from customer where customerId=?", selectedCustomerId);
 

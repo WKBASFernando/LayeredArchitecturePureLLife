@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PaymentDAOImpl implements PaymentDAO {
+    @Override
     public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select paymentId from payment order by paymentId desc limit 1");
 
@@ -23,6 +24,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         return "P001";
     }
 
+    @Override
     public ArrayList<PaymentDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from payment");
 
@@ -35,6 +37,7 @@ public class PaymentDAOImpl implements PaymentDAO {
         return paymentDtos;
     }
 
+    @Override
     public boolean save(PaymentDto paymentDto) throws SQLException {
         return CrudUtil.execute("insert into payment values(?, ?, ?)", paymentDto.getPaymentId(), paymentDto.getOrderId(), paymentDto.getPay_method());
     }

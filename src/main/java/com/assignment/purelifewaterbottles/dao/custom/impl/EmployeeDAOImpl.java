@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.EmployeeDAO;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class EmployeeModel {
-    public String getNextEmployeeId() throws SQLException {
+public class EmployeeDAOImpl implements EmployeeDAO {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select employeeId from employee order by employeeId desc limit 1");
 
         if (rst.next()) {
@@ -22,11 +23,11 @@ public class EmployeeModel {
         return "E001";
     }
 
-    public boolean saveEmployee(EmployeeDto employeeDto) throws SQLException {
+    public boolean save(EmployeeDto employeeDto) throws SQLException {
         return CrudUtil.execute("insert into employee values (?,?,?,?,?)", employeeDto.getEmployeeId(), employeeDto.getName(), employeeDto.getPosition(), employeeDto.getAddress(), employeeDto.getPhoneNumber());
     }
 
-    public ArrayList<EmployeeAndSalaryDto> getAllEmployees() throws SQLException {
+    public ArrayList<EmployeeAndSalaryDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select e.employeeId, s.salaryId, e.name, e.address, e.phoneNumber, e.position, s.salary from employee e join salary s where e.employeeId = s.employeeId");
 
         ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = new ArrayList<>();
@@ -38,11 +39,11 @@ public class EmployeeModel {
         return employeeAndSalaryDtos;
     }
 
-    public boolean updateEmployee(EmployeeDto employeeDto) throws SQLException {
+    public boolean update(EmployeeDto employeeDto) throws SQLException {
         return CrudUtil.execute("update employee set name=?, position=?, address=?, phoneNumber=? where employeeId=?", employeeDto.getName(), employeeDto.getPosition(), employeeDto.getAddress(), employeeDto.getPhoneNumber(), employeeDto.getEmployeeId());
     }
 
-    public boolean deleteEmployee(String employeeId) throws SQLException {
+    public boolean delete(String employeeId) throws SQLException {
         return CrudUtil.execute("delete from employee where employeeId=?", employeeId);
     }
 }

@@ -65,7 +65,7 @@ public class PaymentPageController implements Initializable {
         if (isValid) {
             PaymentDto paymentDto = new PaymentDto(paymentId, orderId, paymentMethod);
 
-            boolean isSaved = paymentModel.savePayment(paymentDto);
+            boolean isSaved = paymentModel.save(paymentDto);
             if (isSaved) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Payment saved...!").show();
@@ -111,7 +111,7 @@ public class PaymentPageController implements Initializable {
     PaymentDAOImpl paymentModel = new PaymentDAOImpl();
 
     private void loadTableData() throws Exception {
-        ArrayList<PaymentDto> paymentDtos = paymentModel.getAllPayments();
+        ArrayList<PaymentDto> paymentDtos = paymentModel.getAll();
 
         ObservableList<PaymentTm> paymentTms = FXCollections.observableArrayList();
 
@@ -124,7 +124,7 @@ public class PaymentPageController implements Initializable {
     }
 
     private void loadNextPaymentId() throws Exception {
-        String nextPaymentId = paymentModel.getNextPaymentId();
+        String nextPaymentId = paymentModel.getNextID();
         lblPaymentId.setText(nextPaymentId);
     }
 

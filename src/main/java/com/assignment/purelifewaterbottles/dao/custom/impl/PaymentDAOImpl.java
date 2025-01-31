@@ -1,6 +1,7 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 
+import com.assignment.purelifewaterbottles.dao.custom.PaymentDAO;
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PaymentDAOImpl {
-    public String getNextPaymentId() throws SQLException {
+public class PaymentDAOImpl implements PaymentDAO {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select paymentId from payment order by paymentId desc limit 1");
 
         if (rst.next()) {
@@ -22,7 +23,7 @@ public class PaymentDAOImpl {
         return "P001";
     }
 
-    public ArrayList<PaymentDto> getAllPayments() throws SQLException {
+    public ArrayList<PaymentDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from payment");
 
         ArrayList<PaymentDto> paymentDtos = new ArrayList<>();
@@ -34,7 +35,7 @@ public class PaymentDAOImpl {
         return paymentDtos;
     }
 
-    public boolean savePayment(PaymentDto paymentDto) throws SQLException {
+    public boolean save(PaymentDto paymentDto) throws SQLException {
         return CrudUtil.execute("insert into payment values(?, ?, ?)", paymentDto.getPaymentId(), paymentDto.getOrderId(), paymentDto.getPay_method());
     }
 }

@@ -1,14 +1,16 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.SalaryDAO;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class SalaryModel {
+public class SalaryDAOImpl implements SalaryDAO {
 
-    public String getNextSalaryId() throws SQLException {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT salaryId FROM salary ORDER BY salaryId DESC LIMIT 1");
 
         if (rst.next()) {
@@ -30,11 +32,31 @@ public class SalaryModel {
         return "SA001";
     }
 
-    public boolean saveSalary(SalaryDto salaryDto) throws SQLException {
+    @Override
+    public SalaryDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<SalaryDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    public boolean save(SalaryDto salaryDto) throws SQLException {
         return CrudUtil.execute("insert into salary values (?,?,?)", salaryDto.getSalaryId(), salaryDto.getEmployeeId(), salaryDto.getSalary());
     }
 
-    public boolean updateSalary(SalaryDto salaryDto) throws SQLException {
+    public boolean update(SalaryDto salaryDto) throws SQLException {
         return CrudUtil.execute("update salary set employeeId=?, salary=? where salaryId=?", salaryDto.getEmployeeId(), salaryDto.getSalary(), salaryDto.getSalaryId());
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 }

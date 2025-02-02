@@ -1,8 +1,7 @@
 package com.assignment.purelifewaterbottles.dao.custom;
 
 import com.assignment.purelifewaterbottles.dao.CrudDAO;
-import com.assignment.purelifewaterbottles.dto.DriverDto;
+import com.assignment.purelifewaterbottles.dto.SalaryDto;
 
-public interface DriverDAO extends CrudDAO<DriverDto> {
-
+public interface SalaryDAO extends CrudDAO<SalaryDto> {
 }

@@ -5,7 +5,7 @@ import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.dto.tm.EmployeeTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.EmployeeDAOImpl;
-import com.assignment.purelifewaterbottles.model.SalaryModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.SalaryDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -171,7 +171,7 @@ public class EmployeePageController implements Initializable {
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
         boolean isSavedE = employeeModel.save(employeeDto);
-        boolean isSavedS = salaryModel.saveSalary(salaryDto);
+        boolean isSavedS = salaryModel.save(salaryDto);
 
         if (isSavedE && isSavedS) {
             refreshPage();
@@ -218,7 +218,7 @@ public class EmployeePageController implements Initializable {
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
         boolean isUpdatedE = employeeModel.update(employeeDto);
-        boolean isUpdatedS = salaryModel.updateSalary(salaryDto);
+        boolean isUpdatedS = salaryModel.update(salaryDto);
 
         if (isUpdatedE && isUpdatedS) {
             refreshPage();
@@ -268,7 +268,7 @@ public class EmployeePageController implements Initializable {
     }
 
     EmployeeDAOImpl employeeModel = new EmployeeDAOImpl();
-    SalaryModel salaryModel = new SalaryModel();
+    SalaryDAOImpl salaryModel = new SalaryDAOImpl();
 
     private void loadNextEmployeeId() throws Exception {
         String nextEmployeeId = employeeModel.getNextID();
@@ -276,12 +276,12 @@ public class EmployeePageController implements Initializable {
     }
 
     private void loadNextSalaryId() throws Exception {
-        String nextSalaryId = salaryModel.getNextSalaryId();
+        String nextSalaryId = salaryModel.getNextID();
         lblSalaryId.setText(nextSalaryId);
     }
 
     private void loadTableData() throws Exception {
-        ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = employeeModel.getAll();
+        ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = employeeModel.getAllWithSalaries();
 
         ObservableList<EmployeeTm> employeeTms = FXCollections.observableArrayList();
 

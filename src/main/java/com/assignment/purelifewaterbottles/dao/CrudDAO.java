@@ -1,7 +1,5 @@
 package com.assignment.purelifewaterbottles.dao;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 

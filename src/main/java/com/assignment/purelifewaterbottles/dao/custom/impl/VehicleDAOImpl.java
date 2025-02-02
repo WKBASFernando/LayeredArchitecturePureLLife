@@ -3,7 +3,7 @@ package com.assignment.purelifewaterbottles.dao.custom.impl;
 import com.assignment.purelifewaterbottles.dao.custom.VehicleDAO;
 import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
-import com.assignment.purelifewaterbottles.util.CrudUtil;
+import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,14 +1,12 @@
 package com.assignment.purelifewaterbottles.model;
 
-import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDto;
-import com.assignment.purelifewaterbottles.util.CrudUtil;
+import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.function.Supplier;
 
 public class SupplierModel {
     public String getNextSupplierId() throws SQLException {

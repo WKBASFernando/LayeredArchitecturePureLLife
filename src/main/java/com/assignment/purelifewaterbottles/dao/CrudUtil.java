@@ -1,4 +1,4 @@
-package com.assignment.purelifewaterbottles.util;
+package com.assignment.purelifewaterbottles.dao;
 
 import com.assignment.purelifewaterbottles.db.DBConnection;
 

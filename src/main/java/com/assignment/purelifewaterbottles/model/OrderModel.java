@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.model;
 
 import com.assignment.purelifewaterbottles.dto.OrderAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.OrderDto;
-import com.assignment.purelifewaterbottles.util.CrudUtil;
+import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

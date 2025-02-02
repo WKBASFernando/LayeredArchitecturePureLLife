@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.SalaryDAO;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
-import com.assignment.purelifewaterbottles.util.CrudUtil;
+import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

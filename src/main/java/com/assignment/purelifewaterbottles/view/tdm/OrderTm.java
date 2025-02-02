@@ -1,9 +1,6 @@
-package com.assignment.purelifewaterbottles.dto.tm;
+package com.assignment.purelifewaterbottles.view.tdm;
 
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter

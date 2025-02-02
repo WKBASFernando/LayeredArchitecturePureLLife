@@ -3,7 +3,7 @@ package com.assignment.purelifewaterbottles.controller;
 import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDto;
-import com.assignment.purelifewaterbottles.dto.tm.SupplierTm;
+import com.assignment.purelifewaterbottles.view.tdm.SupplierTm;
 import com.assignment.purelifewaterbottles.model.SupplierDetailModel;
 import com.assignment.purelifewaterbottles.model.SupplierModel;
 import javafx.collections.FXCollections;
@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;

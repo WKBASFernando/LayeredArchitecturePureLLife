@@ -3,7 +3,7 @@ package com.assignment.purelifewaterbottles.controller;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
-import com.assignment.purelifewaterbottles.dto.tm.EmployeeTm;
+import com.assignment.purelifewaterbottles.view.tdm.EmployeeTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.EmployeeDAOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SalaryDAOImpl;
 import javafx.collections.FXCollections;

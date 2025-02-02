@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.SupplierDAO;
 import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SupplierModel {
-    public String getNextSupplierId() throws SQLException {
+public class SupplierDAOImpl implements SupplierDAO {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("SELECT supplierId FROM supplier ORDER BY supplierId DESC LIMIT 1");
 
         if (rst.next()) {
@@ -31,15 +32,30 @@ public class SupplierModel {
         return "SU001";
     }
 
-    public boolean saveSupplier(SupplierDto supplier) throws SQLException {
+    @Override
+    public SupplierDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<SupplierDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    public boolean save(SupplierDto supplier) throws SQLException {
         return CrudUtil.execute("insert into supplier values (?,?,?)", supplier.getSupplierId(), supplier.getSupplingItem(), supplier.getPricePerOneItem());
     }
 
-    public boolean updateSupplier(SupplierDto supplier) throws SQLException {
+    public boolean update(SupplierDto supplier) throws SQLException {
         return CrudUtil.execute("update supplier set supplingItem=?, pricePerOneItem=? where supplierId=?", supplier.getSupplingItem(), supplier.getPricePerOneItem(), supplier.getSupplierId());
     }
 
-    public boolean deleteSupplier(String supplierId) throws SQLException {
+    public boolean delete(String supplierId) throws SQLException {
         return CrudUtil.execute("delete from supplier where supplierId = ?", supplierId);
     }
 

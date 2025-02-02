@@ -4,8 +4,8 @@ import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDto;
 import com.assignment.purelifewaterbottles.view.tdm.SupplierTm;
-import com.assignment.purelifewaterbottles.model.SupplierDetailModel;
-import com.assignment.purelifewaterbottles.model.SupplierModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDetailDAOImpl;
+import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -152,8 +152,8 @@ public class SupplierPageController implements Initializable {
         refreshPage();
     }
 
-    SupplierModel supplierModel = new SupplierModel();
-    SupplierDetailModel supplierDetailModel = new SupplierDetailModel();
+    SupplierDAOImpl supplierModel = new SupplierDAOImpl();
+    SupplierDetailDAOImpl supplierDetailModel = new SupplierDetailDAOImpl();
 
     @FXML
     void saveButtonAction(ActionEvent event) throws Exception {
@@ -208,7 +208,7 @@ public class SupplierPageController implements Initializable {
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
             boolean isSavedS = supplierModel.saveSupplier(supplierDto);
-            boolean isSavedSD = supplierDetailModel.saveSupplier(supplierDetailDto);
+            boolean isSavedSD = supplierDetailModel.save(supplierDetailDto);
 
             if (isSavedS && isSavedSD) {
                 refreshPage();
@@ -288,7 +288,7 @@ public class SupplierPageController implements Initializable {
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
             boolean isUpdatedS = supplierModel.updateSupplier(supplierDto);
-            boolean isUpdatedSD = supplierDetailModel.updateSupplier(supplierDetailDto);
+            boolean isUpdatedSD = supplierDetailModel.update(supplierDetailDto);
 
             if (isUpdatedS && isUpdatedSD) {
                 refreshPage();

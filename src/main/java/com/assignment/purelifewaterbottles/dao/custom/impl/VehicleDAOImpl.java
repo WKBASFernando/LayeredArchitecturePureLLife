@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.VehicleDAO;
 import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class VehicleModel {
-    public String getNextVehicleId() throws SQLException {
+public class VehicleDAOImpl implements VehicleDAO {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select vehicleId from vehicle order by vehicleId desc limit 1");
 
         if (rst.next()) {
@@ -22,7 +23,22 @@ public class VehicleModel {
         return "V001";
     }
 
-    public boolean saveVehicle(VehicleDto vehicleDto) throws SQLException {
+    @Override
+    public VehicleDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<VehicleDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    public boolean save(VehicleDto vehicleDto) throws SQLException {
         return CrudUtil.execute("insert into vehicle values (?,?,?)", vehicleDto.getVehicleId(), vehicleDto.getType(), vehicleDto.getVehicleNumber());
     }
 
@@ -38,11 +54,11 @@ public class VehicleModel {
         return driverAndVehicleDtos;
     }
 
-    public boolean updateVehicle(VehicleDto vehicleDto) throws SQLException {
+    public boolean update(VehicleDto vehicleDto) throws SQLException {
         return CrudUtil.execute("update vehicle set type=?, vehicleNumber=? where vehicleId=?", vehicleDto.getType(), vehicleDto.getVehicleNumber(), vehicleDto.getVehicleId());
     }
 
-    public boolean deleteVehicle(String vehicleId) throws SQLException {
+    public boolean delete(String vehicleId) throws SQLException {
         return CrudUtil.execute("delete from vehicle where vehicleId=?", vehicleId);
     }
 }

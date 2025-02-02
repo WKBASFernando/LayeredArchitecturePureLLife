@@ -5,7 +5,7 @@ import com.assignment.purelifewaterbottles.dto.DriverDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
 import com.assignment.purelifewaterbottles.dto.tm.DriverAndVehicleTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.DriverDAOImpl;
-import com.assignment.purelifewaterbottles.model.VehicleModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.VehicleDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -268,7 +268,7 @@ public class DriverPageController implements Initializable {
     }
 
     DriverDAOImpl driverModel = new DriverDAOImpl();
-    VehicleModel vehicleModel = new VehicleModel();
+    VehicleDAOImpl vehicleModel = new VehicleDAOImpl();
 
     private void loadNextDriverId() throws Exception {
         String nextEmployeeId = driverModel.getNextID();

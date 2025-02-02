@@ -25,6 +25,16 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
+    public PaymentDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
     public ArrayList<PaymentDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from payment");
 
@@ -40,5 +50,15 @@ public class PaymentDAOImpl implements PaymentDAO {
     @Override
     public boolean save(PaymentDto paymentDto) throws SQLException {
         return CrudUtil.execute("insert into payment values(?, ?, ?)", paymentDto.getPaymentId(), paymentDto.getOrderId(), paymentDto.getPay_method());
+    }
+
+    @Override
+    public boolean update(PaymentDto Dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 }

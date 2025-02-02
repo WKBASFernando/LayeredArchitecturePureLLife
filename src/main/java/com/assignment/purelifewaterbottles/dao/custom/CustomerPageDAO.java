@@ -7,6 +7,4 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CustomerPageDAO extends CrudDAO<CustomerDto> {
-    ArrayList<String> getAllIds() throws SQLException;
-    CustomerDto find(String selectedCustomerId) throws SQLException;
 }

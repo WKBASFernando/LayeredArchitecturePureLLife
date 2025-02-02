@@ -7,10 +7,6 @@ import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface EmployeeDAO {
-    ArrayList<EmployeeAndSalaryDto> getAll() throws SQLException, ClassNotFoundException;
-    boolean save(EmployeeDto Dto) throws SQLException, ClassNotFoundException;
-    boolean update(EmployeeDto Dto) throws SQLException, ClassNotFoundException;
-    boolean delete(String id) throws SQLException, ClassNotFoundException;
-    String getNextID() throws SQLException, ClassNotFoundException;
+public interface EmployeeDAO extends CrudDAO<EmployeeDto> {
+    ArrayList<EmployeeAndSalaryDto> getAllWithSalaries() throws SQLException;
 }

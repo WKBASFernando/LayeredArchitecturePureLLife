@@ -33,6 +33,16 @@ public class DriverDAOImpl implements DriverDAO {
     }
 
     @Override
+    public DriverDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
     public ArrayList<DriverDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select driverId, vehicleId, name, phoneNo, driver_fee from driver");
 
@@ -53,5 +63,10 @@ public class DriverDAOImpl implements DriverDAO {
     @Override
     public boolean update(DriverDto driverDto) throws SQLException {
         return CrudUtil.execute("update driver set vehicleId=?, driver_fee=?, name=?, phoneNo=? where driverId=?", driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo(), driverDto.getDriverId());
+    }
+
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return false;
     }
 }

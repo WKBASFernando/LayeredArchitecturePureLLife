@@ -23,11 +23,26 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return "E001";
     }
 
+    @Override
+    public EmployeeDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<EmployeeDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
     public boolean save(EmployeeDto employeeDto) throws SQLException {
         return CrudUtil.execute("insert into employee values (?,?,?,?,?)", employeeDto.getEmployeeId(), employeeDto.getName(), employeeDto.getPosition(), employeeDto.getAddress(), employeeDto.getPhoneNumber());
     }
 
-    public ArrayList<EmployeeAndSalaryDto> getAll() throws SQLException {
+    public ArrayList<EmployeeAndSalaryDto> getAllWithSalaries() throws SQLException {
         ResultSet rst = CrudUtil.execute("select e.employeeId, s.salaryId, e.name, e.address, e.phoneNumber, e.position, s.salary from employee e join salary s where e.employeeId = s.employeeId");
 
         ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = new ArrayList<>();

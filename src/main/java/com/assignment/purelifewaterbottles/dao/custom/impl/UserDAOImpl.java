@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.UserDAO;
 import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.dto.UserDto;
 import com.assignment.purelifewaterbottles.util.CrudUtil;
@@ -9,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserModel {
+public class UserDAOImpl implements UserDAO {
     public static UserDto authenticateUser(String username, String password) {
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM user WHERE username = ? AND password = ?", username, password);
@@ -45,12 +46,37 @@ public class UserModel {
         return null;
     }
 
-    public boolean deleteUser(String selectedUsername) throws SQLException {
+    public boolean delete(String selectedUsername) throws SQLException {
         return CrudUtil.execute("delete from user where username=?", selectedUsername);
     }
 
-    public boolean saveUser(UserDto userDto) throws SQLException {
+    @Override
+    public String getNextID() throws SQLException, ClassNotFoundException {
+        return "";
+    }
+
+    @Override
+    public UserDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<UserDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    public boolean save(UserDto userDto) throws SQLException {
         return CrudUtil.execute("insert into user values(?,?)", userDto.getUsername(), userDto.getPassword());
+    }
+
+    @Override
+    public boolean update(UserDto Dto) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
     public boolean isUsernameExists(String username) throws SQLException {

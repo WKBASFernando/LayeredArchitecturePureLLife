@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.UserDto;
-import com.assignment.purelifewaterbottles.model.UserModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.UserDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,7 +63,7 @@ public class AddUserController implements Initializable {
         }
 
         UserDto userDto = new UserDto(username, password);
-        boolean isSaved = userModel.saveUser(userDto);
+        boolean isSaved = userModel.save(userDto);
         if (isSaved) {
             refreshPage();
             new Alert(Alert.AlertType.INFORMATION, "User saved...!").show();
@@ -81,7 +81,7 @@ public class AddUserController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = userModel.deleteUser(username);
+            boolean isDeleted = userModel.delete(username);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "User deleted...!").show();
@@ -98,7 +98,7 @@ public class AddUserController implements Initializable {
         }
     }
 
-    UserModel userModel = new UserModel();
+    UserDAOImpl userModel = new UserDAOImpl();
 
     private void loadUsernames() throws SQLException {
         ArrayList<String> usernames = userModel.getAllUsernames();

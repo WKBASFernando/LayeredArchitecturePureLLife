@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.UserDto;
-import com.assignment.purelifewaterbottles.model.UserModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.UserDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +29,7 @@ public class LoginPageController {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-        UserDto user = UserModel.authenticateUser(username, password);
+        UserDto user = UserDAOImpl.authenticateUser(username, password);
 
         if (user != null) {
             navigateTo("/view/HomePage.fxml");

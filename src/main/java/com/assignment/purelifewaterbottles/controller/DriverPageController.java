@@ -96,7 +96,7 @@ public class DriverPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = vehicleModel.deleteVehicle(vehicleId);
+            boolean isDeleted = vehicleModel.delete(vehicleId);
 
             if (isDeleted) {
                 refreshPage();
@@ -153,7 +153,7 @@ public class DriverPageController implements Initializable {
         DriverDto driverDto = new DriverDto(driverId, vehicleId, name, phoneNumberText, vehicleFee);
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
-        boolean isSavedV = vehicleModel.saveVehicle(vehicleDto);
+        boolean isSavedV = vehicleModel.save(vehicleDto);
         boolean isSavedD = driverModel.save(driverDto);
 
         if (isSavedD && isSavedV) {
@@ -220,7 +220,7 @@ public class DriverPageController implements Initializable {
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
         boolean isUpdatedD = driverModel.update(driverDto);
-        boolean isUpdatedV = vehicleModel.updateVehicle(vehicleDto);
+        boolean isUpdatedV = vehicleModel.update(vehicleDto);
 
         if (isUpdatedD && isUpdatedV) {
             refreshPage();
@@ -276,7 +276,7 @@ public class DriverPageController implements Initializable {
     }
 
     private void loadNextVehicleId() throws Exception {
-        String nextEmployeeId = vehicleModel.getNextVehicleId();
+        String nextEmployeeId = vehicleModel.getNextID();
         lblVehicleId.setText(nextEmployeeId);
     }
 

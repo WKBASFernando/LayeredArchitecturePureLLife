@@ -1,9 +1,10 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
+import com.assignment.purelifewaterbottles.dao.custom.impl.OrderDetailDAOImpl;
+import com.assignment.purelifewaterbottles.dao.custom.impl.OrderDAOImpl;
 import com.assignment.purelifewaterbottles.dto.*;
 import com.assignment.purelifewaterbottles.view.tdm.OrderTm;
-import com.assignment.purelifewaterbottles.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -93,7 +94,7 @@ public class OrderPageController implements Initializable {
     @FXML
     private TextField txtItemQty;
 
-    OrderModel orderModel = new OrderModel();
+    OrderDAOImpl orderModel = new OrderDAOImpl();
 
     @FXML
     void GoToHomePageAction(ActionEvent event) {
@@ -136,7 +137,7 @@ public class OrderPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = orderModel.deleteOrder(orderId);
+            boolean isDeleted = orderModel.delete(orderId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Order deleted...!").show();
@@ -146,7 +147,7 @@ public class OrderPageController implements Initializable {
         }
     }
 
-    OrderDetailModel orderDetailModel = new OrderDetailModel();
+    OrderDetailDAOImpl orderDetailModel = new OrderDetailDAOImpl();
 
     @FXML
     void saveButtonAction(ActionEvent event) throws SQLException {
@@ -240,8 +241,8 @@ public class OrderPageController implements Initializable {
         OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
         OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
 
-        boolean isSavedOrder = orderModel.saveOrder(orderDto);
-        boolean isSavedOrderDetail = orderDetailModel.saveOrder(orderDetailDto);
+        boolean isSavedOrder = orderModel.save(orderDto);
+        boolean isSavedOrderDetail = orderDetailModel.save(orderDetailDto);
 
         if (isSavedOrder && isSavedOrderDetail) {
             try {
@@ -338,8 +339,8 @@ public class OrderPageController implements Initializable {
             OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, Integer.parseInt(qty)); // No item quantity update
 
             // Update order and order details
-            boolean isUpdateO = orderModel.updateOrder(orderDto);
-            boolean isUpdateOD = orderDetailModel.updateOrder(orderDetailDto);
+            boolean isUpdateO = orderModel.update(orderDto);
+            boolean isUpdateOD = orderDetailModel.update(orderDetailDto);
 
             if (isUpdateO && isUpdateOD) {
                 try {
@@ -470,7 +471,7 @@ public class OrderPageController implements Initializable {
     }
 
     public void loadNextOrderId() throws SQLException {
-        String nextOrderId = orderModel.getNextOrderId();
+        String nextOrderId = orderModel.getNextID();
         lblOrdId.setText(nextOrderId);
     }
 

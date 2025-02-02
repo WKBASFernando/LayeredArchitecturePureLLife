@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.OrderDAO;
 import com.assignment.purelifewaterbottles.dto.OrderAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.OrderDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
@@ -8,9 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OrderModel {
+public class OrderDAOImpl implements OrderDAO {
 
-    public String getNextOrderId() throws SQLException {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select orderId from orders order by orderId desc limit 1");
 
         if (rst.next()) {
@@ -21,6 +22,16 @@ public class OrderModel {
             return String.format("O%03d", newIdIndex);
         }
         return "O001";
+    }
+
+    @Override
+    public OrderDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
     }
 
     public ArrayList<OrderAndDetailDto> getAllOrders() throws SQLException {
@@ -34,7 +45,12 @@ public class OrderModel {
         return orderAndDetailDtos;
     }
 
-    public boolean saveOrder(OrderDto orderDto) throws SQLException {
+    @Override
+    public ArrayList<OrderDto> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    public boolean save(OrderDto orderDto) throws SQLException {
         return CrudUtil.execute("insert into orders values (?,?,?,?,?)",
                 orderDto.getOrderId(),
                 orderDto.getCustomerId(),
@@ -44,11 +60,11 @@ public class OrderModel {
 
     }
 
-    public boolean updateOrder(OrderDto orderDto) throws SQLException {
+    public boolean update(OrderDto orderDto) throws SQLException {
         return CrudUtil.execute("update orders set customerId=?, deliveryId=?, description=?, order_date=? where orderId=?", orderDto.getCustomerId(), orderDto.getDeliveryId(), orderDto.getDescription(), orderDto.getOrderDate(), orderDto.getOrderId());
     }
 
-    public boolean deleteOrder(String orderId) throws SQLException {
+    public boolean delete(String orderId) throws SQLException {
         return CrudUtil.execute("delete from orders where orderId=?", orderId);
     }
 }

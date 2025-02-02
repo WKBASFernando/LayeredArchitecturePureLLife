@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dao.custom.impl;
 
+import com.assignment.purelifewaterbottles.dao.custom.ItemDAO;
 import com.assignment.purelifewaterbottles.dto.ItemDto;
 import com.assignment.purelifewaterbottles.dto.ItemDtoOriginal;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ItemModel {
-    public String getNextItemId() throws SQLException {
+public class ItemDAOImpl implements ItemDAO {
+    public String getNextID() throws SQLException {
         ResultSet rst = CrudUtil.execute("select itemId from item order by itemId desc limit 1");
 
         if (rst.next()) {
@@ -22,11 +23,21 @@ public class ItemModel {
         return "I001";
     }
 
-    public boolean saveItem(ItemDtoOriginal itemDto) throws SQLException {
+    @Override
+    public ItemDto find(String id) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() throws SQLException {
+        return null;
+    }
+
+    public boolean save(ItemDtoOriginal itemDto) throws SQLException {
         return CrudUtil.execute("insert into item values (?,?,?,?)", itemDto.getItemId(), itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice());
     }
 
-    public ArrayList<ItemDto> getAllItems() throws SQLException {
+    public ArrayList<ItemDto> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select i.itemId, i.name, i.capacity, i.price, id.itemQty from item i join item_detail id on i.itemId = id.itemId");
 
         ArrayList<ItemDto> itemDtos = new ArrayList<>();
@@ -38,11 +49,21 @@ public class ItemModel {
         return itemDtos;
     }
 
-    public boolean updateItem(ItemDtoOriginal itemDto) throws SQLException {
+    @Override
+    public boolean save(ItemDto Dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean update(ItemDto Dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    public boolean update(ItemDtoOriginal itemDto) throws SQLException {
         return CrudUtil.execute("update item set name=?, capacity=?, price=? where itemId=?", itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice(), itemDto.getItemId());
     }
 
-    public boolean deleteItem(String itemId) throws SQLException {
+    public boolean delete(String itemId) throws SQLException {
         return CrudUtil.execute("delete from item where itemId=?", itemId);
     }
 

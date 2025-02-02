@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
 import com.assignment.purelifewaterbottles.dto.*;
 import com.assignment.purelifewaterbottles.view.tdm.OrderTm;
 import com.assignment.purelifewaterbottles.model.*;
@@ -286,7 +287,7 @@ public class OrderPageController implements Initializable {
         }
     }
 
-    ItemModel itemModel = new ItemModel();
+    ItemDAOImpl itemModel = new ItemDAOImpl();
 
     @FXML
     void updateButtonAction(ActionEvent event) throws SQLException {

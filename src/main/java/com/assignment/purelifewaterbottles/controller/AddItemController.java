@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.dto.ItemDto;
 import com.assignment.purelifewaterbottles.view.tdm.ItemTm;
-import com.assignment.purelifewaterbottles.model.ItemModel;
+import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -99,10 +99,10 @@ public class AddItemController implements Initializable {
         btnFinish.setDisable(true);
     }
 
-    ItemModel itemModel = new ItemModel();
+    ItemDAOImpl itemModel = new ItemDAOImpl();
 
     private void loadTableData() throws Exception {
-        ArrayList<ItemDto> itemDtos = itemModel.getAllItems();
+        ArrayList<ItemDto> itemDtos = itemModel.getAll();
 
         ObservableList<ItemTm> itemTms = FXCollections.observableArrayList();
 

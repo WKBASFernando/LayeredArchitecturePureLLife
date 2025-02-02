@@ -1,6 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.UserDto;
+import com.assignment.purelifewaterbottles.model.UserDto;
 import com.assignment.purelifewaterbottles.dao.custom.impl.UserDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

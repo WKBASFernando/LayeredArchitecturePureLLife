@@ -1,6 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.DeliveryDto;
+import com.assignment.purelifewaterbottles.model.DeliveryDto;
 import com.assignment.purelifewaterbottles.view.tdm.DeliveryTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
 import javafx.application.Platform;

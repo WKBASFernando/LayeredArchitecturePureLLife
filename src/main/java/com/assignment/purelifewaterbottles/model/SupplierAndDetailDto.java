@@ -1,4 +1,4 @@
-package com.assignment.purelifewaterbottles.dto;
+package com.assignment.purelifewaterbottles.model;
 
 import lombok.*;
 
@@ -7,8 +7,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SupplierDto {
+public class SupplierAndDetailDto {
     private String supplierId;
     private String supplingItem;
     private double pricePerOneItem;
+    private int s_qty;
+    private double totalPrice;
 }

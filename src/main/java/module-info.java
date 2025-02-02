@@ -10,5 +10,5 @@ module com.assignment.purelifewaterbottles {
     opens com.assignment.purelifewaterbottles.controller to javafx.fxml;
     exports com.assignment.purelifewaterbottles;
     opens com.assignment.purelifewaterbottles.view.tdm to javafx.base;
-    opens com.assignment.purelifewaterbottles.dto to javafx.base;
+    opens com.assignment.purelifewaterbottles.model to javafx.base;
 }

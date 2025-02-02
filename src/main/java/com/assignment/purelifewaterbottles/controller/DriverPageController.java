@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
-import com.assignment.purelifewaterbottles.dto.DriverDto;
-import com.assignment.purelifewaterbottles.dto.VehicleDto;
+import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
+import com.assignment.purelifewaterbottles.model.DriverDto;
+import com.assignment.purelifewaterbottles.model.VehicleDto;
 import com.assignment.purelifewaterbottles.view.tdm.DriverAndVehicleTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.DriverDAOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.VehicleDAOImpl;

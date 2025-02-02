@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.UserDAO;
 import com.assignment.purelifewaterbottles.db.DBConnection;
-import com.assignment.purelifewaterbottles.dto.UserDto;
+import com.assignment.purelifewaterbottles.model.UserDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.PreparedStatement;

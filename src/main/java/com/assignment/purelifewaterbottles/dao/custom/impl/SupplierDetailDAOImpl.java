@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.SupplierDetailDAO;
-import com.assignment.purelifewaterbottles.dto.SupplierDetailDto;
+import com.assignment.purelifewaterbottles.model.SupplierDetailDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.SQLException;

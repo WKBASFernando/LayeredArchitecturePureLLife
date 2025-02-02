@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
-import com.assignment.purelifewaterbottles.dto.SupplierDetailDto;
-import com.assignment.purelifewaterbottles.dto.SupplierDto;
+import com.assignment.purelifewaterbottles.model.SupplierAndDetailDto;
+import com.assignment.purelifewaterbottles.model.SupplierDetailDto;
+import com.assignment.purelifewaterbottles.model.SupplierDto;
 import com.assignment.purelifewaterbottles.view.tdm.SupplierTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDetailDAOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDAOImpl;
@@ -137,7 +137,7 @@ public class SupplierPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = supplierModel.deleteSupplier(supplierId);
+            boolean isDeleted = supplierModel.delete(supplierId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();
@@ -207,7 +207,7 @@ public class SupplierPageController implements Initializable {
             SupplierDto supplierDto = new SupplierDto(supplierId, itemName, pricePerUnit);
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
-            boolean isSavedS = supplierModel.saveSupplier(supplierDto);
+            boolean isSavedS = supplierModel.save(supplierDto);
             boolean isSavedSD = supplierDetailModel.save(supplierDetailDto);
 
             if (isSavedS && isSavedSD) {
@@ -287,7 +287,7 @@ public class SupplierPageController implements Initializable {
             SupplierDto supplierDto = new SupplierDto(supplierId, itemName, pricePerUnit);
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
-            boolean isUpdatedS = supplierModel.updateSupplier(supplierDto);
+            boolean isUpdatedS = supplierModel.update(supplierDto);
             boolean isUpdatedSD = supplierDetailModel.update(supplierDetailDto);
 
             if (isUpdatedS && isUpdatedSD) {
@@ -330,7 +330,7 @@ public class SupplierPageController implements Initializable {
     }
 
     private void loadNextSupplierId() throws Exception {
-        String nextSupplierId = supplierModel.getNextSupplierId();
+        String nextSupplierId = supplierModel.getNextID();
         lblSupplierId.setText(nextSupplierId);
     }
 

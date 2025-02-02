@@ -1,4 +1,4 @@
-package com.assignment.purelifewaterbottles.dto;
+package com.assignment.purelifewaterbottles.model;
 
 import lombok.*;
 

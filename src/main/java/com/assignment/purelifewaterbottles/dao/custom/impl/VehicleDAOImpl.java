@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.VehicleDAO;
-import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
-import com.assignment.purelifewaterbottles.dto.VehicleDto;
+import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
+import com.assignment.purelifewaterbottles.model.VehicleDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;

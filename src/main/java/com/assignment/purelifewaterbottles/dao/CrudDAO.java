@@ -3,7 +3,7 @@ package com.assignment.purelifewaterbottles.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface CrudDAO<T> {
+public interface CrudDAO<T> extends SuperDAO {
     ArrayList<T> getAll() throws SQLException, ClassNotFoundException;
     boolean save(T Dto) throws SQLException, ClassNotFoundException;
     boolean update(T Dto) throws SQLException, ClassNotFoundException;

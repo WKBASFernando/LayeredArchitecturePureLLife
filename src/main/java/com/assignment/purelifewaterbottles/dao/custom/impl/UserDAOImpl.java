@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO {
-    public static UserDto authenticateUser(String username, String password) {
+    public UserDto authenticateUser(String username, String password) {
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM user WHERE username = ? AND password = ?", username, password);
             if (resultSet.next()) {

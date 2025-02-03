@@ -1,11 +1,11 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.ItemBOImpl;
+import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDetailDAOImpl;
 import com.assignment.purelifewaterbottles.model.ItemDetailDto;
 import com.assignment.purelifewaterbottles.model.ItemDto;
 import com.assignment.purelifewaterbottles.model.ItemDtoOriginal;
 import com.assignment.purelifewaterbottles.view.tdm.ItemTm;
-import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDetailDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -92,7 +92,7 @@ public class ItemPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = itemModel.delete(itemId);
+            boolean isDeleted = itemBO.delete(itemId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();
@@ -107,8 +107,8 @@ public class ItemPageController implements Initializable {
         refreshPage();
     }
 
-    ItemDAOImpl itemModel = new ItemDAOImpl();
-    ItemDetailDAOImpl itemDetailModel = new ItemDetailDAOImpl();
+    ItemBOImpl itemBO = new ItemBOImpl();
+    ItemDetailDAOImpl itemDetailDAO = new ItemDetailDAOImpl();
 
     @FXML
     void saveButtonAction(ActionEvent event) throws Exception {
@@ -165,8 +165,8 @@ public class ItemPageController implements Initializable {
             ItemDtoOriginal itemDtoOriginal = new ItemDtoOriginal(itemId, itemName, capacity, price);
             ItemDetailDto itemDetailDto = new ItemDetailDto(itemId, warehouseId, qty);
 
-            boolean isSavedI = itemModel.save(itemDtoOriginal);
-            boolean isSavedID = itemDetailModel.save(itemDetailDto);
+            boolean isSavedI = itemBO.save(itemDtoOriginal);
+            boolean isSavedID = itemDetailDAO.save(itemDetailDto);
 
             if (isSavedI && isSavedID) {
                 refreshPage();
@@ -253,8 +253,8 @@ public class ItemPageController implements Initializable {
             ItemDtoOriginal itemDtoOriginal = new ItemDtoOriginal(itemId, itemName, capacity, price);
             ItemDetailDto itemDetailDto = new ItemDetailDto(itemId, warehouseId, qty);
 
-            boolean isUpdatedI = itemModel.update(itemDtoOriginal);
-            boolean isUpdatedID = itemDetailModel.update(itemDetailDto);
+            boolean isUpdatedI = itemBO.update(itemDtoOriginal);
+            boolean isUpdatedID = itemDetailDAO.update(itemDetailDto);
 
             if (isUpdatedI && isUpdatedID) {
                 refreshPage();
@@ -300,12 +300,12 @@ public class ItemPageController implements Initializable {
     }
 
     private void loadNextItemId() throws Exception {
-        String nextItemId = itemModel.getNextID();
+        String nextItemId = itemBO.getNextID();
         lblItemId.setText(nextItemId);
     }
 
     private void loadTableData() throws Exception {
-        ArrayList<ItemDto> itemDtos = itemModel.getAll();
+        ArrayList<ItemDto> itemDtos = itemBO.getAll();
 
         ObservableList<ItemTm> itemTms = FXCollections.observableArrayList();
 

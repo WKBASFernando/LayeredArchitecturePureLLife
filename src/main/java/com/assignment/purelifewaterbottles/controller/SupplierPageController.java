@@ -1,11 +1,11 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.SupplierBOImpl;
+import com.assignment.purelifewaterbottles.bo.SupplierDetailBOImpl;
 import com.assignment.purelifewaterbottles.model.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.model.SupplierDetailDto;
 import com.assignment.purelifewaterbottles.model.SupplierDto;
 import com.assignment.purelifewaterbottles.view.tdm.SupplierTm;
-import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDetailDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -137,7 +137,7 @@ public class SupplierPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = supplierModel.delete(supplierId);
+            boolean isDeleted = supplierBO.delete(supplierId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();
@@ -152,8 +152,8 @@ public class SupplierPageController implements Initializable {
         refreshPage();
     }
 
-    SupplierDAOImpl supplierModel = new SupplierDAOImpl();
-    SupplierDetailDAOImpl supplierDetailModel = new SupplierDetailDAOImpl();
+    SupplierBOImpl supplierBO = new SupplierBOImpl();
+    SupplierDetailBOImpl supplierDetailBO = new SupplierDetailBOImpl();
 
     @FXML
     void saveButtonAction(ActionEvent event) throws Exception {
@@ -207,8 +207,8 @@ public class SupplierPageController implements Initializable {
             SupplierDto supplierDto = new SupplierDto(supplierId, itemName, pricePerUnit);
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
-            boolean isSavedS = supplierModel.save(supplierDto);
-            boolean isSavedSD = supplierDetailModel.save(supplierDetailDto);
+            boolean isSavedS = supplierBO.save(supplierDto);
+            boolean isSavedSD = supplierDetailBO.save(supplierDetailDto);
 
             if (isSavedS && isSavedSD) {
                 refreshPage();
@@ -287,8 +287,8 @@ public class SupplierPageController implements Initializable {
             SupplierDto supplierDto = new SupplierDto(supplierId, itemName, pricePerUnit);
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
-            boolean isUpdatedS = supplierModel.update(supplierDto);
-            boolean isUpdatedSD = supplierDetailModel.update(supplierDetailDto);
+            boolean isUpdatedS = supplierBO.update(supplierDto);
+            boolean isUpdatedSD = supplierDetailBO.update(supplierDetailDto);
 
             if (isUpdatedS && isUpdatedSD) {
                 refreshPage();
@@ -330,12 +330,12 @@ public class SupplierPageController implements Initializable {
     }
 
     private void loadNextSupplierId() throws Exception {
-        String nextSupplierId = supplierModel.getNextID();
+        String nextSupplierId = supplierBO.getNextID();
         lblSupplierId.setText(nextSupplierId);
     }
 
     private void loadTableData() throws Exception {
-        ArrayList<SupplierAndDetailDto> supplierAndDetailDtos = supplierModel.getAllSuppliers();
+        ArrayList<SupplierAndDetailDto> supplierAndDetailDtos = supplierBO.getAllSuppliers();
 
         ObservableList<SupplierTm> supplierTms = FXCollections.observableArrayList();
 

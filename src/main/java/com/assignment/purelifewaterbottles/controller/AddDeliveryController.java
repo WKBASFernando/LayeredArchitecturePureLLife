@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.DeliveryBOImpl;
 import com.assignment.purelifewaterbottles.model.DeliveryDto;
 import com.assignment.purelifewaterbottles.view.tdm.DeliveryTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
@@ -79,7 +80,7 @@ public class AddDeliveryController implements Initializable {
         }
     }
 
-    DeliveryDAOImpl deliveryModel = new DeliveryDAOImpl();
+    DeliveryBOImpl deliveryBO = new DeliveryBOImpl();
 
     @FXML
     void saveOnAction(ActionEvent event) throws Exception {
@@ -107,7 +108,7 @@ public class AddDeliveryController implements Initializable {
             double deliveryFee = Double.parseDouble(deliveryFeeText);
 
             DeliveryDto deliveryDto = new DeliveryDto(deliveryId, driverId, location, deliveryFee);
-            boolean isSaved = deliveryModel.save(deliveryDto);
+            boolean isSaved = deliveryBO.save(deliveryDto);
 
             if (isSaved) {
                 refreshPage();
@@ -128,7 +129,7 @@ public class AddDeliveryController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = deliveryModel.delete(deliveryId);
+            boolean isDeleted = deliveryBO.delete(deliveryId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Delivery deleted...!").show();

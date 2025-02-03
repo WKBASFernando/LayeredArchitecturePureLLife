@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.OrderBOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.OrderDetailDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.OrderDAOImpl;
 import com.assignment.purelifewaterbottles.model.OrderAndDetailDto;
 import com.assignment.purelifewaterbottles.model.OrderDetailDto;
 import com.assignment.purelifewaterbottles.model.OrderDto;
@@ -96,8 +96,6 @@ public class OrderPageController implements Initializable {
     @FXML
     private TextField txtItemQty;
 
-    OrderDAOImpl orderModel = new OrderDAOImpl();
-
     @FXML
     void GoToHomePageAction(ActionEvent event) {
         navigateTo("/view/HomePage.fxml");
@@ -139,7 +137,7 @@ public class OrderPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = orderModel.delete(orderId);
+            boolean isDeleted = orderBO.delete(orderId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Order deleted...!").show();
@@ -149,6 +147,7 @@ public class OrderPageController implements Initializable {
         }
     }
 
+    OrderBOImpl orderBO = new OrderBOImpl();
     OrderDetailDAOImpl orderDetailModel = new OrderDetailDAOImpl();
 
     @FXML
@@ -243,7 +242,7 @@ public class OrderPageController implements Initializable {
         OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
         OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
 
-        boolean isSavedOrder = orderModel.save(orderDto);
+        boolean isSavedOrder = orderBO.save(orderDto);
         boolean isSavedOrderDetail = orderDetailModel.save(orderDetailDto);
 
         if (isSavedOrder && isSavedOrderDetail) {
@@ -341,7 +340,7 @@ public class OrderPageController implements Initializable {
             OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, Integer.parseInt(qty)); // No item quantity update
 
             // Update order and order details
-            boolean isUpdateO = orderModel.update(orderDto);
+            boolean isUpdateO = orderBO.update(orderDto);
             boolean isUpdateOD = orderDetailModel.update(orderDetailDto);
 
             if (isUpdateO && isUpdateOD) {
@@ -441,7 +440,7 @@ public class OrderPageController implements Initializable {
     }
 
     private void loadTableData() throws SQLException {
-        ArrayList<OrderAndDetailDto> orderAndDetailDtos = orderModel.getAllOrders();
+        ArrayList<OrderAndDetailDto> orderAndDetailDtos = orderBO.getAllOrders();
 
         ObservableList<OrderTm> orderTms = FXCollections.observableArrayList();
 
@@ -473,7 +472,7 @@ public class OrderPageController implements Initializable {
     }
 
     public void loadNextOrderId() throws SQLException {
-        String nextOrderId = orderModel.getNextID();
+        String nextOrderId = orderBO.getNextID();
         lblOrdId.setText(nextOrderId);
     }
 

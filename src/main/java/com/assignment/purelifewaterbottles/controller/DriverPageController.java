@@ -1,11 +1,11 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.DriverBOImpl;
+import com.assignment.purelifewaterbottles.bo.VehicleBOImpl;
 import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.model.DriverDto;
 import com.assignment.purelifewaterbottles.model.VehicleDto;
 import com.assignment.purelifewaterbottles.view.tdm.DriverAndVehicleTm;
-import com.assignment.purelifewaterbottles.dao.custom.impl.DriverDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.VehicleDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -96,7 +96,7 @@ public class DriverPageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = vehicleModel.delete(vehicleId);
+            boolean isDeleted = vehicleBO.delete(vehicleId);
 
             if (isDeleted) {
                 refreshPage();
@@ -153,8 +153,8 @@ public class DriverPageController implements Initializable {
         DriverDto driverDto = new DriverDto(driverId, vehicleId, name, phoneNumberText, vehicleFee);
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
-        boolean isSavedV = vehicleModel.save(vehicleDto);
-        boolean isSavedD = driverModel.save(driverDto);
+        boolean isSavedV = vehicleBO.save(vehicleDto);
+        boolean isSavedD = driverBO.save(driverDto);
 
         if (isSavedD && isSavedV) {
             refreshPage();
@@ -219,8 +219,8 @@ public class DriverPageController implements Initializable {
         DriverDto driverDto = new DriverDto(driverId, vehicleId, name, phoneNumberText, vehicleFee);
         VehicleDto vehicleDto = new VehicleDto(vehicleId, vehicleType, vehicleNumber);
 
-        boolean isUpdatedD = driverModel.update(driverDto);
-        boolean isUpdatedV = vehicleModel.update(vehicleDto);
+        boolean isUpdatedD = driverBO.update(driverDto);
+        boolean isUpdatedV = vehicleBO.update(vehicleDto);
 
         if (isUpdatedD && isUpdatedV) {
             refreshPage();
@@ -267,21 +267,21 @@ public class DriverPageController implements Initializable {
         btnSave.setDisable(false);
     }
 
-    DriverDAOImpl driverModel = new DriverDAOImpl();
-    VehicleDAOImpl vehicleModel = new VehicleDAOImpl();
+    DriverBOImpl driverBO = new DriverBOImpl();
+    VehicleBOImpl vehicleBO = new VehicleBOImpl();
 
     private void loadNextDriverId() throws Exception {
-        String nextEmployeeId = driverModel.getNextID();
+        String nextEmployeeId = driverBO.getNextID();
         lblDriverId.setText(nextEmployeeId);
     }
 
     private void loadNextVehicleId() throws Exception {
-        String nextEmployeeId = vehicleModel.getNextID();
+        String nextEmployeeId = vehicleBO.getNextID();
         lblVehicleId.setText(nextEmployeeId);
     }
 
     private void loadTableData() throws Exception {
-        ArrayList<DriverAndVehicleDto> driverAndVehicleDtos = vehicleModel.getAllDriversAndVehicles();
+        ArrayList<DriverAndVehicleDto> driverAndVehicleDtos = vehicleBO.getAllDriversAndVehicles();
 
         ObservableList<DriverAndVehicleTm> driverAndVehicleTms = FXCollections.observableArrayList();
 

@@ -23,13 +23,13 @@ public class LoginPageController {
     @FXML
     private AnchorPane content;
 
-
+    UserDAOImpl userDAO = new UserDAOImpl();
     @FXML
     void loginAction(ActionEvent event) {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-        UserDto user = UserDAOImpl.authenticateUser(username, password);
+        UserDto user = userDAO.authenticateUser(username, password);
 
         if (user != null) {
             navigateTo("/view/HomePage.fxml");

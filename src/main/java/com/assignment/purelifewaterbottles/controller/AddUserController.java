@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.UserBOImpl;
 import com.assignment.purelifewaterbottles.model.UserDto;
-import com.assignment.purelifewaterbottles.dao.custom.impl.UserDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,7 +47,7 @@ public class AddUserController implements Initializable {
             return;
         }
 
-        if (userModel.isUsernameExists(username)) {
+        if (userBO.isUsernameExists(username)) {
             new Alert(Alert.AlertType.ERROR, "Username already exists. Please choose a different username.").show();
             return;
         }
@@ -63,7 +63,7 @@ public class AddUserController implements Initializable {
         }
 
         UserDto userDto = new UserDto(username, password);
-        boolean isSaved = userModel.save(userDto);
+        boolean isSaved = userBO.save(userDto);
         if (isSaved) {
             refreshPage();
             new Alert(Alert.AlertType.INFORMATION, "User saved...!").show();
@@ -81,7 +81,7 @@ public class AddUserController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = userModel.delete(username);
+            boolean isDeleted = userBO.delete(username);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "User deleted...!").show();
@@ -98,10 +98,10 @@ public class AddUserController implements Initializable {
         }
     }
 
-    UserDAOImpl userModel = new UserDAOImpl();
+    UserBOImpl userBO = new UserBOImpl();
 
     private void loadUsernames() throws SQLException {
-        ArrayList<String> usernames = userModel.getAllUsernames();
+        ArrayList<String> usernames = userBO.getAllUsernames();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(usernames);
         cmbRemoveUser.setItems(observableList);

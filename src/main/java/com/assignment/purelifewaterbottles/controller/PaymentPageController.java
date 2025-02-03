@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.PaymentBOImpl;
 import com.assignment.purelifewaterbottles.model.PaymentDto;
 import com.assignment.purelifewaterbottles.view.tdm.PaymentTm;
-import com.assignment.purelifewaterbottles.dao.custom.impl.PaymentDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,7 +65,7 @@ public class PaymentPageController implements Initializable {
         if (isValid) {
             PaymentDto paymentDto = new PaymentDto(paymentId, orderId, paymentMethod);
 
-            boolean isSaved = paymentModel.save(paymentDto);
+            boolean isSaved = paymentBO.save(paymentDto);
             if (isSaved) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Payment saved...!").show();
@@ -108,10 +108,10 @@ public class PaymentPageController implements Initializable {
         loadNextPaymentId();
     }
 
-    PaymentDAOImpl paymentModel = new PaymentDAOImpl();
+    PaymentBOImpl paymentBO = new PaymentBOImpl();
 
     private void loadTableData() throws Exception {
-        ArrayList<PaymentDto> paymentDtos = paymentModel.getAll();
+        ArrayList<PaymentDto> paymentDtos = paymentBO.getAll();
 
         ObservableList<PaymentTm> paymentTms = FXCollections.observableArrayList();
 
@@ -124,7 +124,7 @@ public class PaymentPageController implements Initializable {
     }
 
     private void loadNextPaymentId() throws Exception {
-        String nextPaymentId = paymentModel.getNextID();
+        String nextPaymentId = paymentBO.getNextID();
         lblPaymentId.setText(nextPaymentId);
     }
 

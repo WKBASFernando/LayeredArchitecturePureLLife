@@ -1,11 +1,11 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.EmployeeBOImpl;
+import com.assignment.purelifewaterbottles.bo.SalaryBOImpl;
 import com.assignment.purelifewaterbottles.model.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.model.EmployeeDto;
 import com.assignment.purelifewaterbottles.model.SalaryDto;
 import com.assignment.purelifewaterbottles.view.tdm.EmployeeTm;
-import com.assignment.purelifewaterbottles.dao.custom.impl.EmployeeDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.SalaryDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -91,7 +91,7 @@ public class EmployeePageController implements Initializable {
 
         if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = employeeModel.delete(employeeId);
+            boolean isDeleted = employeeBO.delete(employeeId);
             if (isDeleted) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Employee deleted...!").show();
@@ -170,8 +170,8 @@ public class EmployeePageController implements Initializable {
         EmployeeDto employeeDto = new EmployeeDto(employeeId, name, position, address, phoneNoText);
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
-        boolean isSavedE = employeeModel.save(employeeDto);
-        boolean isSavedS = salaryModel.save(salaryDto);
+        boolean isSavedE = employeeBO.save(employeeDto);
+        boolean isSavedS = salaryBO.save(salaryDto);
 
         if (isSavedE && isSavedS) {
             refreshPage();
@@ -217,8 +217,8 @@ public class EmployeePageController implements Initializable {
         EmployeeDto employeeDto = new EmployeeDto(employeeId, name, position, address, phoneNoText);
         SalaryDto salaryDto = new SalaryDto(salaryId, employeeId, salary);
 
-        boolean isUpdatedE = employeeModel.update(employeeDto);
-        boolean isUpdatedS = salaryModel.update(salaryDto);
+        boolean isUpdatedE = employeeBO.update(employeeDto);
+        boolean isUpdatedS = salaryBO.update(salaryDto);
 
         if (isUpdatedE && isUpdatedS) {
             refreshPage();
@@ -267,21 +267,21 @@ public class EmployeePageController implements Initializable {
         btnSave.setDisable(false);
     }
 
-    EmployeeDAOImpl employeeModel = new EmployeeDAOImpl();
-    SalaryDAOImpl salaryModel = new SalaryDAOImpl();
+    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
+    SalaryBOImpl salaryBO = new SalaryBOImpl();
 
     private void loadNextEmployeeId() throws Exception {
-        String nextEmployeeId = employeeModel.getNextID();
+        String nextEmployeeId = employeeBO.getNextID();
         lblEmployeeId.setText(nextEmployeeId);
     }
 
     private void loadNextSalaryId() throws Exception {
-        String nextSalaryId = salaryModel.getNextID();
+        String nextSalaryId = salaryBO.getNextID();
         lblSalaryId.setText(nextSalaryId);
     }
 
     private void loadTableData() throws Exception {
-        ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = employeeModel.getAllWithSalaries();
+        ArrayList<EmployeeAndSalaryDto> employeeAndSalaryDtos = employeeBO.getAllWithSalaries();
 
         ObservableList<EmployeeTm> employeeTms = FXCollections.observableArrayList();
 

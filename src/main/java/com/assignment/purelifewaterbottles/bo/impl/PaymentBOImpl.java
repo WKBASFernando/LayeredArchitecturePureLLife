@@ -1,10 +1,9 @@
-package com.assignment.purelifewaterbottles.bo;
+package com.assignment.purelifewaterbottles.bo.impl;
 
-import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.bo.PaymentBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.PaymentDAOImpl;
 import com.assignment.purelifewaterbottles.model.PaymentDto;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

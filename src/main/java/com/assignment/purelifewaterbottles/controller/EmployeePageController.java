@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.EmployeeBOImpl;
-import com.assignment.purelifewaterbottles.bo.SalaryBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.EmployeeBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.SalaryBOImpl;
 import com.assignment.purelifewaterbottles.model.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.model.EmployeeDto;
 import com.assignment.purelifewaterbottles.model.SalaryDto;

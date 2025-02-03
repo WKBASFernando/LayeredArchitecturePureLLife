@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.bo;
+package com.assignment.purelifewaterbottles.bo.impl;
 
+import com.assignment.purelifewaterbottles.bo.DeliveryBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
 import com.assignment.purelifewaterbottles.model.DeliveryDto;
 

@@ -1,12 +1,9 @@
-package com.assignment.purelifewaterbottles.bo;
+package com.assignment.purelifewaterbottles.bo.impl;
 
-import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.bo.UserBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.UserDAOImpl;
-import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.model.UserDto;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

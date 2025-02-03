@@ -1,6 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.CustomerBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.CustomerBOImpl;
 import com.assignment.purelifewaterbottles.model.CustomerDto;
 import com.assignment.purelifewaterbottles.view.tdm.CustomerTm;
 import javafx.collections.FXCollections;

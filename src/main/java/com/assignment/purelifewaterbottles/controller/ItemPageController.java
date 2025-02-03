@@ -1,6 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.ItemBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.ItemBOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDetailDAOImpl;
 import com.assignment.purelifewaterbottles.model.ItemDetailDto;
 import com.assignment.purelifewaterbottles.model.ItemDto;

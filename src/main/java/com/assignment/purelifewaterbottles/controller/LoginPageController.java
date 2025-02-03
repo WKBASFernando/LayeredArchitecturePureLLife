@@ -1,6 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.UserBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.UserBOImpl;
 import com.assignment.purelifewaterbottles.model.UserDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

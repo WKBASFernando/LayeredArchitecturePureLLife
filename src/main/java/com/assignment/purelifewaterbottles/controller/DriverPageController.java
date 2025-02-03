@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.DriverBOImpl;
-import com.assignment.purelifewaterbottles.bo.VehicleBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.DriverBOImpl;
+import com.assignment.purelifewaterbottles.bo.impl.VehicleBOImpl;
 import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.model.DriverDto;
 import com.assignment.purelifewaterbottles.model.VehicleDto;

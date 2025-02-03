@@ -1,7 +1,6 @@
-package com.assignment.purelifewaterbottles.bo;
+package com.assignment.purelifewaterbottles.bo.impl;
 
-import com.assignment.purelifewaterbottles.dao.CrudUtil;
-import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDAOImpl;
+import com.assignment.purelifewaterbottles.bo.SupplierDetailBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SupplierDetailDAOImpl;
 import com.assignment.purelifewaterbottles.model.SupplierDetailDto;
 

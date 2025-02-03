@@ -1,5 +1,6 @@
-package com.assignment.purelifewaterbottles.bo;
+package com.assignment.purelifewaterbottles.bo.impl;
 
+import com.assignment.purelifewaterbottles.bo.SalaryBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SalaryDAOImpl;
 import com.assignment.purelifewaterbottles.model.SalaryDto;
 

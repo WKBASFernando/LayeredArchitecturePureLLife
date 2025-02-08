@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.impl.SupplierBOImpl;
-import com.assignment.purelifewaterbottles.bo.impl.SupplierDetailBOImpl;
+import com.assignment.purelifewaterbottles.bo.custom.impl.SupplierBOImpl;
+import com.assignment.purelifewaterbottles.bo.custom.impl.SupplierDetailBOImpl;
 import com.assignment.purelifewaterbottles.model.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.model.SupplierDetailDto;
 import com.assignment.purelifewaterbottles.model.SupplierDto;

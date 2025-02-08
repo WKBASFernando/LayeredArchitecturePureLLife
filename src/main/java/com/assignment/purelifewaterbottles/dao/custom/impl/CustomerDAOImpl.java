@@ -1,6 +1,7 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.CustomerPageDAO;
+import com.assignment.purelifewaterbottles.entity.Customer;
 import com.assignment.purelifewaterbottles.model.CustomerDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
@@ -25,26 +26,26 @@ public class CustomerDAOImpl implements CustomerPageDAO {
     }
 
     @Override
-    public boolean save(CustomerDto customerDto) throws SQLException {
-        return CrudUtil.execute("insert into customer values (?,?,?,?,?)", customerDto.getCustomerId(), customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail());
+    public boolean save(Customer customer) throws SQLException {
+        return CrudUtil.execute("insert into customer values (?,?,?,?,?)", customer.getCustomerId(), customer.getName(), customer.getAddress(), customer.getPhone_no(), customer.getEmail());
     }
 
     @Override
-    public ArrayList<CustomerDto> getAll() throws SQLException {
+    public ArrayList<Customer> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from customer");
 
-        ArrayList<CustomerDto> customerDTOS = new ArrayList<>();
+        ArrayList<Customer> customerDTOS = new ArrayList<>();
 
         while (rst.next()) {
-            CustomerDto customerDTO = new CustomerDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
+            Customer customerDTO = new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
             customerDTOS.add(customerDTO);
         }
         return customerDTOS;
     }
 
     @Override
-    public boolean update(CustomerDto customerDto) throws SQLException {
-        return CrudUtil.execute("update customer set name=?, address=?, phone_no=?, email=? where customerId=?", customerDto.getName(), customerDto.getAddress(), customerDto.getPhone_no(), customerDto.getEmail(), customerDto.getCustomerId());
+    public boolean update(Customer customer) throws SQLException {
+        return CrudUtil.execute("update customer set name=?, address=?, phone_no=?, email=? where customerId=?", customer.getName(), customer.getAddress(), customer.getPhone_no(), customer.getEmail(), customer.getCustomerId());
     }
 
     @Override
@@ -66,12 +67,12 @@ public class CustomerDAOImpl implements CustomerPageDAO {
     }
 
     @Override
-    public CustomerDto find(String selectedCustomerId) throws SQLException {
-        ResultSet rst = CrudUtil.execute("select * from customer where customerId=?", selectedCustomerId);
-
-        if (rst.next()) {
-            return new CustomerDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
-        }
+    public Customer find(String selectedCustomerId) throws SQLException {
+//        ResultSet rst = CrudUtil.execute("select * from customer where customerId=?", selectedCustomerId);
+//
+//        if (rst.next()) {
+//            return new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
+//        }
         return null;
     }
 }

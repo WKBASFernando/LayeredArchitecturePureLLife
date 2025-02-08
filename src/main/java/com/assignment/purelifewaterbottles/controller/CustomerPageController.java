@@ -1,6 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.impl.CustomerBOImpl;
+import com.assignment.purelifewaterbottles.bo.BOFactory;
+import com.assignment.purelifewaterbottles.bo.custom.CustomerBO;
+import com.assignment.purelifewaterbottles.bo.custom.impl.CustomerBOImpl;
 import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.model.CustomerDto;
 import com.assignment.purelifewaterbottles.view.tdm.CustomerTm;
@@ -50,7 +52,7 @@ public class CustomerPageController implements Initializable {
         }
     }
 
-    private void refreshPage() throws SQLException {
+    private void refreshPage() throws SQLException, ClassNotFoundException {
         loadNextCustomerId();
         loadTableData();
 
@@ -66,10 +68,9 @@ public class CustomerPageController implements Initializable {
         txtPhoneNo.setText("");
         txtEmail.setText("");
     }
+    CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
-    CustomerBOImpl customerBO = new CustomerBOImpl();
-
-    private void loadTableData() throws SQLException {
+    private void loadTableData() throws SQLException, ClassNotFoundException {
         ArrayList<CustomerDto> customerDTOS = customerBO.getAll();
 
         ObservableList<CustomerTm> customerTms = FXCollections.observableArrayList();
@@ -82,7 +83,7 @@ public class CustomerPageController implements Initializable {
         tblCustomer.setItems(customerTms);
     }
 
-    public void loadNextCustomerId() throws SQLException {
+    public void loadNextCustomerId() throws SQLException, ClassNotFoundException {
         String nextCustomerId = customerBO.getNextID();
         lblCusId.setText(nextCustomerId);
     }
@@ -136,7 +137,7 @@ public class CustomerPageController implements Initializable {
     private AnchorPane content;
 
     @FXML
-    void deleteButtonAction(ActionEvent event) throws SQLException {
+    void deleteButtonAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String customerId = lblCusId.getText();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
@@ -155,7 +156,7 @@ public class CustomerPageController implements Initializable {
     }
 
     @FXML
-    void saveButtonAction(ActionEvent event) throws SQLException {
+    void saveButtonAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String customerId = lblCusId.getText().trim();
         String name = txtName.getText().trim();
         String address = txtAddress.getText().trim();
@@ -229,12 +230,12 @@ public class CustomerPageController implements Initializable {
     }
 
     @FXML
-    void resetAction(ActionEvent event) throws SQLException {
+    void resetAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         refreshPage();
     }
 
     @FXML
-    void updateButtonAction(ActionEvent event) throws SQLException {
+    void updateButtonAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String customerId = lblCusId.getText().trim();
         String name = txtName.getText().trim();
         String address = txtAddress.getText().trim();

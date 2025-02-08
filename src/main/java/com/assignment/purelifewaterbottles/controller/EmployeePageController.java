@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.impl.EmployeeBOImpl;
-import com.assignment.purelifewaterbottles.bo.impl.SalaryBOImpl;
+import com.assignment.purelifewaterbottles.bo.custom.impl.EmployeeBOImpl;
+import com.assignment.purelifewaterbottles.bo.custom.impl.SalaryBOImpl;
 import com.assignment.purelifewaterbottles.model.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.model.EmployeeDto;
 import com.assignment.purelifewaterbottles.model.SalaryDto;
@@ -108,6 +108,7 @@ public class EmployeePageController implements Initializable {
 
     @FXML
     void homeOnAction(ActionEvent event) {
+
         navigateTo("/view/HomePage.fxml");
     }
 

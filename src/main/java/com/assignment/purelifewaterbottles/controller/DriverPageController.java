@@ -1,7 +1,10 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.impl.DriverBOImpl;
-import com.assignment.purelifewaterbottles.bo.impl.VehicleBOImpl;
+import com.assignment.purelifewaterbottles.bo.BOFactory;
+import com.assignment.purelifewaterbottles.bo.custom.DriverBO;
+import com.assignment.purelifewaterbottles.bo.custom.VehicleBO;
+import com.assignment.purelifewaterbottles.bo.custom.impl.DriverBOImpl;
+import com.assignment.purelifewaterbottles.bo.custom.impl.VehicleBOImpl;
 import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.model.DriverDto;
 import com.assignment.purelifewaterbottles.model.VehicleDto;
@@ -267,8 +270,10 @@ public class DriverPageController implements Initializable {
         btnSave.setDisable(false);
     }
 
+    //DriverBO driverBO = BOFactory.getInstance().getBO()
+    VehicleBO vehicleBO = (VehicleBO) BOFactory.getInstance().getBO(BOFactory.BOType.VEHICLE);
     DriverBOImpl driverBO = new DriverBOImpl();
-    VehicleBOImpl vehicleBO = new VehicleBOImpl();
+    VehicleBOImpl vehicleB = new VehicleBOImpl();
 
     private void loadNextDriverId() throws Exception {
         String nextEmployeeId = driverBO.getNextID();

@@ -1,6 +1,8 @@
 package com.assignment.purelifewaterbottles.controller;
 
-import com.assignment.purelifewaterbottles.bo.impl.CustomerBOImpl;
+import com.assignment.purelifewaterbottles.bo.BOFactory;
+import com.assignment.purelifewaterbottles.bo.custom.CustomerBO;
+import com.assignment.purelifewaterbottles.bo.custom.impl.CustomerBOImpl;
 import com.assignment.purelifewaterbottles.model.CustomerDto;
 import com.assignment.purelifewaterbottles.view.tdm.CustomerTm;
 import javafx.collections.FXCollections;
@@ -99,9 +101,9 @@ public class AddCustomerController implements Initializable {
         lblCusId.setText("");
     }
 
-    CustomerBOImpl customerBO = new CustomerBOImpl();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
-    private void loadTableData() throws SQLException {
+    private void loadTableData() throws SQLException, ClassNotFoundException {
         ArrayList<CustomerDto> customerDTOS = customerBO.getAll();
 
         ObservableList<CustomerTm> customerTms = FXCollections.observableArrayList();

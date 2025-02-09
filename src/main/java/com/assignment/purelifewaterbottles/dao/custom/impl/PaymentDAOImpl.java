@@ -4,6 +4,7 @@ package com.assignment.purelifewaterbottles.dao.custom.impl;
 import com.assignment.purelifewaterbottles.dao.custom.PaymentDAO;
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.entity.Payment;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public PaymentDto find(String id) throws SQLException, ClassNotFoundException {
+    public Payment find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -35,25 +36,25 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public ArrayList<PaymentDto> getAll() throws SQLException {
+    public ArrayList<Payment> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from payment");
 
-        ArrayList<PaymentDto> paymentDtos = new ArrayList<>();
+        ArrayList<Payment> paymentDtos = new ArrayList<>();
 
         while (rst.next()) {
-            PaymentDto paymentDto = new PaymentDto(rst.getString(1), rst.getString(2), rst.getString(3));
+            Payment paymentDto = new Payment(rst.getString(1), rst.getString(2), rst.getString(3));
             paymentDtos.add(paymentDto);
         }
         return paymentDtos;
     }
 
     @Override
-    public boolean save(PaymentDto paymentDto) throws SQLException {
+    public boolean save(Payment paymentDto) throws SQLException {
         return CrudUtil.execute("insert into payment values(?, ?, ?)", paymentDto.getPaymentId(), paymentDto.getOrderId(), paymentDto.getPay_method());
     }
 
     @Override
-    public boolean update(PaymentDto Dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Payment Dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 

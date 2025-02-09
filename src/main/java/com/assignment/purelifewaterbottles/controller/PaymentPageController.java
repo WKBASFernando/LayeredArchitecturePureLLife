@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.BOFactory;
 import com.assignment.purelifewaterbottles.bo.custom.impl.PaymentBOImpl;
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
 import com.assignment.purelifewaterbottles.view.tdm.PaymentTm;
@@ -108,7 +109,7 @@ public class PaymentPageController implements Initializable {
         loadNextPaymentId();
     }
 
-    PaymentBOImpl paymentBO = new PaymentBOImpl();
+    PaymentBOImpl paymentBO = (PaymentBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.PAYMENT);
 
     private void loadTableData() throws Exception {
         ArrayList<PaymentDto> paymentDtos = paymentBO.getAll();

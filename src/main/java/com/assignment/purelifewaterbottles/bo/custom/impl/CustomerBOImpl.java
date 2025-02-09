@@ -3,9 +3,8 @@ package com.assignment.purelifewaterbottles.bo.custom.impl;
 import com.assignment.purelifewaterbottles.bo.custom.CustomerBO;
 import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.CustomerPageDAO;
-import com.assignment.purelifewaterbottles.dao.custom.impl.CustomerDAOImpl;
 import com.assignment.purelifewaterbottles.entity.Customer;
-import com.assignment.purelifewaterbottles.model.CustomerDto;
+import com.assignment.purelifewaterbottles.dto.CustomerDto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

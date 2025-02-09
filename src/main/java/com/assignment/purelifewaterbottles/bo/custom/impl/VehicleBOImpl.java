@@ -3,8 +3,8 @@ package com.assignment.purelifewaterbottles.bo.custom.impl;
 import com.assignment.purelifewaterbottles.bo.custom.VehicleBO;
 import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.VehicleDAO;
-import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
-import com.assignment.purelifewaterbottles.model.VehicleDto;
+import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
+import com.assignment.purelifewaterbottles.dto.VehicleDto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

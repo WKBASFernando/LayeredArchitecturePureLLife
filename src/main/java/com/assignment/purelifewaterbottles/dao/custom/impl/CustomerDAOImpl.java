@@ -2,7 +2,6 @@ package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.CustomerPageDAO;
 import com.assignment.purelifewaterbottles.entity.Customer;
-import com.assignment.purelifewaterbottles.model.CustomerDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
@@ -37,8 +36,8 @@ public class CustomerDAOImpl implements CustomerPageDAO {
         ArrayList<Customer> customerDTOS = new ArrayList<>();
 
         while (rst.next()) {
-            Customer customerDTO = new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
-            customerDTOS.add(customerDTO);
+            Customer customer = new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5));
+            customerDTOS.add(customer);
         }
         return customerDTOS;
     }

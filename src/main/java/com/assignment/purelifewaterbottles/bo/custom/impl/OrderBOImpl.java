@@ -2,8 +2,8 @@ package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.OrderBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.OrderDAOImpl;
-import com.assignment.purelifewaterbottles.model.OrderAndDetailDto;
-import com.assignment.purelifewaterbottles.model.OrderDto;
+import com.assignment.purelifewaterbottles.dto.OrderAndDetailDto;
+import com.assignment.purelifewaterbottles.dto.OrderDto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

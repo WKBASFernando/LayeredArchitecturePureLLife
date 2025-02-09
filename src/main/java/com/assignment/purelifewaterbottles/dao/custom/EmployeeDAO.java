@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.dao.custom;
 
 import com.assignment.purelifewaterbottles.dao.CrudDAO;
-import com.assignment.purelifewaterbottles.model.EmployeeAndSalaryDto;
-import com.assignment.purelifewaterbottles.model.EmployeeDto;
+import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
+import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

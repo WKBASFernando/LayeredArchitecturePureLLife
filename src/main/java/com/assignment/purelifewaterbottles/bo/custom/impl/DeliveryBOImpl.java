@@ -1,31 +1,53 @@
 package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.DeliveryBO;
-import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
-import com.assignment.purelifewaterbottles.model.DeliveryDto;
+import com.assignment.purelifewaterbottles.dao.DAOFactory;
+import com.assignment.purelifewaterbottles.dao.custom.DeliveryDAO;
+import com.assignment.purelifewaterbottles.entity.Delivery;
+import com.assignment.purelifewaterbottles.dto.DeliveryDto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DeliveryBOImpl implements DeliveryBO {
-    DeliveryDAOImpl deliveryDAO = new DeliveryDAOImpl();
+    DeliveryDAO deliveryDAO = (DeliveryDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.DELIVERY);
     @Override
-    public boolean save(DeliveryDto deliveryDto) throws SQLException {
-        return deliveryDAO.save(deliveryDto);
+    public boolean save(DeliveryDto delivery) throws SQLException, ClassNotFoundException {
+        return deliveryDAO.save(new Delivery(
+                delivery.getDeliveryId(),
+                delivery.getDriverId(),
+                delivery.getLocation(),
+                delivery.getDelivery_fee()
+        ));
     }
 
     @Override
-    public ArrayList<DeliveryDto> getAll() throws SQLException {
-        return deliveryDAO.getAll();
+    public ArrayList<DeliveryDto> getAll() throws SQLException, ClassNotFoundException {
+        ArrayList<Delivery> deliveryList = deliveryDAO.getAll();
+        ArrayList<DeliveryDto> deliveryDtoList = new ArrayList<>();
+        for (Delivery delivery : deliveryList) {
+            deliveryDtoList.add(new DeliveryDto(
+                    delivery.getDeliveryId(),
+                    delivery.getDriverId(),
+                    delivery.getLocation(),
+                    delivery.getDelivery_fee()
+            ));
+        }
+        return deliveryDtoList;
     }
 
     @Override
-    public boolean update(DeliveryDto deliveryDto) throws SQLException {
-        return deliveryDAO.update(deliveryDto);
+    public boolean update(DeliveryDto delivery) throws SQLException, ClassNotFoundException {
+        return deliveryDAO.update(new Delivery(
+                delivery.getDeliveryId(),
+                delivery.getDriverId(),
+                delivery.getLocation(),
+                delivery.getDelivery_fee()
+        ));
     }
 
     @Override
-    public boolean delete(String deliveryId) throws SQLException {
+    public boolean delete(String deliveryId) throws SQLException, ClassNotFoundException {
         return deliveryDAO.delete(deliveryId);
     }
 
@@ -40,7 +62,7 @@ public class DeliveryBOImpl implements DeliveryBO {
     }
 
     @Override
-    public DeliveryDto find(String selectedDeliveryId) throws SQLException {
-        return deliveryDAO.find(selectedDeliveryId);
+    public DeliveryDto find(String selectedDeliveryId) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.bo.custom.impl.PaymentBOImpl;
-import com.assignment.purelifewaterbottles.model.PaymentDto;
+import com.assignment.purelifewaterbottles.dto.PaymentDto;
 import com.assignment.purelifewaterbottles.view.tdm.PaymentTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

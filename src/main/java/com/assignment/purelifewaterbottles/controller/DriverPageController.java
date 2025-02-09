@@ -1,13 +1,12 @@
 package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.bo.BOFactory;
-import com.assignment.purelifewaterbottles.bo.custom.DriverBO;
 import com.assignment.purelifewaterbottles.bo.custom.VehicleBO;
 import com.assignment.purelifewaterbottles.bo.custom.impl.DriverBOImpl;
 import com.assignment.purelifewaterbottles.bo.custom.impl.VehicleBOImpl;
-import com.assignment.purelifewaterbottles.model.DriverAndVehicleDto;
-import com.assignment.purelifewaterbottles.model.DriverDto;
-import com.assignment.purelifewaterbottles.model.VehicleDto;
+import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
+import com.assignment.purelifewaterbottles.dto.DriverDto;
+import com.assignment.purelifewaterbottles.dto.VehicleDto;
 import com.assignment.purelifewaterbottles.view.tdm.DriverAndVehicleTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

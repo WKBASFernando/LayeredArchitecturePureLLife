@@ -1,7 +1,9 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.BOFactory;
+import com.assignment.purelifewaterbottles.bo.custom.DeliveryBO;
 import com.assignment.purelifewaterbottles.bo.custom.impl.DeliveryBOImpl;
-import com.assignment.purelifewaterbottles.model.DeliveryDto;
+import com.assignment.purelifewaterbottles.dto.DeliveryDto;
 import com.assignment.purelifewaterbottles.view.tdm.DeliveryTm;
 import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
 import javafx.application.Platform;
@@ -211,8 +213,8 @@ public class AddDeliveryController implements Initializable {
             lblDelId.setText(nextDeliveryId);
         });
     }
-
-    DeliveryDAOImpl dm = new DeliveryDAOImpl();
+    DeliveryBO dm = (DeliveryBO) BOFactory.getInstance().getBO(BOFactory.BOType.DELIVERY);
+    DeliveryDAOImpl d = new DeliveryDAOImpl();
 
     private void loadTableData() throws Exception {
         ArrayList<DeliveryDto> deliveryDtos = dm.getAll();

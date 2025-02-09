@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.bo.custom;
 
 import com.assignment.purelifewaterbottles.bo.SuperBO;
-import com.assignment.purelifewaterbottles.model.SupplierDetailDto;
+import com.assignment.purelifewaterbottles.dto.SupplierDetailDto;
 
 import java.sql.SQLException;
 

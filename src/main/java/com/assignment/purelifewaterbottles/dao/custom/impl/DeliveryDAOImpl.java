@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.DeliveryDAO;
-import com.assignment.purelifewaterbottles.model.DeliveryDto;
+import com.assignment.purelifewaterbottles.entity.Delivery;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
@@ -10,25 +10,25 @@ import java.util.ArrayList;
 
 public class DeliveryDAOImpl implements DeliveryDAO {
     @Override
-    public boolean save(DeliveryDto deliveryDto) throws SQLException {
-        return CrudUtil.execute("insert into delivery values (?,?,?,?)", deliveryDto.getDeliveryId(), deliveryDto.getDriverId(), deliveryDto.getLocation(), deliveryDto.getDelivery_fee());
+    public boolean save(Delivery entity) throws SQLException {
+        return CrudUtil.execute("insert into delivery values (?,?,?,?)", entity.getDeliveryId(), entity.getDriverId(), entity.getLocation(), entity.getDelivery_fee());
     }
 
     @Override
-    public ArrayList<DeliveryDto> getAll() throws SQLException {
+    public ArrayList<Delivery> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from delivery");
 
-        ArrayList<DeliveryDto> deliveryDtos = new ArrayList<>();
+        ArrayList<Delivery> deliveries = new ArrayList<>();
 
         while (rst.next()) {
-            DeliveryDto deliveryDto = new DeliveryDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
-            deliveryDtos.add(deliveryDto);
+            Delivery delivery = new Delivery(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
+            deliveries.add(delivery);
         }
-        return deliveryDtos;
+        return deliveries;
     }
 
     @Override
-    public boolean update(DeliveryDto deliveryDto) throws SQLException {
+    public boolean update(Delivery deliveryDto) throws SQLException {
         return CrudUtil.execute("update delivery set driverId=?, location=?, delivery_fee=? where deliveryId=?", deliveryDto.getDriverId(), deliveryDto.getLocation(), deliveryDto.getDelivery_fee(), deliveryDto.getDeliveryId());
     }
 
@@ -75,11 +75,11 @@ public class DeliveryDAOImpl implements DeliveryDAO {
     }
 
     @Override
-    public DeliveryDto find(String selectedDeliveryId) throws SQLException {
+    public Delivery find(String selectedDeliveryId) throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from delivery where deliveryId=?", selectedDeliveryId);
 
         if (rst.next()) {
-            return new DeliveryDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
+            return new Delivery(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4));
         }
         return null;
     }

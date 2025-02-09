@@ -2,9 +2,8 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.bo.BOFactory;
 import com.assignment.purelifewaterbottles.bo.custom.CustomerBO;
-import com.assignment.purelifewaterbottles.bo.custom.impl.CustomerBOImpl;
 import com.assignment.purelifewaterbottles.db.DBConnection;
-import com.assignment.purelifewaterbottles.model.CustomerDto;
+import com.assignment.purelifewaterbottles.dto.CustomerDto;
 import com.assignment.purelifewaterbottles.view.tdm.CustomerTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

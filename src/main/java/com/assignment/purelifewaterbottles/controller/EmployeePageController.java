@@ -2,9 +2,9 @@ package com.assignment.purelifewaterbottles.controller;
 
 import com.assignment.purelifewaterbottles.bo.custom.impl.EmployeeBOImpl;
 import com.assignment.purelifewaterbottles.bo.custom.impl.SalaryBOImpl;
-import com.assignment.purelifewaterbottles.model.EmployeeAndSalaryDto;
-import com.assignment.purelifewaterbottles.model.EmployeeDto;
-import com.assignment.purelifewaterbottles.model.SalaryDto;
+import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
+import com.assignment.purelifewaterbottles.dto.EmployeeDto;
+import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.view.tdm.EmployeeTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

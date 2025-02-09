@@ -1,4 +1,4 @@
-package com.assignment.purelifewaterbottles.model;
+package com.assignment.purelifewaterbottles.dto;
 
 import lombok.*;
 
@@ -7,10 +7,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EmployeeDto {
+public class EmployeeAndSalaryDto {
     private String employeeId;
+    private String salaryId;
     private String name;
-    private String position;
     private String address;
     private String phoneNumber;
+    private String position;
+    private double salary;
 }

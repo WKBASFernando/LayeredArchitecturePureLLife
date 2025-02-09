@@ -1,7 +1,8 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.DriverDAO;
-import com.assignment.purelifewaterbottles.model.DriverDto;
+import com.assignment.purelifewaterbottles.entity.Driver;
+import com.assignment.purelifewaterbottles.dto.DriverDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;
@@ -33,7 +34,7 @@ public class DriverDAOImpl implements DriverDAO {
     }
 
     @Override
-    public DriverDto find(String id) throws SQLException, ClassNotFoundException {
+    public Driver find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -43,25 +44,25 @@ public class DriverDAOImpl implements DriverDAO {
     }
 
     @Override
-    public ArrayList<DriverDto> getAll() throws SQLException {
+    public ArrayList<Driver> getAll() throws SQLException {
         ResultSet rst = CrudUtil.execute("select driverId, vehicleId, name, phoneNo, driver_fee from driver");
 
-        ArrayList<DriverDto> driverDtos = new ArrayList<>();
+        ArrayList<Driver> drivers = new ArrayList<>();
 
         while (rst.next()) {
-            DriverDto driverDto = new DriverDto(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getDouble(5));
-            driverDtos.add(driverDto);
+            Driver driver = new Driver(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getDouble(5));
+            drivers.add(driver);
         }
-        return driverDtos;
+        return drivers;
     }
 
     @Override
-    public boolean save(DriverDto driverDto) throws SQLException {
+    public boolean save(Driver driverDto) throws SQLException {
         return CrudUtil.execute("insert into driver values (?,?,?,?,?)", driverDto.getDriverId(), driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo());
     }
 
     @Override
-    public boolean update(DriverDto driverDto) throws SQLException {
+    public boolean update(Driver driverDto) throws SQLException {
         return CrudUtil.execute("update driver set vehicleId=?, driver_fee=?, name=?, phoneNo=? where driverId=?", driverDto.getVehicleId(), driverDto.getDriver_fee(), driverDto.getName(), driverDto.getPhoneNo(), driverDto.getDriverId());
     }
 

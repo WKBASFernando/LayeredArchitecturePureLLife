@@ -2,7 +2,7 @@ package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.SalaryBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SalaryDAOImpl;
-import com.assignment.purelifewaterbottles.model.SalaryDto;
+import com.assignment.purelifewaterbottles.dto.SalaryDto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

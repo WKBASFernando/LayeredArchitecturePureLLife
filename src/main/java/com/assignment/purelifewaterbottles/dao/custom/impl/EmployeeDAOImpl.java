@@ -1,8 +1,8 @@
 package com.assignment.purelifewaterbottles.dao.custom.impl;
 
 import com.assignment.purelifewaterbottles.dao.custom.EmployeeDAO;
-import com.assignment.purelifewaterbottles.model.EmployeeAndSalaryDto;
-import com.assignment.purelifewaterbottles.model.EmployeeDto;
+import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
+import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.ResultSet;

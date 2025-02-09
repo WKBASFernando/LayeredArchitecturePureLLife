@@ -4,6 +4,7 @@ import com.assignment.purelifewaterbottles.bo.custom.EmployeeBO;
 import com.assignment.purelifewaterbottles.dao.custom.impl.EmployeeDAOImpl;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
+import com.assignment.purelifewaterbottles.entity.Employee;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class EmployeeBOImpl implements EmployeeBO {
 
     @Override
     public EmployeeDto find(String id) throws SQLException, ClassNotFoundException {
-        return employeeDAO.find(id);
+        return null;
     }
 
     @Override
@@ -27,12 +28,29 @@ public class EmployeeBOImpl implements EmployeeBO {
 
     @Override
     public ArrayList<EmployeeDto> getAll() throws SQLException, ClassNotFoundException {
-        return employeeDAO.getAll();
+        ArrayList<Employee> employees = employeeDAO.getAll();
+        ArrayList<EmployeeDto> employeeDtos = new ArrayList<>();
+        for (Employee employee : employees) {
+            employeeDtos.add(new EmployeeDto(
+                    employee.getEmployeeId(),
+                    employee.getName(),
+                    employee.getPosition(),
+                    employee.getAddress(),
+                    employee.getPhoneNumber()
+            ));
+        }
+        return employeeDtos;
     }
 
     @Override
-    public boolean save(EmployeeDto employeeDto) throws SQLException {
-        return employeeDAO.save(employeeDto);
+    public boolean save(EmployeeDto employee) throws SQLException {
+        return employeeDAO.save(new Employee(
+                employee.getEmployeeId(),
+                employee.getName(),
+                employee.getPosition(),
+                employee.getAddress(),
+                employee.getPhoneNumber()
+        ));
     }
 
     @Override
@@ -41,8 +59,14 @@ public class EmployeeBOImpl implements EmployeeBO {
     }
 
     @Override
-    public boolean update(EmployeeDto employeeDto) throws SQLException {
-        return employeeDAO.update(employeeDto);
+    public boolean update(EmployeeDto employee) throws SQLException {
+        return employeeDAO.update(new Employee(
+                employee.getEmployeeId(),
+                employee.getName(),
+                employee.getPosition(),
+                employee.getAddress(),
+                employee.getPhoneNumber()
+        ));
     }
 
     @Override

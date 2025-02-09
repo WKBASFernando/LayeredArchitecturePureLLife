@@ -4,6 +4,7 @@ import com.assignment.purelifewaterbottles.dao.custom.EmployeeDAO;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.entity.Employee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public EmployeeDto find(String id) throws SQLException, ClassNotFoundException {
+    public Employee find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -34,11 +35,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public ArrayList<EmployeeDto> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Employee> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
-    public boolean save(EmployeeDto employeeDto) throws SQLException {
+    public boolean save(Employee employeeDto) throws SQLException {
         return CrudUtil.execute("insert into employee values (?,?,?,?,?)", employeeDto.getEmployeeId(), employeeDto.getName(), employeeDto.getPosition(), employeeDto.getAddress(), employeeDto.getPhoneNumber());
     }
 
@@ -54,7 +55,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return employeeAndSalaryDtos;
     }
 
-    public boolean update(EmployeeDto employeeDto) throws SQLException {
+    public boolean update(Employee employeeDto) throws SQLException {
         return CrudUtil.execute("update employee set name=?, position=?, address=?, phoneNumber=? where employeeId=?", employeeDto.getName(), employeeDto.getPosition(), employeeDto.getAddress(), employeeDto.getPhoneNumber(), employeeDto.getEmployeeId());
     }
 

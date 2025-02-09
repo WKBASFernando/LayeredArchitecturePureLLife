@@ -269,10 +269,8 @@ public class DriverPageController implements Initializable {
         btnSave.setDisable(false);
     }
 
-    //DriverBO driverBO = BOFactory.getInstance().getBO()
     VehicleBO vehicleBO = (VehicleBO) BOFactory.getInstance().getBO(BOFactory.BOType.VEHICLE);
-    DriverBOImpl driverBO = new DriverBOImpl();
-    VehicleBOImpl vehicleB = new VehicleBOImpl();
+    DriverBOImpl driverBO = (DriverBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.DRIVER);
 
     private void loadNextDriverId() throws Exception {
         String nextEmployeeId = driverBO.getNextID();

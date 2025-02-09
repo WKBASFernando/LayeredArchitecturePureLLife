@@ -3,6 +3,7 @@ package com.assignment.purelifewaterbottles.dao.custom.impl;
 import com.assignment.purelifewaterbottles.dao.custom.SalaryDAO;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.entity.Salary;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,7 @@ public class SalaryDAOImpl implements SalaryDAO {
     }
 
     @Override
-    public SalaryDto find(String id) throws SQLException, ClassNotFoundException {
+    public Salary find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -43,15 +44,15 @@ public class SalaryDAOImpl implements SalaryDAO {
     }
 
     @Override
-    public ArrayList<SalaryDto> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Salary> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
-    public boolean save(SalaryDto salaryDto) throws SQLException {
+    public boolean save(Salary salaryDto) throws SQLException {
         return CrudUtil.execute("insert into salary values (?,?,?)", salaryDto.getSalaryId(), salaryDto.getEmployeeId(), salaryDto.getSalary());
     }
 
-    public boolean update(SalaryDto salaryDto) throws SQLException {
+    public boolean update(Salary salaryDto) throws SQLException {
         return CrudUtil.execute("update salary set employeeId=?, salary=? where salaryId=?", salaryDto.getEmployeeId(), salaryDto.getSalary(), salaryDto.getSalaryId());
     }
 

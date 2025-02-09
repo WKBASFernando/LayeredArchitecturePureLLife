@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.BOFactory;
 import com.assignment.purelifewaterbottles.bo.custom.impl.EmployeeBOImpl;
 import com.assignment.purelifewaterbottles.bo.custom.impl.SalaryBOImpl;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
@@ -268,8 +269,8 @@ public class EmployeePageController implements Initializable {
         btnSave.setDisable(false);
     }
 
-    EmployeeBOImpl employeeBO = new EmployeeBOImpl();
-    SalaryBOImpl salaryBO = new SalaryBOImpl();
+    EmployeeBOImpl employeeBO = (EmployeeBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.EMPLOYEE);
+    SalaryBOImpl salaryBO = (SalaryBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.SALARY);
 
     private void loadNextEmployeeId() throws Exception {
         String nextEmployeeId = employeeBO.getNextID();

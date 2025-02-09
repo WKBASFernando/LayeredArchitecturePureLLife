@@ -1,9 +1,6 @@
 package com.assignment.purelifewaterbottles.dao;
 
-import com.assignment.purelifewaterbottles.dao.custom.impl.CustomerDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.DeliveryDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.DriverDAOImpl;
-import com.assignment.purelifewaterbottles.dao.custom.impl.VehicleDAOImpl;
+import com.assignment.purelifewaterbottles.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -19,7 +16,7 @@ public class DAOFactory {
     }
 
     public enum DAOType {
-        CUSTOMER, VEHICLE, DELIVERY, DRIVER
+        CUSTOMER, VEHICLE, DELIVERY, DRIVER, EMPLOYEE, SALARY
     }
 
     public SuperDAO getDAO(DAOType type) {
@@ -32,6 +29,10 @@ public class DAOFactory {
                 return new DeliveryDAOImpl();
             case DRIVER:
                 return new DriverDAOImpl();
+            case EMPLOYEE:
+                return new EmployeeDAOImpl();
+            case SALARY:
+                return new SalaryDAOImpl();
 
             default:
                 return null;

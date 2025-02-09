@@ -1,10 +1,7 @@
 package com.assignment.purelifewaterbottles.bo;
 
 import com.assignment.purelifewaterbottles.bo.custom.CustomerBO;
-import com.assignment.purelifewaterbottles.bo.custom.impl.CustomerBOImpl;
-import com.assignment.purelifewaterbottles.bo.custom.impl.DeliveryBOImpl;
-import com.assignment.purelifewaterbottles.bo.custom.impl.DriverBOImpl;
-import com.assignment.purelifewaterbottles.bo.custom.impl.VehicleBOImpl;
+import com.assignment.purelifewaterbottles.bo.custom.impl.*;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -20,7 +17,7 @@ public class BOFactory {
     }
 
     public enum BOType {
-        CUSTOMER, VEHICLE, DELIVERY, DRIVER
+        CUSTOMER, VEHICLE, DELIVERY, DRIVER, EMPLOYEE, SALARY
     }
 
         public SuperBO getBO(BOType type) {
@@ -33,6 +30,10 @@ public class BOFactory {
                 return new DeliveryBOImpl();
             case DRIVER:
                 return new DriverBOImpl();
+            case EMPLOYEE:
+                return new EmployeeBOImpl();
+            case SALARY:
+                return new SalaryBOImpl();
 
                 default:
                     return null;

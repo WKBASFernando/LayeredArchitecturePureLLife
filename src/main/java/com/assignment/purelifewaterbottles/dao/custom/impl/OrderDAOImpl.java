@@ -5,6 +5,7 @@ import com.assignment.purelifewaterbottles.dto.OrderAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.OrderDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class OrderDAOImpl implements OrderDAO {
         return null;
     }
 
+    @Override
     public ArrayList<OrderAndDetailDto> getAllOrders() throws SQLException {
         ResultSet rst = CrudUtil.execute("select distinct o.orderId, o.customerId, o.deliveryId, od.itemId, od.item_qty, o.order_date, o.description from orders o join order_detail od on o.orderId = od.orderId");
 
@@ -46,11 +48,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public ArrayList<OrderDto> getAll() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    public boolean save(OrderDto orderDto) throws SQLException {
+    public boolean save(Connection connection, OrderDto orderDto) throws SQLException {
         return CrudUtil.execute("insert into orders values (?,?,?,?,?)",
                 orderDto.getOrderId(),
                 orderDto.getCustomerId(),
@@ -60,10 +58,12 @@ public class OrderDAOImpl implements OrderDAO {
 
     }
 
-    public boolean update(OrderDto orderDto) throws SQLException {
+    @Override
+    public boolean update(Connection connection, OrderDto orderDto) throws SQLException {
         return CrudUtil.execute("update orders set customerId=?, deliveryId=?, description=?, order_date=? where orderId=?", orderDto.getCustomerId(), orderDto.getDeliveryId(), orderDto.getDescription(), orderDto.getOrderDate(), orderDto.getOrderId());
     }
 
+    @Override
     public boolean delete(String orderId) throws SQLException {
         return CrudUtil.execute("delete from orders where orderId=?", orderId);
     }

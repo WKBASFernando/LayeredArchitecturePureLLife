@@ -1,7 +1,7 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.BOFactory;
 import com.assignment.purelifewaterbottles.bo.custom.impl.SupplierBOImpl;
-import com.assignment.purelifewaterbottles.bo.custom.impl.SupplierDetailBOImpl;
 import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDto;
@@ -152,8 +152,8 @@ public class SupplierPageController implements Initializable {
         refreshPage();
     }
 
-    SupplierBOImpl supplierBO = new SupplierBOImpl();
-    SupplierDetailBOImpl supplierDetailBO = new SupplierDetailBOImpl();
+    SupplierBOImpl supplierBO = (SupplierBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.SUPPLIER);
+
 
     @FXML
     void saveButtonAction(ActionEvent event) throws Exception {
@@ -166,14 +166,15 @@ public class SupplierPageController implements Initializable {
 
         boolean isValid = true;
 
-        String itemNamePattern = "^[a-zA-Z\\s]+$";
+        String itemNamePattern = "^[a-zA-Z0-9\\s()]+$";
         if (!itemName.matches(itemNamePattern)) {
             txtItemName.setStyle("-fx-border-color: red;");
-            new Alert(Alert.AlertType.ERROR, "Invalid Item Name: Only letters and spaces allowed").show();
+            new Alert(Alert.AlertType.ERROR, "Invalid Item Name").show();
             isValid = false;
         } else {
             txtItemName.setStyle("-fx-border-color: #2e86de;");
         }
+
 
         try {
             double pricePerUnit = Double.parseDouble(pricePerUnitText);
@@ -207,10 +208,10 @@ public class SupplierPageController implements Initializable {
             SupplierDto supplierDto = new SupplierDto(supplierId, itemName, pricePerUnit);
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
-            boolean isSavedS = supplierBO.save(supplierDto);
-            boolean isSavedSD = supplierDetailBO.save(supplierDetailDto);
+            boolean isSavedS = supplierBO.save(supplierDto, supplierDetailDto);
 
-            if (isSavedS && isSavedSD) {
+
+            if (isSavedS) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Supplier Saved").show();
             } else {
@@ -287,10 +288,9 @@ public class SupplierPageController implements Initializable {
             SupplierDto supplierDto = new SupplierDto(supplierId, itemName, pricePerUnit);
             SupplierDetailDto supplierDetailDto = new SupplierDetailDto(supplierId, warehouseId, qty, total);
 
-            boolean isUpdatedS = supplierBO.update(supplierDto);
-            boolean isUpdatedSD = supplierDetailBO.update(supplierDetailDto);
+            boolean isUpdatedS = supplierBO.update(supplierDto, supplierDetailDto);
 
-            if (isUpdatedS && isUpdatedSD) {
+            if (isUpdatedS) {
                 refreshPage();
                 new Alert(Alert.AlertType.INFORMATION, "Supplier Updated").show();
             } else {

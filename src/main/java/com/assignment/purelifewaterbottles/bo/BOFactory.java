@@ -2,6 +2,8 @@ package com.assignment.purelifewaterbottles.bo;
 
 import com.assignment.purelifewaterbottles.bo.custom.CustomerBO;
 import com.assignment.purelifewaterbottles.bo.custom.impl.*;
+import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
+import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDetailDAOImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -17,7 +19,7 @@ public class BOFactory {
     }
 
     public enum BOType {
-        CUSTOMER, VEHICLE, DELIVERY, DRIVER, EMPLOYEE, SALARY, PAYMENT, USER
+        CUSTOMER, VEHICLE, DELIVERY, DRIVER, EMPLOYEE, SALARY, PAYMENT, USER, ITEM, ORDER, SUPPLIER
     }
 
         public SuperBO getBO(BOType type) {
@@ -38,6 +40,12 @@ public class BOFactory {
                 return new PaymentBOImpl();
             case USER:
                 return new UserBOImpl();
+            case ITEM:
+                return new ItemBOImpl();
+            case ORDER:
+                return new OrderBOImpl();
+            case SUPPLIER:
+                return new SupplierBOImpl();
 
                 default:
                     return null;

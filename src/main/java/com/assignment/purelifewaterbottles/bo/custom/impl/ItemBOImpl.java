@@ -1,20 +1,22 @@
 package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.ItemBO;
+import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDAOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDetailDAOImpl;
 import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.dto.ItemDetailDto;
 import com.assignment.purelifewaterbottles.dto.ItemDto;
 import com.assignment.purelifewaterbottles.dto.ItemDtoOriginal;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemBOImpl implements ItemBO {
-    ItemDAOImpl itemDAO = new ItemDAOImpl();
-    ItemDetailDAOImpl itemDetailDAO = new ItemDetailDAOImpl();
+    ItemDAOImpl itemDAO = (ItemDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ITEM);
+    ItemDetailDAOImpl itemDetailDAO = (ItemDetailDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ITEM_DETAIL);
 
     @Override
     public String getNextID() throws SQLException {
@@ -39,7 +41,7 @@ public class ItemBOImpl implements ItemBO {
         try {
             connection.setAutoCommit(false);
             boolean itemSavedI = itemDAO.save(connection, itemDto);
-            boolean itemSavedID = itemDetailDAO.save(itemDetailDto);
+            boolean itemSavedID = itemDetailDAO.save(connection, itemDetailDto);
             if (!itemSavedI && !itemSavedID) {
                 throw new SQLException("Failed to save item: " + itemDto.getItemId());
             }
@@ -64,13 +66,18 @@ public class ItemBOImpl implements ItemBO {
         try {
             connection.setAutoCommit(false);
             boolean itemUpdateI = itemDAO.update(connection, itemDto);
-            boolean itemUpdateID = itemDetailDAO.update(itemDetailDto);
+            boolean itemUpdateID = itemDetailDAO.update(connection, itemDetailDto);
             if (!itemUpdateI && !itemUpdateID) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save item: " + itemDto.getItemId());
+                alert.showAndWait();
                 throw new SQLException("Failed to save item: " + itemDto.getItemId());
             }
 
             connection.commit();
             result = true;
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
         } finally {
             connection.setAutoCommit(true);
         }

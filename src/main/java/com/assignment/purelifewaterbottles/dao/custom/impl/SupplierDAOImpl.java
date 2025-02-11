@@ -5,6 +5,7 @@ import com.assignment.purelifewaterbottles.dto.SupplierAndDetailDto;
 import com.assignment.purelifewaterbottles.dto.SupplierDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -42,16 +43,11 @@ public class SupplierDAOImpl implements SupplierDAO {
         return null;
     }
 
-    @Override
-    public ArrayList<SupplierDto> getAll() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    public boolean save(SupplierDto supplier) throws SQLException {
+    public boolean save(Connection connection, SupplierDto supplier) throws SQLException {
         return CrudUtil.execute("insert into supplier values (?,?,?)", supplier.getSupplierId(), supplier.getSupplingItem(), supplier.getPricePerOneItem());
     }
 
-    public boolean update(SupplierDto supplier) throws SQLException {
+    public boolean update(Connection connection, SupplierDto supplier) throws SQLException {
         return CrudUtil.execute("update supplier set supplingItem=?, pricePerOneItem=? where supplierId=?", supplier.getSupplingItem(), supplier.getPricePerOneItem(), supplier.getSupplierId());
     }
 

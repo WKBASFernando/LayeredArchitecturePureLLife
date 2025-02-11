@@ -35,11 +35,6 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public ArrayList<ItemDtoOriginal> getAll() throws SQLException, ClassNotFoundException {
-        return null;
-    }
-
-    @Override
     public boolean save(Connection connection, ItemDtoOriginal itemDto) throws SQLException {
         return CrudUtil.execute("insert into item values (?,?,?,?)", itemDto.getItemId(), itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice());
     }

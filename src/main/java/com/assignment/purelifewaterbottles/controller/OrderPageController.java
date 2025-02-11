@@ -148,7 +148,7 @@ public class OrderPageController implements Initializable {
     }
 
     OrderBOImpl orderBO = new OrderBOImpl();
-    OrderDetailDAOImpl orderDetailModel = new OrderDetailDAOImpl();
+//    OrderDetailDAOImpl orderDetailModel = new OrderDetailDAOImpl();
 
     @FXML
     void saveButtonAction(ActionEvent event) throws SQLException {
@@ -242,10 +242,10 @@ public class OrderPageController implements Initializable {
         OrderDto orderDto = new OrderDto(orderId, customerId, deliveryId, localDate, description);
         OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, itemQty);
 
-        boolean isSavedOrder = orderBO.save(orderDto);
-        boolean isSavedOrderDetail = orderDetailModel.save(orderDetailDto);
+        boolean isSaved = orderBO.save(orderDto, orderDetailDto);
+//        boolean isSavedOrderDetail = orderDetailModel.save(orderDetailDto);
 
-        if (isSavedOrder && isSavedOrderDetail) {
+        if (isSaved) {
             new Alert(Alert.AlertType.INFORMATION, "Saved successfully").show();
             refreshPage();
             return true;
@@ -328,10 +328,10 @@ public class OrderPageController implements Initializable {
             OrderDetailDto orderDetailDto = new OrderDetailDto(orderId, itemId, Integer.parseInt(qty)); // No item quantity update
 
             // Update order and order details
-            boolean isUpdateO = orderBO.update(orderDto);
-            boolean isUpdateOD = orderDetailModel.update(orderDetailDto);
+            boolean isUpdate = orderBO.update(orderDto, orderDetailDto);
+//            boolean isUpdateOD = orderDetailModel.update(orderDetailDto);
 
-            if (isUpdateO && isUpdateOD) {
+            if (isUpdate) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated successfully").show();
                 refreshPage();
             } else {

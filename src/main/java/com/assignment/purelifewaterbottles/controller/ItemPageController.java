@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.BOFactory;
 import com.assignment.purelifewaterbottles.bo.custom.impl.ItemBOImpl;
 import com.assignment.purelifewaterbottles.dao.custom.impl.ItemDetailDAOImpl;
 import com.assignment.purelifewaterbottles.dto.ItemDetailDto;
@@ -107,8 +108,7 @@ public class ItemPageController implements Initializable {
         refreshPage();
     }
 
-    ItemBOImpl itemBO = new ItemBOImpl();
-    ItemDetailDAOImpl itemDetailDAO = new ItemDetailDAOImpl();
+    ItemBOImpl itemBO = (ItemBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.ITEM);
 
     @FXML
     void saveButtonAction(ActionEvent event) throws Exception {

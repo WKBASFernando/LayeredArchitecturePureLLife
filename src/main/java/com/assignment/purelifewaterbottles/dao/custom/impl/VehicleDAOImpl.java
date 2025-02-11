@@ -4,6 +4,7 @@ import com.assignment.purelifewaterbottles.dao.custom.VehicleDAO;
 import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.entity.Vehicle;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     @Override
-    public VehicleDto find(String id) throws SQLException, ClassNotFoundException {
+    public Vehicle find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -34,11 +35,11 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     @Override
-    public ArrayList<VehicleDto> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Vehicle> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
-    public boolean save(VehicleDto vehicleDto) throws SQLException {
+    public boolean save(Vehicle vehicleDto) throws SQLException {
         return CrudUtil.execute("insert into vehicle values (?,?,?)", vehicleDto.getVehicleId(), vehicleDto.getType(), vehicleDto.getVehicleNumber());
     }
 
@@ -54,7 +55,7 @@ public class VehicleDAOImpl implements VehicleDAO {
         return driverAndVehicleDtos;
     }
 
-    public boolean update(VehicleDto vehicleDto) throws SQLException {
+    public boolean update(Vehicle vehicleDto) throws SQLException {
         return CrudUtil.execute("update vehicle set type=?, vehicleNumber=? where vehicleId=?", vehicleDto.getType(), vehicleDto.getVehicleNumber(), vehicleDto.getVehicleId());
     }
 

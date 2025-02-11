@@ -1,5 +1,6 @@
 package com.assignment.purelifewaterbottles.controller;
 
+import com.assignment.purelifewaterbottles.bo.BOFactory;
 import com.assignment.purelifewaterbottles.bo.custom.impl.UserBOImpl;
 import com.assignment.purelifewaterbottles.dto.UserDto;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ public class LoginPageController {
     @FXML
     private AnchorPane content;
 
-    UserBOImpl userBO = new UserBOImpl();
+    UserBOImpl userBO = (UserBOImpl) BOFactory.getInstance().getBO(BOFactory.BOType.USER);
     @FXML
     void loginAction(ActionEvent event) {
         String username = txtUsername.getText();

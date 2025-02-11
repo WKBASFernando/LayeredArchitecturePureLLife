@@ -5,6 +5,7 @@ import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.VehicleDAO;
 import com.assignment.purelifewaterbottles.dto.DriverAndVehicleDto;
 import com.assignment.purelifewaterbottles.dto.VehicleDto;
+import com.assignment.purelifewaterbottles.entity.Vehicle;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class VehicleBOImpl implements VehicleBO {
 
     @Override
     public VehicleDto find(String id) throws SQLException, ClassNotFoundException {
-        return vehicleDAO.find(id);
+        return null;
     }
 
     @Override
@@ -29,12 +30,26 @@ public class VehicleBOImpl implements VehicleBO {
 
     @Override
     public ArrayList<VehicleDto> getAll() throws SQLException, ClassNotFoundException {
-        return vehicleDAO.getAll();
+        ArrayList<Vehicle> vehicles = vehicleDAO.getAll();
+        ArrayList<VehicleDto> vehicleDtos = new ArrayList<>();
+
+        for (Vehicle vehicle : vehicles) {
+            vehicleDtos.add(new VehicleDto(
+                    vehicle.getVehicleId(),
+                    vehicle.getType(),
+                    vehicle.getVehicleNumber()
+            ));
+        }
+        return vehicleDtos;
     }
 
     @Override
-    public boolean save(VehicleDto vehicleDto) throws SQLException, ClassNotFoundException {
-        return vehicleDAO.save(vehicleDto);
+    public boolean save(VehicleDto vehicle) throws SQLException, ClassNotFoundException {
+        return vehicleDAO.save(new Vehicle(
+                vehicle.getVehicleId(),
+                vehicle.getType(),
+                vehicle.getVehicleNumber()
+        ));
     }
 
     @Override
@@ -43,8 +58,12 @@ public class VehicleBOImpl implements VehicleBO {
     }
 
     @Override
-    public boolean update(VehicleDto vehicleDto) throws SQLException, ClassNotFoundException {
-        return vehicleDAO.update(vehicleDto);
+    public boolean update(VehicleDto vehicle) throws SQLException, ClassNotFoundException {
+        return vehicleDAO.update(new Vehicle(
+                vehicle.getVehicleId(),
+                vehicle.getType(),
+                vehicle.getVehicleNumber()
+        ));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.PaymentBO;
+import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.impl.PaymentDAOImpl;
 import com.assignment.purelifewaterbottles.dto.PaymentDto;
 import com.assignment.purelifewaterbottles.entity.Payment;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PaymentBOImpl implements PaymentBO {
-    PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
+    PaymentDAOImpl paymentDAO = (PaymentDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.PAYMENT);
 
     @Override
     public String getNextID() throws SQLException {

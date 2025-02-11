@@ -4,6 +4,7 @@ import com.assignment.purelifewaterbottles.dao.custom.UserDAO;
 import com.assignment.purelifewaterbottles.db.DBConnection;
 import com.assignment.purelifewaterbottles.dto.UserDto;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
+import com.assignment.purelifewaterbottles.entity.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO {
-    public UserDto authenticateUser(String username, String password) {
+    public User authenticateUser(String username, String password) {
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM user WHERE username = ? AND password = ?", username, password);
             if (resultSet.next()) {
                 String dbUsername = resultSet.getString("username");
                 String dbPassword = resultSet.getString("password");
-                return new UserDto(dbUsername, dbPassword);
+                return new User(dbUsername, dbPassword);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -37,11 +38,11 @@ public class UserDAOImpl implements UserDAO {
         return usernames;
     }
 
-    public UserDto findByUsername(String selectedUsername) throws SQLException {
+    public User findByUsername(String selectedUsername) throws SQLException {
         ResultSet rst = CrudUtil.execute("select * from user where username=?", selectedUsername);
 
         if (rst.next()) {
-            return new UserDto(rst.getString(1), rst.getString(2));
+            return new User(rst.getString(1), rst.getString(2));
         }
         return null;
     }
@@ -56,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserDto find(String id) throws SQLException, ClassNotFoundException {
+    public User find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -66,16 +67,16 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public ArrayList<UserDto> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
-    public boolean save(UserDto userDto) throws SQLException {
+    public boolean save(User userDto) throws SQLException {
         return CrudUtil.execute("insert into user values(?,?)", userDto.getUsername(), userDto.getPassword());
     }
 
     @Override
-    public boolean update(UserDto Dto) throws SQLException, ClassNotFoundException {
+    public boolean update(User Dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 

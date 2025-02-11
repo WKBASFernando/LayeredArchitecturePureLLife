@@ -1,6 +1,7 @@
 package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.SalaryBO;
+import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.impl.SalaryDAOImpl;
 import com.assignment.purelifewaterbottles.dto.SalaryDto;
 import com.assignment.purelifewaterbottles.entity.Salary;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SalaryBOImpl implements SalaryBO {
-    SalaryDAOImpl salaryDAO = new SalaryDAOImpl();
+    SalaryDAOImpl salaryDAO = (SalaryDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.SALARY);
 
     @Override
     public String getNextID() throws SQLException {

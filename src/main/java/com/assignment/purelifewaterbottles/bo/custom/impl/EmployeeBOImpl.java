@@ -1,6 +1,7 @@
 package com.assignment.purelifewaterbottles.bo.custom.impl;
 
 import com.assignment.purelifewaterbottles.bo.custom.EmployeeBO;
+import com.assignment.purelifewaterbottles.dao.DAOFactory;
 import com.assignment.purelifewaterbottles.dao.custom.impl.EmployeeDAOImpl;
 import com.assignment.purelifewaterbottles.dto.EmployeeAndSalaryDto;
 import com.assignment.purelifewaterbottles.dto.EmployeeDto;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EmployeeBOImpl implements EmployeeBO {
-    EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    EmployeeDAOImpl employeeDAO = (EmployeeDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.EMPLOYEE);
     @Override
     public String getNextID() throws SQLException {
         return employeeDAO.getNextID();

@@ -6,7 +6,7 @@ import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
 import java.sql.SQLException;
 
-public class ItemDetailDAOImpl implements ItemDetailDAO {
+public class ItemDetailDAOImpl {
     public boolean save(ItemDetailDto itemDto) throws SQLException {
         return CrudUtil.execute("insert into item_detail values (?,?,?)", itemDto.getItemId(), itemDto.getWarehouseId(), itemDto.getItemQty());
     }

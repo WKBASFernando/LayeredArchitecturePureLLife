@@ -5,6 +5,7 @@ import com.assignment.purelifewaterbottles.dto.ItemDto;
 import com.assignment.purelifewaterbottles.dto.ItemDtoOriginal;
 import com.assignment.purelifewaterbottles.dao.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public ItemDto find(String id) throws SQLException, ClassNotFoundException {
+    public ItemDtoOriginal find(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -33,11 +34,17 @@ public class ItemDAOImpl implements ItemDAO {
         return null;
     }
 
-    public boolean save(ItemDtoOriginal itemDto) throws SQLException {
+    @Override
+    public ArrayList<ItemDtoOriginal> getAll() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean save(Connection connection, ItemDtoOriginal itemDto) throws SQLException {
         return CrudUtil.execute("insert into item values (?,?,?,?)", itemDto.getItemId(), itemDto.getName(), itemDto.getCapacity(), itemDto.getPrice());
     }
 
-    public ArrayList<ItemDto> getAll() throws SQLException {
+    public ArrayList<ItemDto> getAllItems() throws SQLException {
         ResultSet rst = CrudUtil.execute("select i.itemId, i.name, i.capacity, i.price, id.itemQty from item i join item_detail id on i.itemId = id.itemId");
 
         ArrayList<ItemDto> itemDtos = new ArrayList<>();
@@ -49,13 +56,9 @@ public class ItemDAOImpl implements ItemDAO {
         return itemDtos;
     }
 
-    @Override
-    public boolean save(ItemDto Dto) throws SQLException, ClassNotFoundException {
-        return false;
-    }
 
     @Override
-    public boolean update(ItemDto Dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Connection connection, ItemDtoOriginal Dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -67,7 +70,7 @@ public class ItemDAOImpl implements ItemDAO {
         return CrudUtil.execute("delete from item where itemId=?", itemId);
     }
 
-    public boolean deductStock(String itemId, int quantity) throws SQLException {
+    public boolean deductStock(Connection connection, String itemId, int quantity) throws SQLException {
         return CrudUtil.execute("UPDATE item_detail SET itemQty = CASE WHEN itemQty >= ? THEN itemQty - ? END WHERE itemId = ?", quantity, quantity, itemId);
     }
 }

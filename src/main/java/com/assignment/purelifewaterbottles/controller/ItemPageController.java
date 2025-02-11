@@ -165,10 +165,9 @@ public class ItemPageController implements Initializable {
             ItemDtoOriginal itemDtoOriginal = new ItemDtoOriginal(itemId, itemName, capacity, price);
             ItemDetailDto itemDetailDto = new ItemDetailDto(itemId, warehouseId, qty);
 
-            boolean isSavedI = itemBO.save(itemDtoOriginal);
-            boolean isSavedID = itemDetailDAO.save(itemDetailDto);
+            boolean isSaved = itemBO.save(itemDtoOriginal, itemDetailDto);
 
-            if (isSavedI && isSavedID) {
+            if (isSaved) {
                 refreshPage();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item saved successfully!");
                 alert.getDialogPane().setStyle("-fx-background-color: #2e86de;");
@@ -253,10 +252,9 @@ public class ItemPageController implements Initializable {
             ItemDtoOriginal itemDtoOriginal = new ItemDtoOriginal(itemId, itemName, capacity, price);
             ItemDetailDto itemDetailDto = new ItemDetailDto(itemId, warehouseId, qty);
 
-            boolean isUpdatedI = itemBO.update(itemDtoOriginal);
-            boolean isUpdatedID = itemDetailDAO.update(itemDetailDto);
+            boolean isUpdated = itemBO.update(itemDtoOriginal, itemDetailDto);
 
-            if (isUpdatedI && isUpdatedID) {
+            if (isUpdated) {
                 refreshPage();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item updated successfully!");
                 alert.getDialogPane().setStyle("-fx-background-color: #2e86de;");

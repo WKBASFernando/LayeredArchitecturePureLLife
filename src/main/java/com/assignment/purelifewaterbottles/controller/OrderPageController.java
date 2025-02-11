@@ -246,21 +246,9 @@ public class OrderPageController implements Initializable {
         boolean isSavedOrderDetail = orderDetailModel.save(orderDetailDto);
 
         if (isSavedOrder && isSavedOrderDetail) {
-            try {
-                boolean isStockDeducted = itemModel.deductStock(itemId, itemQty);
-                if(isStockDeducted) {
-                    new Alert(Alert.AlertType.INFORMATION, "Saved successfully").show();
-                    refreshPage();
-                    return true;
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Failed to deduct stock. Please try again.").show();
-                    return false;
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "Error while deducting stock: " + e.getMessage()).show();
-                e.printStackTrace();
-                return false;
-            }
+            new Alert(Alert.AlertType.INFORMATION, "Saved successfully").show();
+            refreshPage();
+            return true;
         } else {
             new Alert(Alert.AlertType.ERROR, "Failed to save the order. Please try again.").show();
             return false;
@@ -344,20 +332,8 @@ public class OrderPageController implements Initializable {
             boolean isUpdateOD = orderDetailModel.update(orderDetailDto);
 
             if (isUpdateO && isUpdateOD) {
-                try {
-                    // Deduct stock based on the original item quantity
-                    boolean isStockDeducted = itemModel.deductStock(itemId, Integer.parseInt(qty));
-                    if (isStockDeducted) {
-                        refreshPage();
-                        new Alert(Alert.AlertType.INFORMATION, "Order updated successfully and stock deducted!").show();
-                    } else {
-                        new Alert(Alert.AlertType.ERROR, "Failed to deduct stock. Please try again.").show();
-                    }
-                } catch (SQLException e) {
-                    // Handle the exception and display a meaningful error message
-                    new Alert(Alert.AlertType.ERROR, "Error while deducting stock: " + e.getMessage()).show();
-                    e.printStackTrace();
-                }
+                new Alert(Alert.AlertType.INFORMATION, "Updated successfully").show();
+                refreshPage();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the order. Please try again.").show();
             }
